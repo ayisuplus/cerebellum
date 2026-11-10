@@ -1,0 +1,77 @@
+{
+  "$defs": {
+    "CandidateExperience": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_id": {
+          "type": "string"
+        },
+        "category": {
+          "default": "",
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "content_hash": {
+          "type": "string"
+        },
+        "evidence": {
+          "default": null
+        },
+        "kind": {
+          "type": "string"
+        },
+        "source": {
+          "default": null,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tags": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "kind",
+        "content",
+        "content_hash"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "candidates": {
+      "items": {
+        "$ref": "#/$defs/CandidateExperience"
+      },
+      "type": "array"
+    },
+    "exported_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "producer": {
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "exported_at",
+    "producer",
+    "candidates"
+  ],
+  "title": "CandidateExport",
+  "type": "object"
+}

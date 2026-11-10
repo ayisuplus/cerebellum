@@ -1,0 +1,272 @@
+{
+  "$defs": {
+    "ArtifactVersionRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "type": "object"
+    },
+    "DataClassification": {
+      "enum": [
+        "public",
+        "internal",
+        "private"
+      ],
+      "type": "string"
+    },
+    "ExperienceCost": {
+      "additionalProperties": false,
+      "properties": {
+        "estimated_usd": {
+          "default": 0.0,
+          "format": "double",
+          "type": "number"
+        },
+        "input_tokens": {
+          "default": 0,
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "output_tokens": {
+          "default": 0,
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "wall_time_ms": {
+          "default": 0,
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ExperienceOutcome": {
+      "additionalProperties": false,
+      "properties": {
+        "failure_class": {
+          "default": null,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "metrics": {
+          "default": null
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "summary": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "success",
+        "summary"
+      ],
+      "type": "object"
+    },
+    "ExperienceSource": {
+      "additionalProperties": false,
+      "properties": {
+        "collected_by": {
+          "default": "",
+          "type": "string"
+        },
+        "commit_sha": {
+          "default": null,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "kind": {
+          "$ref": "#/$defs/ExperienceSourceKind"
+        },
+        "license": {
+          "default": null,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "uri"
+      ],
+      "type": "object"
+    },
+    "ExperienceSourceKind": {
+      "enum": [
+        "agent_trace",
+        "github",
+        "simulation"
+      ],
+      "type": "string"
+    },
+    "ExternalProcessingPermission": {
+      "enum": [
+        "denied",
+        "redacted"
+      ],
+      "type": "string"
+    },
+    "RepositorySnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "branch": {
+          "default": null,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "digest": {
+          "type": "string"
+        },
+        "dirty": {
+          "default": false,
+          "type": "boolean"
+        },
+        "repository_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "repository_id",
+        "digest"
+      ],
+      "type": "object"
+    },
+    "TrajectoryRef": {
+      "additionalProperties": false,
+      "properties": {
+        "content_hash": {
+          "type": "string"
+        },
+        "media_type": {
+          "default": "",
+          "type": "string"
+        },
+        "redacted": {
+          "default": false,
+          "type": "boolean"
+        },
+        "uri": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "uri",
+        "content_hash"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "agent_id": {
+      "type": "string"
+    },
+    "cost": {
+      "$ref": "#/$defs/ExperienceCost",
+      "default": {
+        "estimated_usd": 0.0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "wall_time_ms": 0
+      }
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "data_classification": {
+      "$ref": "#/$defs/DataClassification",
+      "default": "private"
+    },
+    "experience_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "external_processing": {
+      "$ref": "#/$defs/ExternalProcessingPermission",
+      "default": "denied"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "outcome": {
+      "$ref": "#/$defs/ExperienceOutcome"
+    },
+    "redaction_passed": {
+      "default": false,
+      "type": "boolean"
+    },
+    "repository": {
+      "$ref": "#/$defs/RepositorySnapshot"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "source": {
+      "$ref": "#/$defs/ExperienceSource"
+    },
+    "task": {
+      "type": "string"
+    },
+    "task_family": {
+      "type": "string"
+    },
+    "trajectory": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/TrajectoryRef"
+      },
+      "type": "array"
+    },
+    "workflow": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ArtifactVersionRef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "schema_version",
+    "experience_id",
+    "task",
+    "task_family",
+    "repository",
+    "agent_id",
+    "model_id",
+    "source",
+    "outcome",
+    "created_at"
+  ],
+  "title": "ExperienceEnvelope",
+  "type": "object"
+}

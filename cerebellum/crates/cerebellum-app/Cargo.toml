@@ -1,0 +1,53 @@
+[package]
+name = "cerebellum-app"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+name = "cerebellum_app"
+
+[[bin]]
+name = "cerebellumd"
+path = "src/bin/cerebellumd.rs"
+
+[[bin]]
+name = "cerebellum"
+path = "src/bin/cerebellum.rs"
+
+[dependencies]
+anyhow.workspace = true
+async-trait.workspace = true
+axum.workspace = true
+base64.workspace = true
+cerebellum-core = { path = "../cerebellum-core" }
+chrono.workspace = true
+clap.workspace = true
+hmac.workspace = true
+http.workspace = true
+futures-util.workspace = true
+regex.workspace = true
+reqwest.workspace = true
+rusqlite.workspace = true
+schemars.workspace = true
+semver.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+serde_yaml.workspace = true
+serde_urlencoded.workspace = true
+sha2.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+tokio-util.workspace = true
+tower-http.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+url.workspace = true
+uuid.workspace = true
+walkdir.workspace = true
+tar.workspace = true
+zstd.workspace = true
+
+[dev-dependencies]
+tempfile = "3"
+tower = { version = "0.5", features = ["util"] }

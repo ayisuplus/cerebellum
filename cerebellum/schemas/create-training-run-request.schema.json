@@ -1,0 +1,206 @@
+{
+  "$defs": {
+    "BaseModelPin": {
+      "additionalProperties": false,
+      "properties": {
+        "model_id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "model_id",
+        "revision",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "ExpertTrainingPlan": {
+      "additionalProperties": false,
+      "properties": {
+        "architecture": {
+          "$ref": "#/$defs/TrainingArchitecture"
+        },
+        "expert_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "expert_view_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "fallback_expert_id": {
+          "type": "string"
+        },
+        "router_top_k": {
+          "format": "uint8",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "train_router": {
+          "type": "boolean"
+        },
+        "train_shared": {
+          "default": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "architecture",
+        "expert_view_id",
+        "train_router",
+        "expert_ids",
+        "router_top_k",
+        "fallback_expert_id"
+      ],
+      "type": "object"
+    },
+    "QloraConfig": {
+      "additionalProperties": false,
+      "properties": {
+        "epochs": {
+          "format": "uint8",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "gradient_accumulation_steps": {
+          "format": "uint16",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "learning_rate": {
+          "format": "double",
+          "type": "number"
+        },
+        "lora_alpha": {
+          "format": "uint16",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "lora_dropout": {
+          "format": "double",
+          "type": "number"
+        },
+        "lora_rank": {
+          "format": "uint16",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "max_sequence_length": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "epochs",
+        "max_sequence_length",
+        "lora_rank",
+        "lora_alpha",
+        "lora_dropout",
+        "learning_rate",
+        "gradient_accumulation_steps"
+      ],
+      "type": "object"
+    },
+    "TrainingArchitecture": {
+      "enum": [
+        "dense_lora",
+        "routed_lora"
+      ],
+      "type": "string"
+    },
+    "TrainingBudget": {
+      "additionalProperties": false,
+      "properties": {
+        "max_hourly_cny": {
+          "format": "double",
+          "type": "number"
+        },
+        "max_total_cny": {
+          "format": "double",
+          "type": "number"
+        },
+        "max_wall_seconds": {
+          "default": 21600,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "max_hourly_cny",
+        "max_total_cny"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "administrator": {
+      "type": "string"
+    },
+    "base_model": {
+      "$ref": "#/$defs/BaseModelPin"
+    },
+    "budget": {
+      "$ref": "#/$defs/TrainingBudget"
+    },
+    "expert_plan": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ExpertTrainingPlan"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "gpu_spec": {
+      "type": "string"
+    },
+    "qlora": {
+      "$ref": "#/$defs/QloraConfig",
+      "default": {
+        "epochs": 1,
+        "gradient_accumulation_steps": 16,
+        "learning_rate": 0.0002,
+        "lora_alpha": 32,
+        "lora_dropout": 0.05,
+        "lora_rank": 16,
+        "max_sequence_length": 2048
+      }
+    },
+    "reason": {
+      "type": "string"
+    },
+    "snapshot_id": {
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "snapshot_id",
+    "base_model",
+    "gpu_spec",
+    "administrator",
+    "reason",
+    "budget"
+  ],
+  "title": "CreateTrainingRunRequest",
+  "type": "object"
+}

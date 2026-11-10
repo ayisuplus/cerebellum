@@ -1,0 +1,102 @@
+{
+  "$defs": {
+    "ModelTokenUsage": {
+      "additionalProperties": false,
+      "properties": {
+        "completion_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "prompt_cache_hit_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "prompt_cache_miss_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "prompt_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "reasoning_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "total_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "prompt_tokens",
+        "prompt_cache_hit_tokens",
+        "prompt_cache_miss_tokens",
+        "completion_tokens",
+        "reasoning_tokens",
+        "total_tokens"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "estimated_cny": {
+      "format": "double",
+      "type": "number"
+    },
+    "flash_calls": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "pro_calls": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "reserved_microusd": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "shanghai_day": {
+      "type": "string"
+    },
+    "spent_microusd": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "usage": {
+      "$ref": "#/$defs/ModelTokenUsage"
+    }
+  },
+  "required": [
+    "provider",
+    "shanghai_day",
+    "flash_calls",
+    "pro_calls",
+    "usage",
+    "reserved_microusd",
+    "spent_microusd",
+    "estimated_cny",
+    "updated_at"
+  ],
+  "title": "ModelUsageLedger",
+  "type": "object"
+}

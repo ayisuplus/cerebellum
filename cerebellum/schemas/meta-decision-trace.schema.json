@@ -1,0 +1,130 @@
+{
+  "$defs": {
+    "DataClassification": {
+      "enum": [
+        "public",
+        "internal",
+        "private"
+      ],
+      "type": "string"
+    },
+    "ExternalProcessingPermission": {
+      "enum": [
+        "denied",
+        "redacted"
+      ],
+      "type": "string"
+    },
+    "MetaTaskKind": {
+      "enum": [
+        "relevance",
+        "noise_filter",
+        "deduplication",
+        "retrieval_ranking",
+        "claim_relationship",
+        "acquisition_escalation",
+        "curriculum_priority",
+        "expected_information_gain",
+        "skill_workflow_routing",
+        "skill_workflow_evolution",
+        "temporal_grounding",
+        "knowledge_boundary",
+        "search_planning"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "confidence": {
+      "format": "double",
+      "type": "number"
+    },
+    "controller_version": {
+      "type": "string"
+    },
+    "cost": {
+      "format": "double",
+      "type": "number"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "data_classification": {
+      "$ref": "#/$defs/DataClassification",
+      "default": "private"
+    },
+    "decision_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "external_processing": {
+      "$ref": "#/$defs/ExternalProcessingPermission",
+      "default": "denied"
+    },
+    "input": true,
+    "input_hash": {
+      "type": "string"
+    },
+    "output": true,
+    "policy_version": {
+      "type": "string"
+    },
+    "policy_violations": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "prompt_injection_detected": {
+      "type": "boolean"
+    },
+    "redaction_attestation_hash": {
+      "default": null,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "source_domain": {
+      "type": "string"
+    },
+    "task_kind": {
+      "$ref": "#/$defs/MetaTaskKind"
+    },
+    "topic_family": {
+      "type": "string"
+    },
+    "training_eligible": {
+      "type": "boolean"
+    },
+    "useful": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "decision_id",
+    "task_kind",
+    "input_hash",
+    "input",
+    "output",
+    "source_domain",
+    "topic_family",
+    "policy_version",
+    "controller_version",
+    "confidence",
+    "cost",
+    "useful",
+    "training_eligible",
+    "policy_violations",
+    "prompt_injection_detected",
+    "created_at"
+  ],
+  "title": "MetaDecisionTrace",
+  "type": "object"
+}

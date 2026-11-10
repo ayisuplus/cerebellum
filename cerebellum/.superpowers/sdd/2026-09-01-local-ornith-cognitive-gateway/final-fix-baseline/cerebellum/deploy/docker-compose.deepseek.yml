@@ -1,0 +1,8 @@
+services:
+  cerebellum:
+    secrets:
+      - deepseek_api_key
+
+secrets:
+  deepseek_api_key:
+    file: ${DEEPSEEK_API_KEY_HOST_FILE:?set an absolute host path to the DeepSeek key file}

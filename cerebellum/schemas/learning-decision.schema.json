@@ -1,0 +1,127 @@
+{
+  "$defs": {
+    "LearningAction": {
+      "enum": [
+        "ignore",
+        "store",
+        "merge",
+        "distill",
+        "propose_skill",
+        "propose_workflow",
+        "schedule_eval",
+        "training_candidate"
+      ],
+      "type": "string"
+    },
+    "LearningScores": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "format": "double",
+          "type": "number"
+        },
+        "correctness": {
+          "format": "double",
+          "type": "number"
+        },
+        "cost": {
+          "format": "double",
+          "type": "number"
+        },
+        "expected_gain": {
+          "format": "double",
+          "type": "number"
+        },
+        "generality": {
+          "format": "double",
+          "type": "number"
+        },
+        "novelty": {
+          "format": "double",
+          "type": "number"
+        },
+        "risk": {
+          "format": "double",
+          "type": "number"
+        },
+        "utility": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "required": [
+        "correctness",
+        "utility",
+        "novelty",
+        "generality",
+        "confidence",
+        "risk",
+        "cost",
+        "expected_gain"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "actions": {
+      "items": {
+        "$ref": "#/$defs/LearningAction"
+      },
+      "type": "array"
+    },
+    "controller": {
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "decision_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "experience_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "priority": {
+      "format": "double",
+      "type": "number"
+    },
+    "reasons": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "registry_snapshot": {
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "scores": {
+      "$ref": "#/$defs/LearningScores"
+    },
+    "training_eligible": {
+      "default": false,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "decision_id",
+    "experience_id",
+    "scores",
+    "priority",
+    "actions",
+    "reasons",
+    "controller",
+    "registry_snapshot",
+    "created_at"
+  ],
+  "title": "LearningDecision",
+  "type": "object"
+}

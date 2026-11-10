@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "active_topics": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "dead_letter_jobs": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "document_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "enabled_sources": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "knowledge_card_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "last_success_at": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "pending_jobs": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "active_topics",
+    "enabled_sources",
+    "document_count",
+    "knowledge_card_count",
+    "pending_jobs",
+    "dead_letter_jobs"
+  ],
+  "title": "AcquisitionStatus",
+  "type": "object"
+}

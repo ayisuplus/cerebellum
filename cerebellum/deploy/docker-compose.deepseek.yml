@@ -1,0 +1,3 @@
+# Retired compatibility filename. The local Ornith gateway needs no secret or
+# service override; keep this empty file only for old operator commands.
+services: {}

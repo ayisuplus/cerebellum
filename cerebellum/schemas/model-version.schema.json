@@ -1,0 +1,99 @@
+{
+  "$defs": {
+    "ModelEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "gate_violation_delta": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "latency_improvement": {
+          "format": "double",
+          "type": "number"
+        },
+        "memory_improvement": {
+          "format": "double",
+          "type": "number"
+        },
+        "task_success_uplift": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "required": [
+        "task_success_uplift",
+        "gate_violation_delta",
+        "latency_improvement",
+        "memory_improvement"
+      ],
+      "type": "object"
+    },
+    "ModelStatus": {
+      "enum": [
+        "candidate",
+        "approved",
+        "rejected",
+        "active",
+        "rolled_back"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "evidence": {
+      "$ref": "#/$defs/ModelEvidence"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "review_reason": {
+      "default": null,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reviewed_by": {
+      "default": null,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "$ref": "#/$defs/ModelStatus"
+    },
+    "training_candidate_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "model_id",
+    "version",
+    "artifact_hash",
+    "training_candidate_id",
+    "evidence",
+    "status",
+    "created_at",
+    "updated_at"
+  ],
+  "title": "ModelVersion",
+  "type": "object"
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "metacognition_probe_manifest_v1",
+  "schema_version": "cerebellum/v1",
+  "suites": {
+    "fewshot.json": {
+      "count": null,
+      "sha256": "9809c01baa788c60471c51c8d8875efba2dfd4297dcc12b141dc670389dac783"
+    },
+    "kb.jsonl": {
+      "count": 60,
+      "sha256": "8fd770cfb7c91f498853b8803fdfcb1a788b318d8baa754f576b90cfbd392805"
+    },
+    "st.jsonl": {
+      "count": 30,
+      "sha256": "09d883841a78c30a74e9391fb370e5f8a69886c254f309186b9738cd6d2882b2"
+    },
+    "tg.jsonl": {
+      "count": 60,
+      "sha256": "fdba86ca8248326df71d9b5aae275d20e31067553c351884d390b4ba44d123a0"
+    },
+    "web-capture-queries.json": {
+      "count": null,
+      "sha256": "116ef6436e236a4165ac951eb9eea29fc8a6cb2b5fb67026c85915655b24f04a"
+    }
+  },
+  "scoring_version": "metacognition/2"
+}

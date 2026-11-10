@@ -1,0 +1,51 @@
+{
+  "schema_version": "v1",
+  "generated_at": "2026-08-24T00:00:00Z",
+  "providers": [
+    {
+      "name": "crawl4ai",
+      "version": "0.9.2",
+      "repository": "https://github.com/unclecode/crawl4ai",
+      "commit": "51e23a0da5ae2ee5f1ada1fc233759340a7790af",
+      "source_archive_sha256": "2155f23338e9fa11cff559666521b4eb432b40d51f5527287ad94f27324d7e8f",
+      "license": "Apache-2.0 WITH attribution requirement",
+      "mode": "optional_python"
+    },
+    {
+      "name": "firecrawl",
+      "version": "2.10",
+      "repository": "https://github.com/firecrawl/firecrawl",
+      "commit": "1173517f540b78b1ac7190e688c79f2b0262a421",
+      "source_archive_sha256": "46c8d408284bcc69181656f2d10d166ed9894b951e2507609000d0b49f9cc784",
+      "license": "AGPL-3.0",
+      "mode": "independent_http_service"
+    },
+    {
+      "name": "scrapling",
+      "version": "0.4.8",
+      "repository": "https://github.com/D4Vinci/Scrapling",
+      "commit": "9ee35014fea2fe962167d973e94d2cd6c33f34aa",
+      "source_archive_sha256": "3c3787e807b793b1420e22b82168cb5423bf4eb9b52c3c5c7506c7e08c486a80",
+      "license": "BSD-3-Clause",
+      "mode": "optional_python"
+    },
+    {
+      "name": "opencli",
+      "version": "1.8.4",
+      "repository": "https://github.com/jackwener/OpenCLI",
+      "commit": "b16a9d6cd6b0b8d5f62dc82058084647f5c071b0",
+      "source_archive_sha256": "2214f40a2e5a60149b8dc7429d3f8a4fbc346989b9562fd1aa1d15943c52a11c",
+      "license": "Apache-2.0",
+      "mode": "local_bridge_only"
+    },
+    {
+      "name": "tavily",
+      "version": "managed-service",
+      "repository": null,
+      "commit": null,
+      "source_archive_sha256": null,
+      "license": "vendor-terms",
+      "mode": "managed_http_service"
+    }
+  ]
+}

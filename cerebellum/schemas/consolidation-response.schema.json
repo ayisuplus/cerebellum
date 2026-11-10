@@ -1,0 +1,126 @@
+{
+  "$defs": {
+    "ArtifactLineage": {
+      "additionalProperties": false,
+      "properties": {
+        "decision_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "parent_id": {
+          "type": "string"
+        },
+        "parent_version": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "parent_id",
+        "parent_version",
+        "reason",
+        "decision_id"
+      ],
+      "type": "object"
+    },
+    "MemoryKind": {
+      "enum": [
+        "episodic",
+        "fact",
+        "failure",
+        "anti_skill",
+        "skill_proposal",
+        "workflow_proposal"
+      ],
+      "type": "string"
+    },
+    "MemoryProposal": {
+      "additionalProperties": false,
+      "properties": {
+        "content": {
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "evidence": {
+          "default": null
+        },
+        "executable": {
+          "default": false,
+          "type": "boolean"
+        },
+        "experience_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/$defs/MemoryKind"
+        },
+        "lineage": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ArtifactLineage"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "proposal_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "proposal_id",
+        "experience_id",
+        "kind",
+        "title",
+        "content",
+        "created_at"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "producer": {
+      "type": "string"
+    },
+    "proposals": {
+      "items": {
+        "$ref": "#/$defs/MemoryProposal"
+      },
+      "type": "array"
+    },
+    "request_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "request_id",
+    "producer",
+    "proposals",
+    "created_at"
+  ],
+  "title": "ConsolidationResponse",
+  "type": "object"
+}

@@ -1,0 +1,234 @@
+{
+  "$defs": {
+    "DatasetEligibilityReport": {
+      "additionalProperties": false,
+      "properties": {
+        "contains_raw_documents": {
+          "type": "boolean"
+        },
+        "eligible_records": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "passed": {
+          "type": "boolean"
+        },
+        "policy_version": {
+          "type": "string"
+        },
+        "reasons": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "rejected_license_records": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "rejected_safety_records": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "passed",
+        "policy_version",
+        "contains_raw_documents",
+        "eligible_records",
+        "rejected_license_records",
+        "rejected_safety_records"
+      ],
+      "type": "object"
+    },
+    "DatasetSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "build_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "bundle_hash": {
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "created_by": {
+          "type": "string"
+        },
+        "decision_count": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "eligibility": {
+          "$ref": "#/$defs/DatasetEligibilityReport"
+        },
+        "expert_manifest_hash": {
+          "default": null,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "expert_taxonomy_hash": {
+          "default": null,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "expert_view_id": {
+          "default": null,
+          "format": "uuid",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "kind": {
+          "type": "string"
+        },
+        "legacy_candidate_id": {
+          "format": "uuid",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "manifest_hash": {
+          "type": "string"
+        },
+        "quality_report_hash": {
+          "default": null,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quality_report_id": {
+          "default": null,
+          "format": "uuid",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "replay_eval_count": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "schema_version": {
+          "type": "string"
+        },
+        "snapshot_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "split_stats": {
+          "$ref": "#/$defs/DatasetSplitStats"
+        }
+      },
+      "required": [
+        "schema_version",
+        "snapshot_id",
+        "kind",
+        "build_id",
+        "bundle_hash",
+        "manifest_hash",
+        "decision_count",
+        "replay_eval_count",
+        "split_stats",
+        "eligibility",
+        "created_by",
+        "reason",
+        "created_at"
+      ],
+      "type": "object"
+    },
+    "DatasetSnapshotRevocation": {
+      "additionalProperties": false,
+      "properties": {
+        "actor": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "revoked_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "snapshot_id": {
+          "format": "uuid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "snapshot_id",
+        "actor",
+        "reason",
+        "revoked_at"
+      ],
+      "type": "object"
+    },
+    "DatasetSplitStats": {
+      "additionalProperties": false,
+      "properties": {
+        "holdout": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "train": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "validation": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "train",
+        "validation",
+        "holdout"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "revocation": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DatasetSnapshotRevocation"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "snapshot": {
+      "$ref": "#/$defs/DatasetSnapshot"
+    }
+  },
+  "required": [
+    "snapshot"
+  ],
+  "title": "DatasetSnapshotRecord",
+  "type": "object"
+}

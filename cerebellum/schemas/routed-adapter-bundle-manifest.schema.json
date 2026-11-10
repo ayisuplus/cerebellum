@@ -1,0 +1,118 @@
+{
+  "$defs": {
+    "BaseModelPin": {
+      "additionalProperties": false,
+      "properties": {
+        "model_id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "model_id",
+        "revision",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "ExpertAdapterArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_length": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "expert_id": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        },
+        "training_records": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "expert_id",
+        "path",
+        "sha256",
+        "byte_length",
+        "training_records"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "base_model": {
+      "$ref": "#/$defs/BaseModelPin"
+    },
+    "expert_view_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "experts": {
+      "items": {
+        "$ref": "#/$defs/ExpertAdapterArtifact"
+      },
+      "type": "array"
+    },
+    "fallback_expert_id": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "router": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ExpertAdapterArtifact"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "router_top_k": {
+      "format": "uint8",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "snapshot_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "taxonomy_hash": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "base_model",
+    "snapshot_id",
+    "expert_view_id",
+    "taxonomy_hash",
+    "router_top_k",
+    "fallback_expert_id",
+    "experts"
+  ],
+  "title": "RoutedAdapterBundleManifest",
+  "type": "object"
+}

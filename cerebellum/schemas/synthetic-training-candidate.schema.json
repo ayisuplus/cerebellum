@@ -1,0 +1,239 @@
+{
+  "$defs": {
+    "MetaTaskKind": {
+      "enum": [
+        "relevance",
+        "noise_filter",
+        "deduplication",
+        "retrieval_ranking",
+        "claim_relationship",
+        "acquisition_escalation",
+        "curriculum_priority",
+        "expected_information_gain",
+        "skill_workflow_routing",
+        "skill_workflow_evolution",
+        "temporal_grounding",
+        "knowledge_boundary",
+        "search_planning"
+      ],
+      "type": "string"
+    },
+    "ModelTokenUsage": {
+      "additionalProperties": false,
+      "properties": {
+        "completion_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "prompt_cache_hit_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "prompt_cache_miss_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "prompt_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "reasoning_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "total_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "prompt_tokens",
+        "prompt_cache_hit_tokens",
+        "prompt_cache_miss_tokens",
+        "completion_tokens",
+        "reasoning_tokens",
+        "total_tokens"
+      ],
+      "type": "object"
+    },
+    "QualitySubjectKind": {
+      "enum": [
+        "meta_decision",
+        "meta_replay",
+        "synthetic_candidate",
+        "dataset_build",
+        "knowledge_card"
+      ],
+      "type": "string"
+    },
+    "SyntheticCandidateStatus": {
+      "enum": [
+        "quarantined",
+        "verified",
+        "approved",
+        "rejected"
+      ],
+      "type": "string"
+    },
+    "SyntheticTransformation": {
+      "enum": [
+        "label_repair",
+        "hard_negative",
+        "counterfactual_pair",
+        "preference_pair",
+        "failure_explanation"
+      ],
+      "type": "string"
+    },
+    "SyntheticVerificationKind": {
+      "enum": [
+        "executable_test",
+        "gate_replay",
+        "paired_replay",
+        "semantic_review"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "candidate_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "content_hash": {
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "evidence_refs": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "generation_depth": {
+      "format": "uint8",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "generation_estimated_cost_microusd": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "generation_model_id": {
+      "type": "string"
+    },
+    "generation_prompt_hash": {
+      "type": "string"
+    },
+    "generation_prompt_version": {
+      "type": "string"
+    },
+    "generation_system_fingerprint": {
+      "type": "string"
+    },
+    "generation_usage": {
+      "$ref": "#/$defs/ModelTokenUsage",
+      "default": {
+        "completion_tokens": 0,
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 0,
+        "prompt_tokens": 0,
+        "reasoning_tokens": 0,
+        "total_tokens": 0
+      }
+    },
+    "input": true,
+    "model_assessment_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "objective_verified": {
+      "type": "boolean"
+    },
+    "output": true,
+    "parent_hash": {
+      "type": "string"
+    },
+    "parent_subject_id": {
+      "type": "string"
+    },
+    "parent_subject_kind": {
+      "$ref": "#/$defs/QualitySubjectKind"
+    },
+    "review_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reviewed_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "source_license": {
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/SyntheticCandidateStatus"
+    },
+    "task_kind": {
+      "$ref": "#/$defs/MetaTaskKind"
+    },
+    "transformation": {
+      "$ref": "#/$defs/SyntheticTransformation"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "verification_kind": {
+      "$ref": "#/$defs/SyntheticVerificationKind"
+    }
+  },
+  "required": [
+    "schema_version",
+    "candidate_id",
+    "parent_subject_kind",
+    "parent_subject_id",
+    "parent_hash",
+    "task_kind",
+    "transformation",
+    "input",
+    "output",
+    "content_hash",
+    "source_license",
+    "verification_kind",
+    "objective_verified",
+    "model_assessment_id",
+    "generation_model_id",
+    "generation_system_fingerprint",
+    "generation_prompt_version",
+    "generation_prompt_hash",
+    "generation_estimated_cost_microusd",
+    "generation_depth",
+    "status",
+    "created_at",
+    "updated_at"
+  ],
+  "title": "SyntheticTrainingCandidate",
+  "type": "object"
+}

@@ -1,0 +1,25 @@
+{
+  "eval_id": "9f59a880-6e50-4cc2-a762-e9a4461dfbd3",
+  "skill_id": "example.skill",
+  "skill_version": "1.0.0",
+  "task_family": "bugfix/parser",
+  "repository_digest": "3b8a2f0e1c9d4a6b5f7e8c0d1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b",
+  "environment_digest": "9f8e7d6c5b4a39281706f5e4d3c2b1a09f8e7d6c5b4a39281706f5e4d3c2b1a0",
+  "model_id": "router-baseline",
+  "seed": 42,
+  "budget": {
+    "max_tokens": 4096,
+    "timeout_seconds": 300
+  },
+  "baseline_success": false,
+  "treatment_success": true,
+  "baseline_gate_violations": 0,
+  "treatment_gate_violations": 0,
+  "baseline_score": 0.2,
+  "treatment_score": 0.9,
+  "baseline_latency_ms": 1200,
+  "treatment_latency_ms": 1350,
+  "metadata": {
+    "judge": "secondary-only"
+  }
+}

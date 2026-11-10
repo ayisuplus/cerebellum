@@ -1,0 +1,129 @@
+{
+  "$defs": {
+    "CurriculumPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "daily_budget": {
+          "$ref": "#/$defs/DailyBudget",
+          "default": {
+            "files": 500,
+            "new_repositories": 50,
+            "search_plans": 20
+          }
+        },
+        "licenses": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "organizations": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "repositories": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "topics": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CurriculumTrigger": {
+      "enum": [
+        "frequent_failure",
+        "capability_gap",
+        "low_confidence",
+        "dependency_drift",
+        "new_topic",
+        "manual"
+      ],
+      "type": "string"
+    },
+    "DailyBudget": {
+      "additionalProperties": false,
+      "properties": {
+        "files": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "new_repositories": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "search_plans": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "search_plans",
+        "new_repositories",
+        "files"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "curriculum_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "fixed_commit_required": {
+      "type": "boolean"
+    },
+    "policy": {
+      "$ref": "#/$defs/CurriculumPolicy"
+    },
+    "query": {
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "topic": {
+      "type": "string"
+    },
+    "trigger": {
+      "$ref": "#/$defs/CurriculumTrigger"
+    }
+  },
+  "required": [
+    "schema_version",
+    "curriculum_id",
+    "trigger",
+    "topic",
+    "query",
+    "policy",
+    "status",
+    "fixed_commit_required",
+    "created_at"
+  ],
+  "title": "CurriculumPlan",
+  "type": "object"
+}

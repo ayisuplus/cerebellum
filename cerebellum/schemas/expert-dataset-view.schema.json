@@ -1,0 +1,347 @@
+{
+  "$defs": {
+    "DatasetSplit": {
+      "enum": [
+        "train",
+        "validation",
+        "holdout"
+      ],
+      "type": "string"
+    },
+    "DatasetSplitStats": {
+      "additionalProperties": false,
+      "properties": {
+        "holdout": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "train": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "validation": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "train",
+        "validation",
+        "holdout"
+      ],
+      "type": "object"
+    },
+    "ExpertDatasetPurpose": {
+      "enum": [
+        "shared",
+        "expert",
+        "router",
+        "routing_negative"
+      ],
+      "type": "string"
+    },
+    "ExpertDatasetReadiness": {
+      "additionalProperties": false,
+      "properties": {
+        "minimum_replays_per_expert": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "minimum_router_records": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "minimum_train_records_per_expert": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "per_expert": {
+          "additionalProperties": {
+            "$ref": "#/$defs/ExpertDatasetStats"
+          },
+          "type": "object"
+        },
+        "ready": {
+          "type": "boolean"
+        },
+        "reasons": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "router_train_records": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "ready",
+        "minimum_router_records",
+        "minimum_train_records_per_expert",
+        "minimum_replays_per_expert",
+        "router_train_records",
+        "per_expert",
+        "reasons"
+      ],
+      "type": "object"
+    },
+    "ExpertDatasetShard": {
+      "additionalProperties": false,
+      "properties": {
+        "compressed_bytes": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "expert_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "object_hash": {
+          "type": "string"
+        },
+        "purpose": {
+          "$ref": "#/$defs/ExpertDatasetPurpose"
+        },
+        "record_count": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "record_kind": {
+          "type": "string"
+        },
+        "split": {
+          "$ref": "#/$defs/DatasetSplit"
+        },
+        "uncompressed_hash": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "split",
+        "purpose",
+        "record_kind",
+        "object_hash",
+        "uncompressed_hash",
+        "record_count",
+        "compressed_bytes"
+      ],
+      "type": "object"
+    },
+    "ExpertDatasetStats": {
+      "additionalProperties": false,
+      "properties": {
+        "decision_records": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "evaluation_replay_records": {
+          "default": 0,
+          "description": "Replay evidence outside the training split. This is the value used by\nthe routed-training readiness gate.",
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "records": {
+          "$ref": "#/$defs/DatasetSplitStats"
+        },
+        "replay_records": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "records",
+        "decision_records",
+        "replay_records"
+      ],
+      "type": "object"
+    },
+    "ExpertDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "is_fallback": {
+          "type": "boolean"
+        },
+        "task_kinds": {
+          "items": {
+            "$ref": "#/$defs/MetaTaskKind"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "task_kinds",
+        "is_fallback"
+      ],
+      "type": "object"
+    },
+    "ExpertTaxonomy": {
+      "additionalProperties": false,
+      "properties": {
+        "experts": {
+          "items": {
+            "$ref": "#/$defs/ExpertDefinition"
+          },
+          "type": "array"
+        },
+        "fallback_expert_id": {
+          "type": "string"
+        },
+        "policy_version": {
+          "type": "string"
+        },
+        "router_top_k": {
+          "format": "uint8",
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "schema_version": {
+          "type": "string"
+        },
+        "taxonomy_id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "taxonomy_id",
+        "version",
+        "experts",
+        "fallback_expert_id",
+        "router_top_k",
+        "policy_version"
+      ],
+      "type": "object"
+    },
+    "MetaTaskKind": {
+      "enum": [
+        "relevance",
+        "noise_filter",
+        "deduplication",
+        "retrieval_ranking",
+        "claim_relationship",
+        "acquisition_escalation",
+        "curriculum_priority",
+        "expected_information_gain",
+        "skill_workflow_routing",
+        "skill_workflow_evolution",
+        "temporal_grounding",
+        "knowledge_boundary",
+        "search_planning"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "ambiguous_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "assignment_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "assignments_hash": {
+      "type": "string"
+    },
+    "build_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "bundle_hash": {
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "manifest_hash": {
+      "type": "string"
+    },
+    "negative_transfer_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "out_of_distribution_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "policy_version": {
+      "type": "string"
+    },
+    "readiness": {
+      "$ref": "#/$defs/ExpertDatasetReadiness"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "shards": {
+      "items": {
+        "$ref": "#/$defs/ExpertDatasetShard"
+      },
+      "type": "array"
+    },
+    "taxonomy": {
+      "$ref": "#/$defs/ExpertTaxonomy"
+    },
+    "taxonomy_hash": {
+      "type": "string"
+    },
+    "view_id": {
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "view_id",
+    "build_id",
+    "taxonomy",
+    "taxonomy_hash",
+    "assignments_hash",
+    "manifest_hash",
+    "bundle_hash",
+    "shards",
+    "assignment_count",
+    "ambiguous_count",
+    "out_of_distribution_count",
+    "negative_transfer_count",
+    "readiness",
+    "policy_version",
+    "created_at"
+  ],
+  "title": "ExpertDatasetView",
+  "type": "object"
+}

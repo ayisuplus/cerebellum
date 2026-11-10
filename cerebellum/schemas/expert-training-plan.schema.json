@@ -1,0 +1,54 @@
+{
+  "$defs": {
+    "TrainingArchitecture": {
+      "enum": [
+        "dense_lora",
+        "routed_lora"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "architecture": {
+      "$ref": "#/$defs/TrainingArchitecture"
+    },
+    "expert_ids": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "expert_view_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "fallback_expert_id": {
+      "type": "string"
+    },
+    "router_top_k": {
+      "format": "uint8",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "train_router": {
+      "type": "boolean"
+    },
+    "train_shared": {
+      "default": true,
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "architecture",
+    "expert_view_id",
+    "train_router",
+    "expert_ids",
+    "router_top_k",
+    "fallback_expert_id"
+  ],
+  "title": "ExpertTrainingPlan",
+  "type": "object"
+}

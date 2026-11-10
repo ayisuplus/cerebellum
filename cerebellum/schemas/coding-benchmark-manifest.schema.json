@@ -1,0 +1,141 @@
+{
+  "$defs": {
+    "BenchmarkSplit": {
+      "enum": [
+        "train",
+        "validation",
+        "holdout"
+      ],
+      "type": "string"
+    },
+    "CodingBenchmarkTask": {
+      "additionalProperties": false,
+      "properties": {
+        "bundle_hash": {
+          "type": "string"
+        },
+        "expected_status": {
+          "$ref": "#/$defs/ExpectedTaskStatus"
+        },
+        "split": {
+          "$ref": "#/$defs/BenchmarkSplit"
+        },
+        "task_id": {
+          "type": "string"
+        },
+        "template_family": {
+          "type": "string"
+        },
+        "test_command": {
+          "type": "string"
+        },
+        "variant": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "task_id",
+        "template_family",
+        "variant",
+        "split",
+        "bundle_hash",
+        "test_command",
+        "expected_status"
+      ],
+      "type": "object"
+    },
+    "ExpectedTaskStatus": {
+      "enum": [
+        "completed",
+        "blocked"
+      ],
+      "type": "string"
+    },
+    "OptimizationScoringPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "claim_calibration_weight": {
+          "format": "double",
+          "type": "number"
+        },
+        "correctness_weight": {
+          "format": "double",
+          "type": "number"
+        },
+        "efficiency_weight": {
+          "format": "double",
+          "type": "number"
+        },
+        "fresh_verification_weight": {
+          "format": "double",
+          "type": "number"
+        },
+        "minimum_soft_improvement": {
+          "format": "double",
+          "type": "number"
+        },
+        "no_hard_regression": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "correctness_weight",
+        "fresh_verification_weight",
+        "claim_calibration_weight",
+        "efficiency_weight",
+        "minimum_soft_improvement",
+        "no_hard_regression"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "benchmark_id": {
+      "type": "string"
+    },
+    "container_image": {
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "scoring": {
+      "$ref": "#/$defs/OptimizationScoringPolicy",
+      "default": {
+        "claim_calibration_weight": 0.2,
+        "correctness_weight": 0.45,
+        "efficiency_weight": 0.1,
+        "fresh_verification_weight": 0.25,
+        "minimum_soft_improvement": 0.02,
+        "no_hard_regression": true
+      }
+    },
+    "tasks": {
+      "items": {
+        "$ref": "#/$defs/CodingBenchmarkTask"
+      },
+      "type": "array"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "benchmark_id",
+    "version",
+    "container_image",
+    "tasks",
+    "created_at"
+  ],
+  "title": "CodingBenchmarkManifest",
+  "type": "object"
+}

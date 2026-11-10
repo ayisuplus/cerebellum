@@ -1,0 +1,75 @@
+{
+  "$defs": {
+    "AcquisitionPlanStatus": {
+      "enum": [
+        "pending",
+        "running",
+        "completed",
+        "failed",
+        "cancelled"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "max_depth": {
+      "format": "uint8",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "max_documents": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "plan_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "query": {
+      "type": "string"
+    },
+    "scheduled_for": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "source_policy_ids": {
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "status": {
+      "$ref": "#/$defs/AcquisitionPlanStatus"
+    },
+    "topic_id": {
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "plan_id",
+    "topic_id",
+    "query",
+    "source_policy_ids",
+    "scheduled_for",
+    "max_documents",
+    "max_depth",
+    "status",
+    "created_at"
+  ],
+  "title": "AcquisitionPlan",
+  "type": "object"
+}

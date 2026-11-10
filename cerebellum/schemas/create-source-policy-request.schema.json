@@ -1,0 +1,142 @@
+{
+  "$defs": {
+    "DataClassification": {
+      "enum": [
+        "public",
+        "internal",
+        "private"
+      ],
+      "type": "string"
+    },
+    "ExternalProcessingPermission": {
+      "enum": [
+        "denied",
+        "redacted"
+      ],
+      "type": "string"
+    },
+    "SourceAccessMode": {
+      "enum": [
+        "public",
+        "api",
+        "authenticated_local"
+      ],
+      "type": "string"
+    },
+    "SourceKind": {
+      "enum": [
+        "github",
+        "hacker_news",
+        "rss_atom",
+        "tavily",
+        "firecrawl",
+        "crawl4ai",
+        "scrapling",
+        "open_cli",
+        "http",
+        "weibo",
+        "zhihu",
+        "douyin",
+        "bilibili",
+        "xhs",
+        "baidu",
+        "kuaishou",
+        "tieba",
+        "openalex",
+        "arxiv",
+        "journal"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "access_mode": {
+      "$ref": "#/$defs/SourceAccessMode"
+    },
+    "allowed_domains": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "auth_secret_ref": {
+      "default": null,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "base_url": {
+      "type": "string"
+    },
+    "data_classification": {
+      "$ref": "#/$defs/DataClassification",
+      "default": "private"
+    },
+    "enabled": {
+      "default": true,
+      "type": "boolean"
+    },
+    "external_processing": {
+      "$ref": "#/$defs/ExternalProcessingPermission",
+      "default": "denied"
+    },
+    "kind": {
+      "$ref": "#/$defs/SourceKind"
+    },
+    "max_depth": {
+      "default": 2,
+      "format": "uint8",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "max_pages_per_run": {
+      "default": 50,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "model_terms_allow_training": {
+      "default": false,
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "obey_robots": {
+      "default": true,
+      "type": "boolean"
+    },
+    "rate_limit_per_minute": {
+      "default": 30,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "raw_retention_days": {
+      "default": 30,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "training_license": {
+      "default": null,
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "kind",
+    "base_url",
+    "access_mode"
+  ],
+  "title": "CreateSourcePolicyRequest",
+  "type": "object"
+}

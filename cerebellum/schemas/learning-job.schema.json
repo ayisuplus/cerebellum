@@ -1,0 +1,80 @@
+{
+  "$defs": {
+    "LearningJobStatus": {
+      "enum": [
+        "pending",
+        "leased",
+        "completed",
+        "dead_letter"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "attempts": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "job_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "last_error": {
+      "default": null,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lease_owner": {
+      "default": null,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lease_until": {
+      "default": null,
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "max_attempts": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "payload": true,
+    "priority": {
+      "format": "double",
+      "type": "number"
+    },
+    "status": {
+      "$ref": "#/$defs/LearningJobStatus"
+    }
+  },
+  "required": [
+    "job_id",
+    "kind",
+    "payload",
+    "priority",
+    "status",
+    "attempts",
+    "max_attempts",
+    "created_at"
+  ],
+  "title": "LearningJob",
+  "type": "object"
+}

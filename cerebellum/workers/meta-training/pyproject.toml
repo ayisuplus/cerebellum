@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools==80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cerebellum-meta-training-worker"
+version = "0.1.0"
+description = "Fail-closed 24GB-GPU QLoRA worker for Cerebellum v3"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+  "zstandard==0.23.0",
+]
+
+[project.optional-dependencies]
+qlora = [
+  "accelerate==1.10.1",
+  "bitsandbytes==0.47.0",
+  "peft==0.17.1",
+  "safetensors==0.6.2",
+  "torch==2.8.0",
+  "transformers==4.55.4",
+  "huggingface-hub==0.34.4",
+]
+
+[project.scripts]
+cerebellum-meta-training-worker = "cerebellum_meta_training.worker:main"
+cerebellum-autodl-worker = "cerebellum_meta_training.remote_worker:main"
+cerebellum-model-tree-hash = "cerebellum_meta_training.remote_worker:hash_model_main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

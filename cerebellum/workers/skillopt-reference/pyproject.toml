@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cerebellum-skillopt-reference-worker"
+version = "0.1.0"
+description = "Isolated pinned SkillOpt worker for Cerebellum v2.1"
+requires-python = ">=3.11"
+dependencies = [
+  "skillopt @ git+https://github.com/microsoft/SkillOpt.git@3c8873f016397817dcd40c3e5436d92fe19372b8",
+]
+
+[project.scripts]
+cerebellum-skillopt-worker = "cerebellum_skillopt.worker:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

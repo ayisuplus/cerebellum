@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "capabilities": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "context": {
+      "default": null
+    },
+    "repository_path": {
+      "default": null,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "task": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "task"
+  ],
+  "title": "DecisionRequest",
+  "type": "object"
+}

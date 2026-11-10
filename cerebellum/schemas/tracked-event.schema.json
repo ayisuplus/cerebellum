@@ -1,0 +1,83 @@
+{
+  "$defs": {
+    "EventStatus": {
+      "enum": [
+        "emerging",
+        "peak",
+        "fading",
+        "resolved"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "card_id": {
+      "format": "uuid",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "event_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "first_seen_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "item_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "last_seen_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "peak_heat": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "platforms": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/EventStatus"
+    },
+    "title": {
+      "type": "string"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "event_id",
+    "title",
+    "status",
+    "first_seen_at",
+    "last_seen_at",
+    "peak_heat",
+    "platforms",
+    "item_count",
+    "created_at",
+    "updated_at"
+  ],
+  "title": "TrackedEvent",
+  "type": "object"
+}

@@ -1,0 +1,199 @@
+{
+  "$defs": {
+    "EvalGeneration": {
+      "additionalProperties": false,
+      "description": "Deterministic generation settings shared by both evaluation arms.",
+      "properties": {
+        "n_predict": {
+          "default": 512,
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "seed": {
+          "default": 0,
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "stop": {
+          "default": [
+            "<|meta_task|>"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "temperature": {
+          "default": 0.0,
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "EvalPorts": {
+      "additionalProperties": false,
+      "description": "Loopback ports for the two evaluation arms (frozen base vs base+adapter).",
+      "properties": {
+        "adapted": {
+          "format": "uint16",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "base": {
+          "format": "uint16",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "base",
+        "adapted"
+      ],
+      "type": "object"
+    },
+    "EvalSetSizes": {
+      "additionalProperties": false,
+      "description": "Per-set record caps for the adapter evaluation harness.",
+      "properties": {
+        "metacognition": {
+          "default": 150,
+          "description": "Full frozen metacognition probe suite when the plan pins it; ignored\n(set skipped) when `metacognition_probes` is absent.",
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "negative_transfer": {
+          "default": 200,
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "retention": {
+          "default": 200,
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "role": {
+          "default": 200,
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "routing": {
+          "default": 200,
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "PinnedFile": {
+      "additionalProperties": false,
+      "description": "A file pinned by path and lowercase SHA-256 so evaluation inputs are\nimmutable and server-checkable.",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Operator-supplied plan for a local dual-arm (frozen base GGUF vs merged\nbase+adapter GGUF) llama.cpp evaluation of one expert adapter version.",
+  "properties": {
+    "adapted_gguf": {
+      "$ref": "#/$defs/PinnedFile"
+    },
+    "base_gguf": {
+      "$ref": "#/$defs/PinnedFile"
+    },
+    "expert_id": {
+      "type": "string"
+    },
+    "generation": {
+      "$ref": "#/$defs/EvalGeneration",
+      "default": {
+        "n_predict": 512,
+        "seed": 0,
+        "stop": [
+          "<|meta_task|>"
+        ],
+        "temperature": 0.0
+      }
+    },
+    "injection_probes": {
+      "$ref": "#/$defs/PinnedFile"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "llama_server": {
+      "$ref": "#/$defs/PinnedFile"
+    },
+    "max_wall_seconds": {
+      "default": 3600,
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "metacognition_probes": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/PinnedFile"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Optional pin of `benchmarks/metacognition/manifest.json`; when present the\nharness also runs the frozen TG/KB/ST probe suites on both arms."
+    },
+    "ports": {
+      "$ref": "#/$defs/EvalPorts"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "set_sizes": {
+      "$ref": "#/$defs/EvalSetSizes",
+      "default": {
+        "metacognition": 150,
+        "negative_transfer": 200,
+        "retention": 200,
+        "role": 200,
+        "routing": 200
+      }
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "expert_id",
+    "version",
+    "llama_server",
+    "base_gguf",
+    "adapted_gguf",
+    "ports",
+    "injection_probes"
+  ],
+  "title": "ExpertAdapterEvalPlan",
+  "type": "object"
+}

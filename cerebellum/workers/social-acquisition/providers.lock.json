@@ -1,0 +1,15 @@
+{
+  "schema_version": "v1",
+  "generated_at": "2026-08-29T00:00:00Z",
+  "providers": [
+    {
+      "name": "mediacrawler",
+      "version": "2026.08.14",
+      "repository": "https://github.com/NanmiCoder/MediaCrawler",
+      "commit": "d6f7c5bb906b6dac40ddf343ef9e26438a3de092",
+      "source_archive_sha256": "982b25a152ddcae713f40203cdec85972a8aae71eeff7ff259d7ce3dfab0feab",
+      "license": "NON-COMMERCIAL LEARNING LICENSE 1.1 (personal learning/research use only; operator-confirmed 2026-08-29)",
+      "mode": "external_cli_subprocess"
+    }
+  ]
+}

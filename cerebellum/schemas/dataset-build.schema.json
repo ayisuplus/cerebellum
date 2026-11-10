@@ -1,0 +1,230 @@
+{
+  "$defs": {
+    "DatasetEligibilityReport": {
+      "additionalProperties": false,
+      "properties": {
+        "contains_raw_documents": {
+          "type": "boolean"
+        },
+        "eligible_records": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "passed": {
+          "type": "boolean"
+        },
+        "policy_version": {
+          "type": "string"
+        },
+        "reasons": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "rejected_license_records": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "rejected_safety_records": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "passed",
+        "policy_version",
+        "contains_raw_documents",
+        "eligible_records",
+        "rejected_license_records",
+        "rejected_safety_records"
+      ],
+      "type": "object"
+    },
+    "DatasetShard": {
+      "additionalProperties": false,
+      "properties": {
+        "compressed_bytes": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "object_hash": {
+          "type": "string"
+        },
+        "record_count": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "record_kind": {
+          "type": "string"
+        },
+        "split": {
+          "$ref": "#/$defs/DatasetSplit"
+        },
+        "uncompressed_hash": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "split",
+        "record_kind",
+        "object_hash",
+        "uncompressed_hash",
+        "record_count",
+        "compressed_bytes"
+      ],
+      "type": "object"
+    },
+    "DatasetSplit": {
+      "enum": [
+        "train",
+        "validation",
+        "holdout"
+      ],
+      "type": "string"
+    },
+    "DatasetSplitStats": {
+      "additionalProperties": false,
+      "properties": {
+        "holdout": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "train": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "validation": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "train",
+        "validation",
+        "holdout"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "build_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "bundle_hash": {
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "decision_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "dedup_key": {
+      "type": "string"
+    },
+    "eligibility": {
+      "$ref": "#/$defs/DatasetEligibilityReport"
+    },
+    "expert_manifest_hash": {
+      "default": null,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "expert_taxonomy_hash": {
+      "default": null,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "expert_view_id": {
+      "default": null,
+      "format": "uuid",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "kind": {
+      "type": "string"
+    },
+    "manifest_hash": {
+      "type": "string"
+    },
+    "parent_build_id": {
+      "format": "uuid",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "policy_version": {
+      "type": "string"
+    },
+    "rejected_record_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "replay_eval_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "shards": {
+      "items": {
+        "$ref": "#/$defs/DatasetShard"
+      },
+      "type": "array"
+    },
+    "source_watermark": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "split_stats": {
+      "$ref": "#/$defs/DatasetSplitStats"
+    }
+  },
+  "required": [
+    "schema_version",
+    "build_id",
+    "kind",
+    "shards",
+    "bundle_hash",
+    "manifest_hash",
+    "dedup_key",
+    "decision_count",
+    "replay_eval_count",
+    "rejected_record_count",
+    "split_stats",
+    "eligibility",
+    "policy_version",
+    "created_at"
+  ],
+  "title": "DatasetBuild",
+  "type": "object"
+}

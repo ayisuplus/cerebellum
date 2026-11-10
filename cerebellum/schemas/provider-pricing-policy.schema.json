@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "confirmed_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "daily_max_cny": {
+      "format": "double",
+      "type": "number"
+    },
+    "flash_input_cache_hit_usd_per_million": {
+      "format": "double",
+      "type": "number"
+    },
+    "flash_input_cache_miss_usd_per_million": {
+      "format": "double",
+      "type": "number"
+    },
+    "flash_output_usd_per_million": {
+      "format": "double",
+      "type": "number"
+    },
+    "policy_id": {
+      "type": "string"
+    },
+    "pro_input_cache_hit_usd_per_million": {
+      "format": "double",
+      "type": "number"
+    },
+    "pro_input_cache_miss_usd_per_million": {
+      "format": "double",
+      "type": "number"
+    },
+    "pro_output_usd_per_million": {
+      "format": "double",
+      "type": "number"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "usd_to_cny_ceiling": {
+      "format": "double",
+      "type": "number"
+    }
+  },
+  "required": [
+    "schema_version",
+    "policy_id",
+    "provider",
+    "flash_input_cache_hit_usd_per_million",
+    "flash_input_cache_miss_usd_per_million",
+    "flash_output_usd_per_million",
+    "pro_input_cache_hit_usd_per_million",
+    "pro_input_cache_miss_usd_per_million",
+    "pro_output_usd_per_million",
+    "usd_to_cny_ceiling",
+    "daily_max_cny",
+    "confirmed_at"
+  ],
+  "title": "ProviderPricingPolicy",
+  "type": "object"
+}

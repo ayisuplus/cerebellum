@@ -1,0 +1,70 @@
+{
+  "$defs": {
+    "TrainingCandidateStatus": {
+      "enum": [
+        "insufficient_evidence",
+        "ready_for_training",
+        "superseded"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "candidate_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "dataset_hash": {
+      "type": "string"
+    },
+    "decision_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "manifest_hash": {
+      "type": "string"
+    },
+    "paired_eval_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "repository_split_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "status": {
+      "$ref": "#/$defs/TrainingCandidateStatus"
+    },
+    "task_family_split_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "trainer_enabled": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "candidate_id",
+    "dataset_hash",
+    "manifest_hash",
+    "decision_count",
+    "paired_eval_count",
+    "status",
+    "repository_split_count",
+    "task_family_split_count",
+    "trainer_enabled",
+    "created_at"
+  ],
+  "title": "TrainingCandidate",
+  "type": "object"
+}

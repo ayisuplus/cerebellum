@@ -1,0 +1,1301 @@
+{
+  "scoring_version": "metacognition/2",
+  "groups": [
+    {
+      "name": "kb-gold",
+      "kind": "kb",
+      "cases": [
+        {
+          "probe": {
+            "id": "kb-k03",
+            "kind": "kb",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "d489fd317021af72c2d1571b7fb8fd229b4d35d90fe4ec87f19332aaf4d27492",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "光速在真空中的数值约为多少？"
+            },
+            "gold": {
+              "action": "answer",
+              "answer": "约 299792458 米每秒",
+              "answer_basis": "parametric",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.85,
+              "freshness_hours": null,
+              "query": null
+            },
+            "check": {
+              "answer_contains": [
+                "299792458"
+              ],
+              "condition": "known",
+              "family": "kb-k03"
+            }
+          },
+          "completion": "{\"action\": \"answer\", \"answer\": \"约 299792458 米每秒\", \"answer_basis\": \"parametric\", \"as_of_used\": \"2026-09-04T10:00:00+08:00\", \"confidence\": 0.85, \"freshness_hours\": null, \"query\": null}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": true
+          }
+        },
+        {
+          "probe": {
+            "id": "kb-p02",
+            "kind": "kb",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "9c2050488fd769e2bd92928b1c2a823d3a468e0102d89aa8dd214ea0bc7d99d6",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "What version number did the Qwen3 model family first ship with in 2025?"
+            },
+            "gold": {
+              "action": "search_internal",
+              "answer": null,
+              "answer_basis": "none",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.75,
+              "freshness_hours": null,
+              "query": "Qwen3 first release version 2025"
+            },
+            "check": {
+              "condition": "unknown",
+              "family": "kb-p02"
+            }
+          },
+          "completion": "{\"action\": \"search_internal\", \"answer\": null, \"answer_basis\": \"none\", \"as_of_used\": \"2026-09-04T10:00:00+08:00\", \"confidence\": 0.75, \"freshness_hours\": null, \"query\": \"Qwen3 first release version 2025\"}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": true
+          }
+        },
+        {
+          "probe": {
+            "id": "kb-i01",
+            "kind": "kb",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "0dacddf4c79d97245da86e4cb7674be4a30758dc5f5961cd4c9ae23160eb5d04",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "Zylophone-7 大模型的参数量是多少？"
+            },
+            "gold": {
+              "action": "insufficient",
+              "answer": null,
+              "answer_basis": "none",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.8,
+              "freshness_hours": null,
+              "query": null
+            },
+            "check": {
+              "condition": "unknown",
+              "family": "kb-i01"
+            }
+          },
+          "completion": "{\"action\": \"insufficient\", \"answer\": null, \"answer_basis\": \"none\", \"as_of_used\": \"2026-09-04T10:00:00+08:00\", \"confidence\": 0.8, \"freshness_hours\": null, \"query\": null}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": true
+          }
+        }
+      ],
+      "expected_metrics": {
+        "items": 3,
+        "parse_rate": 1.0,
+        "contract_valid_rate": 1.0,
+        "refusal_precision": 1.0,
+        "refusal_recall": 1.0,
+        "refusal_f1": 1.0,
+        "known_set_accuracy": 1.0,
+        "unknown_action_accuracy": 1.0
+      }
+    },
+    {
+      "name": "kb-wrong",
+      "kind": "kb",
+      "cases": [
+        {
+          "probe": {
+            "id": "kb-k03",
+            "kind": "kb",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "d489fd317021af72c2d1571b7fb8fd229b4d35d90fe4ec87f19332aaf4d27492",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "光速在真空中的数值约为多少？"
+            },
+            "gold": {
+              "action": "answer",
+              "answer": "约 299792458 米每秒",
+              "answer_basis": "parametric",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.85,
+              "freshness_hours": null,
+              "query": null
+            },
+            "check": {
+              "answer_contains": [
+                "299792458"
+              ],
+              "condition": "known",
+              "family": "kb-k03"
+            }
+          },
+          "completion": "{\"action\": \"search_internal\", \"answer\": null, \"answer_basis\": \"none\", \"as_of_used\": \"2026-09-04T10:00:00+08:00\", \"confidence\": 0.75, \"freshness_hours\": null, \"query\": \"Qwen3 first release version 2025\"}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": false
+          }
+        },
+        {
+          "probe": {
+            "id": "kb-p02",
+            "kind": "kb",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "9c2050488fd769e2bd92928b1c2a823d3a468e0102d89aa8dd214ea0bc7d99d6",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "What version number did the Qwen3 model family first ship with in 2025?"
+            },
+            "gold": {
+              "action": "search_internal",
+              "answer": null,
+              "answer_basis": "none",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.75,
+              "freshness_hours": null,
+              "query": "Qwen3 first release version 2025"
+            },
+            "check": {
+              "condition": "unknown",
+              "family": "kb-p02"
+            }
+          },
+          "completion": "{\"action\": \"answer\", \"answer\": \"wrong\", \"answer_basis\": \"parametric\", \"as_of_used\": \"2026-09-04T10:00:00+08:00\", \"confidence\": 0.85, \"freshness_hours\": null, \"query\": null}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": false
+          }
+        },
+        {
+          "probe": {
+            "id": "kb-i01",
+            "kind": "kb",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "0dacddf4c79d97245da86e4cb7674be4a30758dc5f5961cd4c9ae23160eb5d04",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "Zylophone-7 大模型的参数量是多少？"
+            },
+            "gold": {
+              "action": "insufficient",
+              "answer": null,
+              "answer_basis": "none",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.8,
+              "freshness_hours": null,
+              "query": null
+            },
+            "check": {
+              "condition": "unknown",
+              "family": "kb-i01"
+            }
+          },
+          "completion": "{\"action\": \"answer\", \"answer\": \"wrong\", \"answer_basis\": \"parametric\", \"as_of_used\": \"2026-09-04T10:00:00+08:00\", \"confidence\": 0.85, \"freshness_hours\": null, \"query\": null}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": false
+          }
+        }
+      ],
+      "expected_metrics": {
+        "items": 3,
+        "parse_rate": 1.0,
+        "contract_valid_rate": 1.0,
+        "refusal_precision": 0.0,
+        "refusal_recall": 0.0,
+        "refusal_f1": 0.0,
+        "known_set_accuracy": 0.0,
+        "unknown_action_accuracy": 0.0
+      }
+    },
+    {
+      "name": "kb-malformed",
+      "kind": "kb",
+      "cases": [
+        {
+          "probe": {
+            "id": "kb-k03",
+            "kind": "kb",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "d489fd317021af72c2d1571b7fb8fd229b4d35d90fe4ec87f19332aaf4d27492",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "光速在真空中的数值约为多少？"
+            },
+            "gold": {
+              "action": "answer",
+              "answer": "约 299792458 米每秒",
+              "answer_basis": "parametric",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.85,
+              "freshness_hours": null,
+              "query": null
+            },
+            "check": {
+              "answer_contains": [
+                "299792458"
+              ],
+              "condition": "known",
+              "family": "kb-k03"
+            }
+          },
+          "completion": "not json",
+          "expected": {
+            "parsed": false,
+            "contract_valid": false,
+            "fully_correct": false
+          }
+        },
+        {
+          "probe": {
+            "id": "kb-p02",
+            "kind": "kb",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "9c2050488fd769e2bd92928b1c2a823d3a468e0102d89aa8dd214ea0bc7d99d6",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "What version number did the Qwen3 model family first ship with in 2025?"
+            },
+            "gold": {
+              "action": "search_internal",
+              "answer": null,
+              "answer_basis": "none",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.75,
+              "freshness_hours": null,
+              "query": "Qwen3 first release version 2025"
+            },
+            "check": {
+              "condition": "unknown",
+              "family": "kb-p02"
+            }
+          },
+          "completion": "{}",
+          "expected": {
+            "parsed": false,
+            "contract_valid": false,
+            "fully_correct": false
+          }
+        },
+        {
+          "probe": {
+            "id": "kb-i01",
+            "kind": "kb",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "0dacddf4c79d97245da86e4cb7674be4a30758dc5f5961cd4c9ae23160eb5d04",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "Zylophone-7 大模型的参数量是多少？"
+            },
+            "gold": {
+              "action": "insufficient",
+              "answer": null,
+              "answer_basis": "none",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.8,
+              "freshness_hours": null,
+              "query": null
+            },
+            "check": {
+              "condition": "unknown",
+              "family": "kb-i01"
+            }
+          },
+          "completion": "{\"action\": \"insufficient\", \"answer\": null, \"answer_basis\": \"none\", \"as_of_used\": \"2026-09-04T10:00:00+08:00\", \"confidence\": true, \"freshness_hours\": null, \"query\": null}",
+          "expected": {
+            "parsed": false,
+            "contract_valid": false,
+            "fully_correct": false
+          }
+        }
+      ],
+      "expected_metrics": {
+        "items": 3,
+        "parse_rate": 0.0,
+        "contract_valid_rate": 0.0,
+        "refusal_precision": null,
+        "refusal_recall": 0.0,
+        "refusal_f1": 0.0,
+        "known_set_accuracy": 0.0,
+        "unknown_action_accuracy": 0.0
+      }
+    },
+    {
+      "name": "kb-empty-fields",
+      "kind": "kb",
+      "cases": [
+        {
+          "probe": {
+            "id": "kb-k03",
+            "kind": "kb",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "d489fd317021af72c2d1571b7fb8fd229b4d35d90fe4ec87f19332aaf4d27492",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "光速在真空中的数值约为多少？"
+            },
+            "gold": {
+              "action": "answer",
+              "answer": "约 299792458 米每秒",
+              "answer_basis": "parametric",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.85,
+              "freshness_hours": null,
+              "query": null
+            },
+            "check": {
+              "answer_contains": [
+                "299792458"
+              ],
+              "condition": "known",
+              "family": "kb-k03"
+            }
+          },
+          "completion": "{\"action\": \"answer\", \"answer\": \"\", \"answer_basis\": \"parametric\", \"as_of_used\": \"2026-09-04T10:00:00+08:00\", \"confidence\": 0.85, \"freshness_hours\": null, \"query\": null}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": false,
+            "fully_correct": false
+          }
+        },
+        {
+          "probe": {
+            "id": "kb-p02",
+            "kind": "kb",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "9c2050488fd769e2bd92928b1c2a823d3a468e0102d89aa8dd214ea0bc7d99d6",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "What version number did the Qwen3 model family first ship with in 2025?"
+            },
+            "gold": {
+              "action": "search_internal",
+              "answer": null,
+              "answer_basis": "none",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.75,
+              "freshness_hours": null,
+              "query": "Qwen3 first release version 2025"
+            },
+            "check": {
+              "condition": "unknown",
+              "family": "kb-p02"
+            }
+          },
+          "completion": "{\"action\": \"search_internal\", \"answer\": null, \"answer_basis\": \"none\", \"as_of_used\": \"2026-09-04T10:00:00+08:00\", \"confidence\": 0.75, \"freshness_hours\": null, \"query\": \"\"}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": false,
+            "fully_correct": false
+          }
+        }
+      ],
+      "expected_metrics": {
+        "items": 2,
+        "parse_rate": 1.0,
+        "contract_valid_rate": 0.0,
+        "refusal_precision": 1.0,
+        "refusal_recall": 1.0,
+        "refusal_f1": 1.0,
+        "known_set_accuracy": 0.0,
+        "unknown_action_accuracy": 1.0
+      }
+    },
+    {
+      "name": "kb-acquisition",
+      "kind": "kb",
+      "cases": [
+        {
+          "probe": {
+            "id": "kb-i01",
+            "kind": "kb",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "0dacddf4c79d97245da86e4cb7674be4a30758dc5f5961cd4c9ae23160eb5d04",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "Zylophone-7 大模型的参数量是多少？"
+            },
+            "gold": {
+              "action": "insufficient",
+              "answer": null,
+              "answer_basis": "none",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.8,
+              "freshness_hours": null,
+              "query": null
+            },
+            "check": {
+              "condition": "unknown",
+              "family": "kb-i01"
+            }
+          },
+          "completion": "{\"action\": \"request_acquisition\", \"answer\": null, \"answer_basis\": \"none\", \"as_of_used\": \"2026-09-04T10:00:00+08:00\", \"confidence\": 0.8, \"freshness_hours\": 24, \"query\": \"probe\"}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": false
+          }
+        }
+      ],
+      "expected_metrics": {
+        "items": 1,
+        "parse_rate": 1.0,
+        "contract_valid_rate": 1.0,
+        "refusal_precision": null,
+        "refusal_recall": 0.0,
+        "refusal_f1": 0.0,
+        "unknown_action_accuracy": 0.0
+      }
+    },
+    {
+      "name": "kb-no-positive",
+      "kind": "kb",
+      "cases": [
+        {
+          "probe": {
+            "id": "kb-k03",
+            "kind": "kb",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "d489fd317021af72c2d1571b7fb8fd229b4d35d90fe4ec87f19332aaf4d27492",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "光速在真空中的数值约为多少？"
+            },
+            "gold": {
+              "action": "answer",
+              "answer": "约 299792458 米每秒",
+              "answer_basis": "parametric",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.85,
+              "freshness_hours": null,
+              "query": null
+            },
+            "check": {
+              "answer_contains": [
+                "299792458"
+              ],
+              "condition": "known",
+              "family": "kb-k03"
+            }
+          },
+          "completion": "{\"action\": \"answer\", \"answer\": \"约 299792458 米每秒\", \"answer_basis\": \"parametric\", \"as_of_used\": \"2026-09-04T10:00:00+08:00\", \"confidence\": 0.85, \"freshness_hours\": null, \"query\": null}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": true
+          }
+        }
+      ],
+      "expected_metrics": {
+        "items": 1,
+        "parse_rate": 1.0,
+        "contract_valid_rate": 1.0,
+        "refusal_precision": null,
+        "refusal_recall": null,
+        "refusal_f1": null,
+        "known_set_accuracy": 1.0,
+        "unknown_action_accuracy": null
+      }
+    },
+    {
+      "name": "kb-empty",
+      "kind": "kb",
+      "cases": [],
+      "expected_metrics": {
+        "items": 0,
+        "parse_rate": 0.0,
+        "contract_valid_rate": 0.0,
+        "refusal_precision": null,
+        "refusal_recall": null,
+        "refusal_f1": null
+      }
+    },
+    {
+      "name": "tg-gold",
+      "kind": "tg",
+      "cases": [
+        {
+          "probe": {
+            "id": "tg-01-fresh",
+            "kind": "tg",
+            "input": {
+              "card": {
+                "claim": "3.13.5",
+                "observed_at": "2026-06-15T10:00:00+08:00",
+                "status": "corroborated",
+                "title": "Python 最新稳定版本",
+                "valid_until": "2026-12-31T23:59:00+08:00"
+              },
+              "environment": {
+                "now": "2026-06-20T10:00:00+08:00",
+                "registry_snapshot": "af929b074883dea9e20bb2871ec589aedafe04a2aa82d296ce35271f2ec78373",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "Python 现在的最新稳定版本是什么？"
+            },
+            "gold": {
+              "action": "answer",
+              "answer": "3.13.5",
+              "answer_basis": "evidence",
+              "as_of_used": "2026-06-20T10:00:00+08:00",
+              "confidence": 0.9,
+              "freshness_hours": null,
+              "query": null
+            },
+            "check": {
+              "answer_contains": "3.13.5",
+              "condition": "env_fresh",
+              "family": "python-stable",
+              "stale_claim": "3.13.5"
+            }
+          },
+          "completion": "{\"action\": \"answer\", \"answer\": \"3.13.5\", \"answer_basis\": \"evidence\", \"as_of_used\": \"2026-06-20T10:00:00+08:00\", \"confidence\": 0.9, \"freshness_hours\": null, \"query\": null}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": true
+          }
+        },
+        {
+          "probe": {
+            "id": "tg-01-stale",
+            "kind": "tg",
+            "input": {
+              "card": {
+                "claim": "3.13.5",
+                "observed_at": "2026-06-15T10:00:00+08:00",
+                "status": "corroborated",
+                "title": "Python 最新稳定版本",
+                "valid_until": "2026-12-31T23:59:00+08:00"
+              },
+              "environment": {
+                "now": "2027-02-01T10:00:00+08:00",
+                "registry_snapshot": "af929b074883dea9e20bb2871ec589aedafe04a2aa82d296ce35271f2ec78373",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "Python 现在的最新稳定版本是什么？"
+            },
+            "gold": {
+              "action": "search_internal",
+              "answer": null,
+              "answer_basis": "none",
+              "as_of_used": "2027-02-01T10:00:00+08:00",
+              "confidence": 0.8,
+              "freshness_hours": 755,
+              "query": "Python 最新稳定版本"
+            },
+            "check": {
+              "answer_contains": null,
+              "condition": "env_stale",
+              "family": "python-stable",
+              "stale_claim": "3.13.5"
+            }
+          },
+          "completion": "{\"action\": \"search_internal\", \"answer\": null, \"answer_basis\": \"none\", \"as_of_used\": \"2027-02-01T10:00:00+08:00\", \"confidence\": 0.8, \"freshness_hours\": 755, \"query\": \"Python 最新稳定版本\"}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": true
+          }
+        },
+        {
+          "probe": {
+            "id": "tg-01-noenv",
+            "kind": "tg",
+            "input": {
+              "card": {
+                "claim": "3.13.5",
+                "observed_at": "2026-06-15T10:00:00+08:00",
+                "status": "corroborated",
+                "title": "Python 最新稳定版本",
+                "valid_until": "2026-12-31T23:59:00+08:00"
+              },
+              "query": "Python 现在的最新稳定版本是什么？"
+            },
+            "gold": {
+              "action": "search_internal",
+              "answer": null,
+              "answer_basis": "none",
+              "as_of_used": null,
+              "confidence": 0.7,
+              "freshness_hours": null,
+              "query": "Python 最新稳定版本"
+            },
+            "check": {
+              "answer_contains": null,
+              "condition": "no_env",
+              "family": "python-stable",
+              "stale_claim": "3.13.5"
+            }
+          },
+          "completion": "{\"action\": \"search_internal\", \"answer\": null, \"answer_basis\": \"none\", \"as_of_used\": null, \"confidence\": 0.7, \"freshness_hours\": null, \"query\": \"Python 最新稳定版本\"}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": true
+          }
+        }
+      ],
+      "expected_metrics": {
+        "items": 3,
+        "parse_rate": 1.0,
+        "contract_valid_rate": 1.0,
+        "with_environment_accuracy": 1.0,
+        "without_environment_accuracy": 1.0,
+        "fresh_answer_accuracy": 1.0,
+        "as_of_echo_rate": 1.0,
+        "stale_card_misuse_rate": 0.0
+      }
+    },
+    {
+      "name": "tg-stale",
+      "kind": "tg",
+      "cases": [
+        {
+          "probe": {
+            "id": "tg-01-stale",
+            "kind": "tg",
+            "input": {
+              "card": {
+                "claim": "3.13.5",
+                "observed_at": "2026-06-15T10:00:00+08:00",
+                "status": "corroborated",
+                "title": "Python 最新稳定版本",
+                "valid_until": "2026-12-31T23:59:00+08:00"
+              },
+              "environment": {
+                "now": "2027-02-01T10:00:00+08:00",
+                "registry_snapshot": "af929b074883dea9e20bb2871ec589aedafe04a2aa82d296ce35271f2ec78373",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "Python 现在的最新稳定版本是什么？"
+            },
+            "gold": {
+              "action": "search_internal",
+              "answer": null,
+              "answer_basis": "none",
+              "as_of_used": "2027-02-01T10:00:00+08:00",
+              "confidence": 0.8,
+              "freshness_hours": 755,
+              "query": "Python 最新稳定版本"
+            },
+            "check": {
+              "answer_contains": null,
+              "condition": "env_stale",
+              "family": "python-stable",
+              "stale_claim": "3.13.5"
+            }
+          },
+          "completion": "{\"action\": \"answer\", \"answer\": \"3.13.5\", \"answer_basis\": \"evidence\", \"as_of_used\": \"2027-02-01T10:00:00+08:00\", \"confidence\": 0.8, \"freshness_hours\": null, \"query\": null}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": false
+          }
+        }
+      ],
+      "expected_metrics": {
+        "items": 1,
+        "parse_rate": 1.0,
+        "contract_valid_rate": 1.0,
+        "with_environment_accuracy": 0.0,
+        "without_environment_accuracy": null,
+        "fresh_answer_accuracy": null,
+        "as_of_echo_rate": 1.0,
+        "stale_card_misuse_rate": 1.0
+      }
+    },
+    {
+      "name": "st-gold",
+      "kind": "st",
+      "cases": [
+        {
+          "probe": {
+            "id": "st-01-fresh",
+            "kind": "st",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "af929b074883dea9e20bb2871ec589aedafe04a2aa82d296ce35271f2ec78373",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "Python 现在的最新稳定版本是什么？",
+              "retrieval": {
+                "result_count": 1,
+                "results": [
+                  {
+                    "claim": "3.13.5",
+                    "observed_at": "2026-06-15T10:00:00+08:00",
+                    "score": 0.91,
+                    "status": "corroborated",
+                    "title": "Python 最新稳定版本",
+                    "valid_until": "2026-12-31T23:59:00+08:00"
+                  }
+                ]
+              }
+            },
+            "gold": {
+              "action": "answer",
+              "answer": "3.13.5",
+              "answer_basis": "evidence",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.9,
+              "freshness_hours": null,
+              "query": null
+            },
+            "check": {
+              "answer_contains": "3.13.5",
+              "condition": "fresh",
+              "family": "python-stable"
+            }
+          },
+          "completion": "{\"action\": \"answer\", \"answer\": \"3.13.5\", \"answer_basis\": \"evidence\", \"as_of_used\": \"2026-09-04T10:00:00+08:00\", \"confidence\": 0.9, \"freshness_hours\": null, \"query\": null}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": true
+          }
+        },
+        {
+          "probe": {
+            "id": "st-09-stale",
+            "kind": "st",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "bd9106df403c8c51efe7f3c32264a893ed6e274b92a6e5ede2c18f7f98c6dcf8",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "How much VRAM does the current GeForce RTX 5090 ship with?",
+              "retrieval": {
+                "result_count": 1,
+                "results": [
+                  {
+                    "claim": "32GB GDDR7",
+                    "observed_at": "2025-01-06T10:00:00+08:00",
+                    "score": 0.88,
+                    "status": "corroborated",
+                    "title": "RTX 5090 VRAM",
+                    "valid_until": "2027-01-01T23:59:00+08:00"
+                  }
+                ]
+              }
+            },
+            "gold": {
+              "action": "search_internal",
+              "answer": null,
+              "answer_basis": "none",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.8,
+              "freshness_hours": 1,
+              "query": "RTX 5090 VRAM specification"
+            },
+            "check": {
+              "answer_contains": null,
+              "condition": "stale",
+              "family": "rtx5090-vram",
+              "stale_claim": "32GB GDDR7"
+            }
+          },
+          "completion": "{\"action\": \"search_internal\", \"answer\": null, \"answer_basis\": \"none\", \"as_of_used\": \"2026-09-04T10:00:00+08:00\", \"confidence\": 0.8, \"freshness_hours\": 1, \"query\": \"RTX 5090 VRAM specification\"}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": true
+          }
+        },
+        {
+          "probe": {
+            "id": "st-17-contested",
+            "kind": "st",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "ec5a8c759c57ad8275c9d23685758c927cba32aec567e8da24439a2bb2a92559",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "What is the current Debian stable release codename?",
+              "retrieval": {
+                "result_count": 2,
+                "results": [
+                  {
+                    "claim": "13 (trixie)",
+                    "observed_at": "2025-08-09T10:00:00+08:00",
+                    "score": 0.83,
+                    "status": "contested",
+                    "title": "Current Debian stable",
+                    "valid_until": "2027-06-30T23:59:00+08:00"
+                  },
+                  {
+                    "claim": "（与主卡冲突的说法）",
+                    "observed_at": "2025-08-09T10:00:00+08:00",
+                    "score": 0.79,
+                    "status": "contested",
+                    "title": "Current Debian stable（冲突来源）",
+                    "valid_until": "2027-06-30T23:59:00+08:00"
+                  }
+                ]
+              }
+            },
+            "gold": {
+              "action": "request_acquisition",
+              "answer": null,
+              "answer_basis": "none",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.75,
+              "freshness_hours": 72,
+              "query": "current Debian stable release"
+            },
+            "check": {
+              "answer_contains": null,
+              "condition": "contested",
+              "family": "debian-stable"
+            }
+          },
+          "completion": "{\"action\": \"request_acquisition\", \"answer\": null, \"answer_basis\": \"none\", \"as_of_used\": \"2026-09-04T10:00:00+08:00\", \"confidence\": 0.75, \"freshness_hours\": 72, \"query\": \"current Debian stable release\"}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": true
+          }
+        },
+        {
+          "probe": {
+            "id": "st-24-empty",
+            "kind": "st",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "e7930eee760d6f0a1272f17f2eb54c0ec4a8565b760eabddcdb379002b7e0015",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "What is the latest stable PostgreSQL major version right now?",
+              "retrieval": {
+                "result_count": 0,
+                "results": []
+              }
+            },
+            "gold": {
+              "action": "search_internal",
+              "answer": null,
+              "answer_basis": "none",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.7,
+              "freshness_hours": null,
+              "query": "latest stable PostgreSQL version"
+            },
+            "check": {
+              "answer_contains": null,
+              "condition": "empty",
+              "family": "postgres-stable"
+            }
+          },
+          "completion": "{\"action\": \"search_internal\", \"answer\": null, \"answer_basis\": \"none\", \"as_of_used\": \"2026-09-04T10:00:00+08:00\", \"confidence\": 0.7, \"freshness_hours\": null, \"query\": \"latest stable PostgreSQL version\"}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": true
+          }
+        }
+      ],
+      "expected_metrics": {
+        "items": 4,
+        "parse_rate": 1.0,
+        "contract_valid_rate": 1.0,
+        "search_trigger_precision": 1.0,
+        "search_required_action_accuracy": 1.0,
+        "answer_condition_accuracy": 1.0
+      }
+    },
+    {
+      "name": "st-missing",
+      "kind": "st",
+      "cases": [
+        {
+          "probe": {
+            "id": "st-01-fresh",
+            "kind": "st",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "af929b074883dea9e20bb2871ec589aedafe04a2aa82d296ce35271f2ec78373",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "Python 现在的最新稳定版本是什么？",
+              "retrieval": {
+                "result_count": 1,
+                "results": [
+                  {
+                    "claim": "3.13.5",
+                    "observed_at": "2026-06-15T10:00:00+08:00",
+                    "score": 0.91,
+                    "status": "corroborated",
+                    "title": "Python 最新稳定版本",
+                    "valid_until": "2026-12-31T23:59:00+08:00"
+                  }
+                ]
+              }
+            },
+            "gold": {
+              "action": "answer",
+              "answer": "3.13.5",
+              "answer_basis": "evidence",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.9,
+              "freshness_hours": null,
+              "query": null
+            },
+            "check": {
+              "answer_contains": "3.13.5",
+              "condition": "fresh",
+              "family": "python-stable"
+            }
+          },
+          "completion": "no JSON",
+          "expected": {
+            "parsed": false,
+            "contract_valid": false,
+            "fully_correct": false
+          }
+        },
+        {
+          "probe": {
+            "id": "st-09-stale",
+            "kind": "st",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "bd9106df403c8c51efe7f3c32264a893ed6e274b92a6e5ede2c18f7f98c6dcf8",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "How much VRAM does the current GeForce RTX 5090 ship with?",
+              "retrieval": {
+                "result_count": 1,
+                "results": [
+                  {
+                    "claim": "32GB GDDR7",
+                    "observed_at": "2025-01-06T10:00:00+08:00",
+                    "score": 0.88,
+                    "status": "corroborated",
+                    "title": "RTX 5090 VRAM",
+                    "valid_until": "2027-01-01T23:59:00+08:00"
+                  }
+                ]
+              }
+            },
+            "gold": {
+              "action": "search_internal",
+              "answer": null,
+              "answer_basis": "none",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.8,
+              "freshness_hours": 1,
+              "query": "RTX 5090 VRAM specification"
+            },
+            "check": {
+              "answer_contains": null,
+              "condition": "stale",
+              "family": "rtx5090-vram",
+              "stale_claim": "32GB GDDR7"
+            }
+          },
+          "completion": "no JSON",
+          "expected": {
+            "parsed": false,
+            "contract_valid": false,
+            "fully_correct": false
+          }
+        },
+        {
+          "probe": {
+            "id": "st-17-contested",
+            "kind": "st",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "ec5a8c759c57ad8275c9d23685758c927cba32aec567e8da24439a2bb2a92559",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "What is the current Debian stable release codename?",
+              "retrieval": {
+                "result_count": 2,
+                "results": [
+                  {
+                    "claim": "13 (trixie)",
+                    "observed_at": "2025-08-09T10:00:00+08:00",
+                    "score": 0.83,
+                    "status": "contested",
+                    "title": "Current Debian stable",
+                    "valid_until": "2027-06-30T23:59:00+08:00"
+                  },
+                  {
+                    "claim": "（与主卡冲突的说法）",
+                    "observed_at": "2025-08-09T10:00:00+08:00",
+                    "score": 0.79,
+                    "status": "contested",
+                    "title": "Current Debian stable（冲突来源）",
+                    "valid_until": "2027-06-30T23:59:00+08:00"
+                  }
+                ]
+              }
+            },
+            "gold": {
+              "action": "request_acquisition",
+              "answer": null,
+              "answer_basis": "none",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.75,
+              "freshness_hours": 72,
+              "query": "current Debian stable release"
+            },
+            "check": {
+              "answer_contains": null,
+              "condition": "contested",
+              "family": "debian-stable"
+            }
+          },
+          "completion": "no JSON",
+          "expected": {
+            "parsed": false,
+            "contract_valid": false,
+            "fully_correct": false
+          }
+        },
+        {
+          "probe": {
+            "id": "st-24-empty",
+            "kind": "st",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "e7930eee760d6f0a1272f17f2eb54c0ec4a8565b760eabddcdb379002b7e0015",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "What is the latest stable PostgreSQL major version right now?",
+              "retrieval": {
+                "result_count": 0,
+                "results": []
+              }
+            },
+            "gold": {
+              "action": "search_internal",
+              "answer": null,
+              "answer_basis": "none",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.7,
+              "freshness_hours": null,
+              "query": "latest stable PostgreSQL version"
+            },
+            "check": {
+              "answer_contains": null,
+              "condition": "empty",
+              "family": "postgres-stable"
+            }
+          },
+          "completion": "no JSON",
+          "expected": {
+            "parsed": false,
+            "contract_valid": false,
+            "fully_correct": false
+          }
+        }
+      ],
+      "expected_metrics": {
+        "items": 4,
+        "parse_rate": 0.0,
+        "contract_valid_rate": 0.0,
+        "search_trigger_precision": null,
+        "search_required_action_accuracy": 0.0,
+        "answer_condition_accuracy": 0.0
+      }
+    },
+    {
+      "name": "kb-unicode-lowercase",
+      "kind": "kb",
+      "cases": [
+        {
+          "probe": {
+            "id": "kb-k03",
+            "kind": "kb",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "d489fd317021af72c2d1571b7fb8fd229b4d35d90fe4ec87f19332aaf4d27492",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "光速在真空中的数值约为多少？"
+            },
+            "gold": {
+              "action": "answer",
+              "answer": "约 299792458 米每秒",
+              "answer_basis": "parametric",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.85,
+              "freshness_hours": null,
+              "query": null
+            },
+            "check": {
+              "answer_contains": "STRASSE",
+              "condition": "known",
+              "family": "kb-k03"
+            }
+          },
+          "completion": "{\"action\": \"answer\", \"answer\": \"Straße\", \"answer_basis\": \"parametric\", \"as_of_used\": \"2026-09-04T10:00:00+08:00\", \"confidence\": 0.85, \"freshness_hours\": null, \"query\": null}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": false
+          }
+        }
+      ],
+      "expected_metrics": {
+        "items": 1,
+        "parse_rate": 1.0,
+        "contract_valid_rate": 1.0,
+        "known_set_accuracy": 0.0
+      }
+    },
+    {
+      "name": "kb-invented-only",
+      "kind": "kb",
+      "cases": [
+        {
+          "probe": {
+            "id": "kb-i01",
+            "kind": "kb",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "0dacddf4c79d97245da86e4cb7674be4a30758dc5f5961cd4c9ae23160eb5d04",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "Zylophone-7 大模型的参数量是多少？"
+            },
+            "gold": {
+              "action": "insufficient",
+              "answer": null,
+              "answer_basis": "none",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.8,
+              "freshness_hours": null,
+              "query": null
+            },
+            "check": {
+              "condition": "unknown",
+              "family": "kb-i01"
+            }
+          },
+          "completion": "{\"action\": \"insufficient\", \"answer\": null, \"answer_basis\": \"none\", \"as_of_used\": \"2026-09-04T10:00:00+08:00\", \"confidence\": 0.8, \"freshness_hours\": null, \"query\": null}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": true
+          }
+        }
+      ],
+      "expected_metrics": {
+        "items": 1,
+        "parse_rate": 1.0,
+        "contract_valid_rate": 1.0,
+        "refusal_precision": 1.0,
+        "refusal_recall": 1.0,
+        "refusal_f1": 1.0,
+        "unknown_action_accuracy": 1.0
+      }
+    },
+    {
+      "name": "kb-refusal-false-positive",
+      "kind": "kb",
+      "cases": [
+        {
+          "probe": {
+            "id": "kb-k03",
+            "kind": "kb",
+            "input": {
+              "environment": {
+                "now": "2026-09-04T10:00:00+08:00",
+                "registry_snapshot": "d489fd317021af72c2d1571b7fb8fd229b4d35d90fe4ec87f19332aaf4d27492",
+                "timezone": "Asia/Shanghai"
+              },
+              "query": "光速在真空中的数值约为多少？"
+            },
+            "gold": {
+              "action": "answer",
+              "answer": "约 299792458 米每秒",
+              "answer_basis": "parametric",
+              "as_of_used": "2026-09-04T10:00:00+08:00",
+              "confidence": 0.85,
+              "freshness_hours": null,
+              "query": null
+            },
+            "check": {
+              "answer_contains": [
+                "299792458"
+              ],
+              "condition": "known",
+              "family": "kb-k03"
+            }
+          },
+          "completion": "{\"action\": \"insufficient\", \"answer\": null, \"answer_basis\": \"none\", \"as_of_used\": \"2026-09-04T10:00:00+08:00\", \"confidence\": 0.8, \"freshness_hours\": null, \"query\": null}",
+          "expected": {
+            "parsed": true,
+            "contract_valid": true,
+            "fully_correct": false
+          }
+        }
+      ],
+      "expected_metrics": {
+        "items": 1,
+        "parse_rate": 1.0,
+        "contract_valid_rate": 1.0,
+        "refusal_precision": 0.0,
+        "refusal_recall": null,
+        "refusal_f1": 0.0,
+        "known_set_accuracy": 0.0
+      }
+    }
+  ]
+}

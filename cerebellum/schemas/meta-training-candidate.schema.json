@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "candidate_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "dataset_hash": {
+      "type": "string"
+    },
+    "decision_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "eligible_record_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "manifest_hash": {
+      "type": "string"
+    },
+    "replay_eval_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "source_domain_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "topic_family_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "candidate_id",
+    "dataset_hash",
+    "manifest_hash",
+    "decision_count",
+    "replay_eval_count",
+    "eligible_record_count",
+    "source_domain_count",
+    "topic_family_count",
+    "created_at"
+  ],
+  "title": "MetaTrainingCandidate",
+  "type": "object"
+}

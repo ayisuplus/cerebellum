@@ -1,0 +1,90 @@
+{
+  "$defs": {
+    "GpuLeaseStatus": {
+      "enum": [
+        "provisioning",
+        "waiting_worker",
+        "running",
+        "release_requested",
+        "released",
+        "release_failed"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "gpu_memory_gb": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "gpu_spec": {
+      "type": "string"
+    },
+    "hourly_price_cny": {
+      "format": "double",
+      "type": "number"
+    },
+    "last_heartbeat_at": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "last_provider_status": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "provider_instance_id": {
+      "type": "string"
+    },
+    "release_requested_at": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "released_at": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "run_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/GpuLeaseStatus"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "run_id",
+    "provider",
+    "provider_instance_id",
+    "gpu_spec",
+    "gpu_memory_gb",
+    "hourly_price_cny",
+    "status",
+    "last_provider_status",
+    "created_at",
+    "updated_at"
+  ],
+  "title": "GpuLease",
+  "type": "object"
+}

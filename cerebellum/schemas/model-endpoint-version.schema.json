@@ -1,0 +1,128 @@
+{
+  "$defs": {
+    "ModelCalibrationMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "critical_safety_recall": {
+          "format": "double",
+          "type": "number"
+        },
+        "fixture_count": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "schema_valid_rate": {
+          "format": "double",
+          "type": "number"
+        },
+        "shadow_count": {
+          "default": null,
+          "format": "uint64",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "shadow_disagreement_rate": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "verdict_macro_f1": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "required": [
+        "fixture_count",
+        "schema_valid_rate",
+        "critical_safety_recall",
+        "verdict_macro_f1"
+      ],
+      "type": "object"
+    },
+    "ModelEndpointStatus": {
+      "enum": [
+        "pending_approval",
+        "calibration",
+        "shadow",
+        "active",
+        "superseded",
+        "rejected"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "approval_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "approved_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "endpoint_version_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "first_seen_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "metrics": {
+      "$ref": "#/$defs/ModelCalibrationMetrics"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "prompt_version": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "schema_hash": {
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/ModelEndpointStatus"
+    },
+    "system_fingerprint": {
+      "type": "string"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "endpoint_version_id",
+    "provider",
+    "model_id",
+    "system_fingerprint",
+    "prompt_version",
+    "schema_hash",
+    "status",
+    "metrics",
+    "first_seen_at",
+    "updated_at"
+  ],
+  "title": "ModelEndpointVersion",
+  "type": "object"
+}

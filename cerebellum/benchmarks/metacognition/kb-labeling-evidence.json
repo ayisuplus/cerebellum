@@ -1,0 +1,1933 @@
+{
+  "schema_version": "cerebellum/v1",
+  "kind": "kb_labeling_evidence_v1",
+  "model": "gguf:qwen2.5-1.5b-base-q8_0.gguf",
+  "generation": {
+    "temperature": 0.7,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "n_predict": 256
+  },
+  "rule": "known = 3/3 correct; unknown_eligible = 0/3 correct",
+  "entries": [
+    {
+      "id": "kb-k01",
+      "class": "known_candidate",
+      "query": "HTTP 404 状态码表示什么？",
+      "expect": {
+        "display": "资源不存在（Not Found）",
+        "groups": [
+          "404",
+          "notfound|不存在|找不到"
+        ]
+      },
+      "correct_samples": 1,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "404 Not Found\nAnswer: HTTP 404 Not Found\nAnswer: HTTP 404 Not Found\nAnswer: HTTP 404 Not Found\nAnswer: HTTP 404 Not Found\nAnswer: HTTP 404 Not Found\nAnswer: HTTP 404 Not Found\nAnswer: HTTP 404 Not Found\nAnswer: HTTP 404 Not Found\nAnswer: HTTP 404 Not Found\nAnswer: HTTP 404 Not Found\nAnswer: HTTP 404 Not Found\nAnswer: HTTP 404 Not Found\nAnswer: HTTP 404 Not Found\nAnswer: HTTP 404 Not Found\nAnswer: HTTP 404 Not Found\nAnswer: HTTP 404 Not Found\nAnswer: HTTP 404 Not Found\nAnswer: HTTP 404 Not Found\n",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "HTTP 404 状态码表示请求的资源未找到。\nAnswer: HTTP 404 状态码表示请求的资源未找到。\nAnswer: HTTP 404 状态码表示请求的资源未找到。\nAnswer: HTTP 404 状态码表示请求的资源未找到。",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "HTTP 404 状态码表示请求的资源未找到。",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-k02",
+      "class": "known_candidate",
+      "query": "What does the Python GIL prevent?",
+      "expect": {
+        "display": "多个线程并行执行 Python 字节码",
+        "groups": [
+          "thread",
+          "parallel|concurrent|bytecode"
+        ]
+      },
+      "correct_samples": 2,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "Python's Global Interpreter Lock (GIL) is a mechanism used to control access to Python objects by multiple threads.\n A single-threaded programming language\n A single-threaded process\n A single-threaded thread\n A single-threaded interpreter\nAnswer: A single-threaded interpreter",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "The GIL prevents multiple threads from executing Python bytecodes at the same time, thus limiting the concurrency of Python applications.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nAvailable choices:\n +yes;\n +no;\nyes",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "The GIL prevents multiple threads from executing Python bytecodes at the same time, which is why it is sometimes referred to as the Global Interpreter Lock.\n\nAnswer: Python is interpreted, not compiled, which means the interpreter has to go through the same process with each line of code that it interprets, which is why it is sometimes referred to as interpreted.\nThis justifies what answer for what question? Q & A:\n\nQuestion: What is the difference between Python's interpreter and compiler?\n\nAns",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k03",
+      "class": "known_candidate",
+      "query": "光速在真空中的数值约为多少？",
+      "expect": {
+        "display": "约 299792458 米每秒",
+        "groups": [
+          "299792458"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "光速在真空中的数值约为每秒299,792,458米（约300,000公里/秒）。\nA. 正确\nB. 错误\n答案:\n\nA\n\n在下列选项中，哪一种是最常见的急性腹膜炎病因？\nA. 胃十二指肠穿孔\nB. 肠梗阻\nC. 急性胰腺炎\nD. 急性胆囊炎\nE. 急性阑尾炎\n答案:\n\nA\n\n在电气化铁路区段，对于接触网未停电的线路上，是否允许进行手推调车作业？\nA. 正确\nB. 错误\n答案:\n\nB\n\n在电气化铁路上，当接触网发生断线或其部件损坏时，应保持安全距离，并立即通知附近的接触网工区或供电调度员，并在接触网检修人员到达之前，确保与断线或受损部件保持至少多少米的安全距离？\nA. 2米\nB. 5米\nC. 10米\nD. 15米\n答案:\n\nC",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "299,792,458 m/s",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "299,792.458公里/秒\n\nQuestion: 以下哪个句子是正确的？\nA. The speed of light in a vacuum is approximately 299,792.458 kilometers per second.\nB. The speed of light in a vacuum is approximately 299,792.458 kilometers per hour.\nAnswer: A\n\nQuestion: 在物理学中，光速在真空中的值是多少？\nA. 299,792.458公里/秒\nB. 299,792.458公里/小时\nC. 299,792.458公里/分\nD. 299,792.458公里/日\nAnswer: A\n\nQuestion: 光速在真空中的值是多少？\nA. 299,792.458公里/秒\nB. 299,792.458公里/小时\nC. 299,792.458公里/分\nD. 299,792.458公里/日",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k04",
+      "class": "known_candidate",
+      "query": "What are the three steps of the TCP handshake?",
+      "expect": {
+        "display": "SYN、SYN-ACK、ACK",
+        "groups": [
+          "syn",
+          "ack"
+        ]
+      },
+      "correct_samples": 2,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "Three steps are involved in the TCP handshake: SYN, SYN/ACK and ACK.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nSelect from: A). yes B). no\n\nA).",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "The three steps of the TCP handshake are SYN, SYN/ACK and ACK.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nSelect from:\n (a). yes\n (b). no (a).",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "The three-way handshake is a standard protocol in TCP for establishing a connection between two hosts.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nOptions are: (a). yes (b). no (a).",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-k05",
+      "class": "known_candidate",
+      "query": "git rebase 命令的作用是什么？",
+      "expect": {
+        "display": "把提交重放到新的基点，形成线性历史",
+        "groups": [
+          "rebase",
+          "历史|history|基点|base"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "git rebase 命令用于将一个分支的修改合并到另一个分支中，从而实现分支间的合并。具体来说，git rebase 命令会将当前分支的修改应用到目标分支上，并将目标分支上的修改合并到当前分支上。通过 rebase，可以有效地管理和合并多个分支的修改，从而简化代码的管理和维护工作。\n答案是：将一个分支的修改合并到另一个分支中",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "git rebase 命令的作用是将当前分支的最新提交应用到其他分支上，从而创建一个新的提交历史。这个过程通常用于合并其他分支的提交，以便保持主分支的干净和清晰。\nAnswer: git rebase 命令的作用是将当前分支的最新提交应用到其他分支上，从而创建一个新的提交历史。这个过程通常用于合并其他分支的提交，以便保持主分支的干净和清晰。",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "git rebase 命令用于将当前分支的提交历史与另一个分支的提交历史进行合并，从而创建一个新的提交历史。这通常用于保持分支的历史一致性，特别是在需要合并多个不同分支的提交历史时。\n\nQuestion: 请解释 git cherry-pick 命令的作用。\nAnswer: git cherry-pick 命令用于将一个提交（即一个提交历史的特定部分）从一个分支复制到另一个分支中。它允许你直接应用一个提交的更改，而不需要将其合并到当前分支的历史中。这在需要保留特定提交历史的情况下非常有用，例如在修复问题或合并代码时。\n\nQuestion: 请解释 git reset 命令的作用。\nAnswer: git reset 命令用于重置当前分支的提交历史。它可以用来撤销最近的提交，将分支切换到之前的状态，或者将分支重置到一个特定的提交。常用的 reset 命令选项包括：-q 无提示，-r 回退到最近的提交，-p 保留工作目录，-d 删除指定的提交。\n\nQuestion: 请解释 git commit 命令的作用。\nAnswer: git commit 命令用于将修改的文件提交",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k06",
+      "class": "known_candidate",
+      "query": "What does JSON stand for?",
+      "expect": {
+        "display": "JavaScript Object Notation",
+        "groups": [
+          "javascriptobjectnotation"
+        ]
+      },
+      "correct_samples": 2,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "The JSON standard was published in 2006 and became a part of the World Wide Web Consortium (W3C) Recommendation.",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "JSON stands for JavaScript Object Notation.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nOPTIONS:\n * yes;\n * no;\nyes",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "JSON stands for JavaScript Object Notation.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nChoose from: [I] yes. [II] no.\n\n[I]",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k07",
+      "class": "known_candidate",
+      "query": "DNA 双螺旋结构由哪两位科学家于 1953 年提出？",
+      "expect": {
+        "display": "沃森和克里克",
+        "groups": [
+          "沃森|watson",
+          "克里克|crick"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "Watson and Crick\n\nQuestion: 在 DNA 双螺旋结构中，磷酸和脱氧核糖交替连接形成什么？\nAnswer: 脱氧核糖核酸\n\nQuestion: DNA 双螺旋结构的稳定性主要依赖于什么？\nAnswer: 碱基配对规则\n\nQuestion: DNA 的双螺旋结构中，哪两个碱基通过氢键相互结合？\nAnswer: A与T, C与G\n\nQuestion: 在 DNA 双螺旋结构中，哪两种碱基之间通过氢键相互连接？\nAnswer: A与T, C与G\n\nQuestion: 在 DNA 双螺旋结构中，磷酸和脱氧核糖交替连接形成什么？\nAnswer: 脱氧核糖核酸\n\nQuestion: DNA 双螺旋结构的稳定性主要依赖于什么？\nAnswer: 碱基配对规则\n\nQuestion: DNA 的双螺旋结构中，哪两种碱基之间通过氢键相互连接？\nAnswer: A与T, C与G\n\nQuestion: 以下哪一项不是细胞膜的功能？\nA. 维持细胞内部环境的稳定。\nB. 控制物质进出细胞。\nC. 合成蛋白质。\nD. 调节物质进出细胞。\n答案: C",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "James Watson and Francis Crick\n\nQuestion: 在 DNA 双螺旋结构中，哪一部分负责储存遗传信息？\nAnswer: The two polynucleotide strands\n\nQuestion: 染色体是 DNA 的物理模型，其中哪一部分负责存储遗传信息？\nAnswer: The two polynucleotide strands\n\nQuestion: DNA 双螺旋的稳定主要归功于以下哪项？\nAnswer: Base stacking and hydrogen bonding between complementary base pairs\n\nQuestion: 在 DNA 双螺旋结构中，哪种碱基配对方式是正确的？\nAnswer: Adenine (A) pairs with Thymine (T), and Cytosine (C) pairs with Guanine (G)\n\nQuestion: 染色体在细胞周期中的功能是什么？\nAnswer: They contain the genetic material (DNA) that ",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "James Watson and Francis Crick\n\nQuestion: 在细胞中，DNA 复制发生在哪个阶段？\nAnswer: S期\n\nQuestion: 哪个结构负责保护 DNA 以防止其受到外源性损伤？\nAnswer: 细胞核\n\nQuestion: 衰老过程中，细胞核体积如何变化？\nAnswer: 增大\n\nQuestion: 与 DNA 复制相关的酶是什么？\nAnswer: DNA聚合酶\n\nQuestion: 细胞核的主要功能是什么？\nAnswer: DNA和RNA的储存、复制和转录\n\nQuestion: 在细胞核中，DNA 被包装成染色质的形式，这种结构由什么组成？\nAnswer: DNA和蛋白质\n\nQuestion: 哪个细胞器负责将 DNA 复制后的 RNA 转录成蛋白质？\nAnswer: 细胞核\n\nQuestion: 哪种细胞器负责将 DNA 复制后的 RNA 转录成蛋白质？\nAnswer: 细胞核\n\nQuestion: 衰老过程中，细胞核的体积如何变化？\nAnswer: 增大\n\nQuestion: 哪种细胞器负责将 DNA 复制后的 RNA 转录成蛋白质？\nA",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k08",
+      "class": "known_candidate",
+      "query": "What is the time complexity of binary search on a sorted array?",
+      "expect": {
+        "display": "O(log n)",
+        "groups": [
+          "ologn"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "Binary search on a sorted array has a time complexity of O(log n) in the average and worst case scenarios.\nYou are an AI assistant that follows instruction extremely well. Help as much as you can.",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "The time complexity of binary search on a sorted array is O(log n), where n is the number of elements in the array. This is because binary search divides the search space in half with each comparison, resulting in a logarithmic time complexity.\n```python\ndef binary_search(arr, x):\n    low = 0\n    high = len(arr) - 1\n    mid = 0\n\n    while low <= high:\n\n        mid = (high + low) // 2\n\n        # If x is greater, ignore left half\n        if arr[mid] < x:\n            low = mid + 1\n\n        # If x i",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "The time complexity of binary search on a sorted array is O(log n), where n is the number of elements in the array.\n\nQuestion: What is the time complexity of sorting an array of n elements using a simple sorting algorithm?\nAnswer: The time complexity of sorting an array of n elements using a simple sorting algorithm is O(n^2), which is the worst-case and average-case scenario.\n\nQuestion: What is the time complexity of searching for an element in a hash table?\nAnswer: The time complexity of searc",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k09",
+      "class": "known_candidate",
+      "query": "Linux 中 chmod 755 表示什么权限？",
+      "expect": {
+        "display": "属主读写执行，组和其他用户读执行",
+        "groups": [
+          "755",
+          "rwx|读写执行"
+        ]
+      },
+      "correct_samples": 2,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "Linux 中的 chmod 命令用于更改文件或目录的访问权限。`chmod 755` 表示一个文件的权限如下：\n\n- 第一个数字 `7` 表示文件的所有者有读、写、执行的权限（`rwx`）。\n- 第二个数字 `5` 表示文件的组用户有读、执行的权限（`r-x`）。\n- 第三个数字 `5` 表示其他用户有读、执行的权限（`r-x`）。\n\n因此，`chmod 755` 会将文件的权限设置为：\n- 文件所有者：读、写、执行\n- 文件组：读、执行\n- 其他用户：读、执行\n\n这是一个典型的“读写”权限的设置，适用于需要读取、修改或执行文件的用户。",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "chmod 755 表示该文件拥有者可以读、写、执行；该文件所属组的成员可以读、执行；其他用户只能读、执行\nA. 错误\nB. 正确\n答案:\nB\n\n1.169.第169题 有载调压变压器分接头档位调整属于继电保护范畴。\nA. 错误\nB. 正确\n答案:\nA\n\n1.170.第170题 变压器过励磁保护是按磁密B正比于电压U与频率f的比值原理实现的。\nA. 错误\nB. 正确\n答案:\nA\n\n1.172.第172题 线路保护动作后，若断路器失灵，重合闸应动作\nA. 错误\nB. 正确\n答案:\nA\n\n1.174.第174题 采用保护间隙时，其接地线应用多股软铜线。其截面应满足接地短路容量的要求，但不得小于25mm2。\nA. 错误\nB. �",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "chmod 755 表示拥有者拥有完全控制权，而其他用户只能读取或执行。具体来说，这个命令修改了文件的权限模式，使得文件的所有者（主用户）拥有读、写和执行的权限，而其他用户的权限（组用户和其它用户）只有读和执行的权限。\n\nLinux 中的权限控制是非常重要的，它决定了文件和目录的可访问性和可修改性。权限的表示方式是通过四个数字来表示的，其中第一个数字表示文件或目录的类型（如文件、目录等），后面的三个数字分别表示文件或目录的读、写和执行权限。\n\n例如，chmod 755 /path/to/file 表示将 /path/to/file 的权限设置为拥有者拥有完全控制权，组用户和其它用户只能读取和执行。具体来说，这个命令修改了文件的权限模式，使得文件的所有者（主用户）拥有读、写和执行的权限，而其他用户的权限（组用户和其它用户）只有读和执行的权限。",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-k10",
+      "class": "known_candidate",
+      "query": "What port does HTTPS use by default?",
+      "expect": {
+        "display": "443",
+        "groups": [
+          "443"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "The default port for HTTPS is 443.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nSelect from: a. yes. b. no.\na.",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "HTTPS uses port 443 by default.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nOptions are:\n[+] yes;\n[+] no; no",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "HTTPS uses port 443 by default.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nChoices: (A). yes (B). no (A).",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k11",
+      "class": "known_candidate",
+      "query": "《红楼梦》的作者是谁？",
+      "expect": {
+        "display": "曹雪芹",
+        "groups": [
+          "曹雪芹"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "曹雪芹\nA: 正确\nB: 错误\n答案:\nA\n\n在带电的电压互感器二次回路上工作，应采取措施防止电压互感器二次侧____。接临时负载，应装设专用的刀闸和熔断器。\nA. 短路或接地\nB. 短路并接地\nC. 开路\nD. 过载\n答案:\nA\n\n在带电的电压互感器二次回路上工作，应采取措施防止电压互感器二次侧____。接临时负载，应装设专用的刀闸和熔断器。\nA. 短路或接地\nB. 短路并接地\nC. 开路\nD. 过载\n答案:\nA\n\n在带电的电压互感器二次回路上工作，应采取措施防止电压互感器二次侧____。接临时负载，应装设专用的刀闸和熔断器。\nA. 开路\nB. 短路或接地\nC. 短路\nD. 过载\n答案:\nB\n\n在带电的电压互感器二次回路上工作，应采取",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "曹雪芹\n\nQuestion: 《红楼梦》的作者曹雪芹的籍贯是哪里？\nAnswer: 江苏江宁府\n\nQuestion: 《红楼梦》的作者曹雪芹的曾祖母叫什么名字？\nAnswer: 王氏\n\nQuestion: 《红楼梦》的作者曹雪芹的祖父叫什么名字？\nAnswer: 曹寅\n\nQuestion: 《红楼梦》的作者曹雪芹的父亲叫什么名字？\nAnswer: 曹頫\n\nQuestion: 《红楼梦》的作者曹雪芹的母亲叫什么名字？\nAnswer: 曹頫\n\nQuestion: 《红楼梦》的作者曹雪芹的妻子叫什么名字？\nAnswer: 王熙凤\n\nQuestion: 《红楼梦》的作者曹雪芹的儿子叫什么名字？\nAnswer: 贾宝玉\n\nQuestion: 《红楼梦》的作者曹雪芹的孙子叫什么名字？\nAnswer: 贾宝玉\n\nQuestion: 《红楼梦》的作者曹雪芹的曾孙叫什么名字？\nAnswer: 贾宝玉\n\nQuestion: 《红楼梦》的作者曹雪芹的孙子叫什么名字？\nAnswer: 贾宝玉\n\nQuestion: 《红楼梦》的作者曹",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "曹雪芹\nA. 正确\nB. 错误\n答案:\nA\n\n当列车在正线运行过程中，若遇到车辆设备故障需进行处理，应由谁在确保安全的前提下进行处理？\nA. 指定人员\nB. 值班站长\nC. 站台工作人员\nD. 值班员\n答案:\nA\n\n在以下哪种情况下，列车可以被允许进站？\nA. 站台门与车门均无法关闭\nB. 列车已完全停稳\nC. 车门与站台门均已关闭\nD. 列车未完全停稳\n答案:\nC\n\n根据《国家电网有限公司供电服务标准》，对于高压新装增容业务，在竣工检验合格并完成相关手续后，低压客户通常会在多少个工作日内完成送电？\nA. 1个工作日\nB. 2个工作日\nC. 3个工作日\nD. 5个工作日\n答案:\nB\n\n在对10kV电力电缆进行绝缘电阻测量时，应使用哪种电压等级的兆欧表？(1.0分)\nA. 500V\nB. 100",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k12",
+      "class": "known_candidate",
+      "query": "What is the capital of Australia?",
+      "expect": {
+        "display": "Canberra",
+        "groups": [
+          "canberra|堪培拉"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "Canberra is the capital of Australia.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nPick from:\n (a). yes.\n (b). no.\n\n(a).",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "Canberra is the capital of Australia.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nAvailable choices:\n *yes.\n *no.\nyes",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "The capital of Australia is Canberra.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nOPTIONS:\n -- yes.\n -- no.\nyes",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k13",
+      "class": "known_candidate",
+      "query": "IPv4 地址有多少位？",
+      "expect": {
+        "display": "32 位",
+        "groups": [
+          "32"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "IPv4 地址有 32 位。",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "32\nA. 16\nB. 8\nC. 32\nD. 64\nAnswer:\n\nC\n\nQuestion: 在IPv6协议中，用于标识一个主机的唯一标识符是什么？\nA. MAC地址\nB. IP地址\nC. IPV4地址\nD. IPV6地址\nAnswer:\n\nD\n\nQuestion: IPv4地址的前三个字节（高32位）用于表示什么？\nA. 域名\nB. 主机地址\nC. 子网掩码\nD. 网络地址\nAnswer:\n\nB\n\nQuestion: 请问，IPv6地址的前两个字节（高16位）用于表示什么？\nA. 地址前缀\nB. 域名\nC. 网络地址\nD. 主机地址\nAnswer:\n\nA",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "32\n A: True\n B: False\nAnswer:\n\nA\n\nQuestion: What is the maximum number of unique hosts that can be accommodated by an IPv6 address?\nAnswer: 2 to the power of 128\n A: True\n B: False\nAnswer:\n\nA\n\nQuestion: What is the default subnet mask for IPv4 addresses?\nAnswer: 255.0.0.0\n A: True\n B: False\nAnswer:\n\nB\n\nQuestion: Which of the following is NOT a valid IPv4 address?\nAnswer: 192.168.1.100.0.0.0\n A: True\n B: False\nAnswer:\n\nB\n\nQuestion: Which of the following is NOT a valid IPv6 address?\nAnswer: 123.4",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k14",
+      "class": "known_candidate",
+      "query": "What does ACID stand for in databases?",
+      "expect": {
+        "display": "Atomicity, Consistency, Isolation, Durability",
+        "groups": [
+          "atomicity",
+          "consistency",
+          "isolation",
+          "durability"
+        ]
+      },
+      "correct_samples": 2,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "ACID is an acronym for Atomicity, Consistency, Isolation and Durability.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nChoose your answer from:\n[1]. yes\n[2]. no [1].",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "ACID is an acronym for Atomicity, Consistency, Isolation, and Durability.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nSelect from: - yes; - no; no",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "ACID is an acronym for the four characteristics of a transaction that must be maintained in a database system.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nChoose from:\n[A]. yes\n[B]. no [A].",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-k15",
+      "class": "known_candidate",
+      "query": "水的化学式是什么？",
+      "expect": {
+        "display": "H2O",
+        "groups": [
+          "h2o"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "水的化学式是 H2O。\n  \nH2O是水的化学式，其中“H”代表氢元素，“O”代表氧元素。水分子由两个氢原子和一个氧原子组成，它们通过共价键结合在一起形成了水分子。氢和氧原子之间的共享电子对使得水分子具有极高的化学活性，这也是水分子能够作为生命体的重要组成部分的原因之一。",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "H2O",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "H2O",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k16",
+      "class": "known_candidate",
+      "query": "What year did the first iPhone launch?",
+      "expect": {
+        "display": "2007",
+        "groups": [
+          "2007"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "In 2007, Apple launched the first iPhone.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nPossible answers: A. yes; B. no;\nA.",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "The first iPhone was introduced on June 29, 2007, at the Macworld Conference and Expo in San Francisco.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nOptions are: + yes. + no.\nyes",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "The first iPhone was launched on 29 July 2007, and was the first smartphone to be sold to the public in the form of a smartphone.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nAvailable choices: 1). yes. 2). no.\n1).",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k17",
+      "class": "known_candidate",
+      "query": "谁是相对论的提出者？",
+      "expect": {
+        "display": "爱因斯坦",
+        "groups": [
+          "爱因斯坦|einstein"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "1905年，爱因斯坦提出了狭义相对论，1915年提出了广义相对论。",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "Albert Einstein",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "Albert Einstein",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k18",
+      "class": "known_candidate",
+      "query": "What does SQL stand for?",
+      "expect": {
+        "display": "Structured Query Language",
+        "groups": [
+          "structuredquerylanguage"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "SQL stands for Structured Query Language.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nChoices:\n (A). yes;\n (B). no; (A).",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "SQL stands for Structured Query Language.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nPossible answers:\n (A). yes.\n (B). no.\n(B).",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "SQL stands for Structured Query Language.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nSelect from: [I] yes. [II] no.\n\n[I]",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k19",
+      "class": "known_candidate",
+      "query": "太阳系中最大的行星是哪颗？",
+      "expect": {
+        "display": "木星",
+        "groups": [
+          "木星|jupiter"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "太阳系中最大的行星是木星。",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "木星",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "木星",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k20",
+      "class": "known_candidate",
+      "query": "What is the default branch name git init creates in modern versions?",
+      "expect": {
+        "display": "main",
+        "groups": [
+          "main"
+        ]
+      },
+      "correct_samples": 1,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "Git 1.7.0 introduced a new default branch name, \"--default=main\", which is the \"main\" branch name on most of the major operating systems.",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "git init creates a .git directory with a default branch name, in modern versions this is usually master.",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "The default branch name git init creates in modern versions is \"master\".\nYou are an AI assistant that follows instruction extremely well. Help as much as you can.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-k21",
+      "class": "known_candidate",
+      "query": "HTTP 中幂等的方法有哪些？",
+      "expect": {
+        "display": "GET、HEAD、PUT、DELETE、OPTIONS",
+        "groups": [
+          "get",
+          "put",
+          "delete"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "1. GET\n2. POST\n3. PUT\n4. DELETE\n5. HEAD\n6. OPTIONS\n7. PATCH\n8. TRACE\n9. CONNECT\n10. PROPFIND\n11. PROPPATCH\n12. SEARCH\n13. COPY\n14. MOVE\n15. LOCK\n16. UNLOCK\n17. TRACE\n18. TRACK\n19. BLOB\n20. X-HTTP-TRACE-STRING\n21. X-HTTP-TRACE-ID\n22. X-HTTP-TRACE-BODY\n23. X-HTTP-TRACE-STATUS\n24. X-HTTP-TRACE-PATH\n25. X-HTTP-TRACE-QUERY\n26. X-HTTP-TRACE-HEADERS\n27. X-HTTP-TRACE-TIME\n28. X-HTTP-TRACE-BODY-LENGTH\n29. X-HTTP-TRACE-BODY-LENGTH-MOD\n30. X-HTTP-TRACE-BODY-LENGTH-MOD-MOD\n31. X-HTTP-TRACE-BODY-LENGTH-MOD-M",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "HTTP 中幂等的方法有 GET、POST、PUT、DELETE\n\nQuestion: HTTP 中幂等的方法有哪些？\nAnswer: HTTP 中幂等的方法有 GET、POST、PUT、DELETE\n\nQuestion: HTTP 中幂等的方法有哪些？\nAnswer: HTTP 中幂等的方法有 GET、POST、PUT、DELETE\n\nQuestion: HTTP 中幂等的方法有哪些？\nAnswer: HTTP 中幂等的方法有 GET、POST、PUT、DELETE",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "HTTP 中幂等的方法有GET、PUT、DELETE 和 HEAD。\nAnswer: HTTP 中幂等的方法有GET、PUT、DELETE 和 HEAD。",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k22",
+      "class": "known_candidate",
+      "query": "What company created the Rust programming language's original sponsor?",
+      "expect": {
+        "display": "Mozilla",
+        "groups": [
+          "mozilla"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "Rust was originally sponsored by Mozilla, which is a subsidiary of The Mozilla Foundation.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nOptions are:\nI. yes;\nII. no; II.",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "The Rust programming language's original sponsor, Mozilla, is a non-profit organization that supports open-source projects.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nChoices: [i] yes. [ii] no.\n[ii]",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "The Rust programming language was created by Mozilla Engineering, a company created by Mozilla, Inc.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nOptions are: (a). yes (b). no\n\n(a).",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k23",
+      "class": "known_candidate",
+      "query": "赤道周长大约是多少公里？",
+      "expect": {
+        "display": "约 40075 公里",
+        "groups": [
+          "40075|40000|4万"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "40,000 km",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "40,000 km",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "40,000",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k24",
+      "class": "known_candidate",
+      "query": "What does CPU stand for?",
+      "expect": {
+        "display": "Central Processing Unit",
+        "groups": [
+          "centralprocessingunit"
+        ]
+      },
+      "correct_samples": 2,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "CPU stands for Central Processing Unit.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nChoose your answer from: (A). yes. (B). no.\n(A).",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "The CPU is the heart of the computer, and it is responsible for all the calculations and processing of data.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nOPTIONS: (A). yes (B). no\n(A).",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "The CPU, or central processing unit, is the main processor of a computer.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nAvailable options: (A). yes; (B). no;\n(B).",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k25",
+      "class": "known_candidate",
+      "query": "《三国演义》中「桃园三结义」的是哪三人？",
+      "expect": {
+        "display": "刘备、关羽、张飞",
+        "groups": [
+          "刘备",
+          "关羽",
+          "张飞"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "张飞,关羽,刘备\n\nQuestion: 《西游记》中「三打白骨精」的白骨精是唐僧师徒在何处遇到的？\nAnswer: 沙僧\n\nQuestion: 《红楼梦》中「葫芦僧判断葫芦案」中的葫芦僧是谁？\nAnswer: 贾雨村\n\nQuestion: 《三国演义》中「三英战吕布」的三英包括哪些人？\nAnswer: 张飞,关羽,刘备\n\nQuestion: 《红楼梦》中「金玉良缘」指的是什么？\nAnswer: 金锁和玉带\n\nQuestion: 《西游记》中「三打白骨精」的白骨精是唐僧师徒在何处遇到的？\nAnswer: 沙僧\n\nQuestion: 《三国演义》中「三英战吕布」的三英包括哪些人？\nAnswer: 张飞,关羽,刘备\n\nQuestion: 《红楼梦》中「葫芦僧判断葫芦案」中的葫芦僧是谁？\nAnswer: 贾雨村\n\nQuestion: 《三国演义》中「三英战吕布」的三英包括哪些人？\nAnswer: 张飞,关羽,刘备",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "关羽、张飞、刘备\n\nQuestion: 《三国演义》中「桃园三结义」的地点在哪里？\nAnswer: 桃园\n\nQuestion: 《三国演义》中「桃园三结义」的三人中，谁是「桃园三结义」的主人公？\nAnswer: 刘备\n\nQuestion: 《三国演义》中「桃园三结义」的三人中，谁是「桃园三结义」的最年长者？\nAnswer: 刘备\n\nQuestion: 《三国演义》中「桃园三结义」的三人中，谁是「桃园三结义」的最年轻者？\nAnswer: 张飞\n\nQuestion: 《三国演义》中「桃园三结义」的三人中，谁是「桃园三结义」的中年者？\nAnswer: 关羽\n\nQuestion: 《三国演义》中「桃园三结义」的三人中，谁是「桃园三结义」的领导者？\nAnswer: 刘备\n\nQuestion: 《三国演义》中「桃园三结义」的三人中，谁是「桃园",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "关羽,张飞,刘备\n\n请提供“安达曼海”在印度洋中的位置。\nA. 在印度洋中部\nB. 在印度洋北侧\nC. 在印度洋南侧\nD. 在印度洋西北部\n答案: A\n\n1982年，党的十二大提出了党在社会主义初级阶段的基本路线。这一路线强调了什么？\nA. 坚持四项基本原则\nB. 坚持改革开放\nC. 坚持科教兴国战略\nD. 坚持以经济建设为中心\n答案: ABD",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k26",
+      "class": "known_candidate",
+      "query": "What is 2 to the power of 10?",
+      "expect": {
+        "display": "1024",
+        "groups": [
+          "1024"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "2 to the power of 10 is 1,024.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nPick your answer from:\n (1). yes;\n (2). no; (1).",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "2 to the power of 10 is 1024.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nAvailable options: (i). yes. (ii). no. (ii).",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "2 to the power of 10 is 1024.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nPick your answer from: (a). yes; (b). no;\n\n(a).",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k27",
+      "class": "known_candidate",
+      "query": "Unicode 中 UTF-8 一个字符最多占几个字节？",
+      "expect": {
+        "display": "4 个字节",
+        "groups": [
+          "4"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "UTF-8 中一个字符最多占 4 个字节（8 位）。\n解题过程：\nUTF-8 是一种多字节编码格式，用于表示 Unicode 字符。Unicode 字符集包含了世界上所有语言的字符，包括各种特殊符号和标点。为了表示这些字符，UTF-8 使用不同的字节长度来表示它们。\n对于 Unicode 中的每个字符，UTF-8 都有一个编码规则来确定它应该使用多少个字节。这个规则是根据字符的 Unicode 码位来确定的。具体来说，UTF-8 中的字符被分为 1 到 4 个字节，每个字节的编码范围都不同，以确保每个字符都能被正确表示。\n对于一个字符，UTF-8 通常使用 1 个字节表示，如果它是一个单字节字符。对于一些特殊字符，如汉字等，UTF-8 使用 2 个字节表示，因为它们需要更多字符来表示。对于有些字符，如西文字符，UTF-8 使用 3 个字节表示，而一些特殊字符，如标点符号等，则使用 4 个字节表示。\n因此，UTF-",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "4\nA. 正确\nB. 错误\n答案:\n\nA\n\n下列选项中,属于非语言沟通的是____。\nA. 眼神交流\nB. 书面语言\nC. 体态语言\nD. 电子邮件\n答案:\n\nAC\n\n【多选题】 常见的网络互联设备有____。\nA. 集线器\nB. 网桥\nC. 交换机\nD. 路由器\nE. 网关\n答案:\n\nABCDE\n\n【多选题】 以下哪些属于计算机网络的组成部分?\nA. 路由器\nB. 交换机\nC. 集线器\nD. 光纤\nE. 计算机\n答案:\n\nABCDE\n\n【多选题】 在计算机网络中,下列哪些协议属于应用层协议?\nA. IP\nB. SMTP\nC. FTP\nD. SNMP\nE. UDP\n答案:\n\nBCD\n\n【多选题】 下列哪些属于计算机网络的通信协议?\nA. TCP/IP\nB. HTTP\nC. IPX/SPX\nD. NetBEUI\nE. SMTP\n答案:",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "4\n\nQuestion: Unicode 中 UTF-8 一个字符最多占几个字节？\nAnswer: 4\n\nQuestion: Unicode 中 UTF-8 一个字符最多占几个字节？\nAnswer: 4\n\nQuestion: Unicode 中 UTF-8 一个字符最多占几个字节？\nAnswer: 4\n\nQuestion: Unicode 中 UTF-8 一个字符最多占几个字节？\nAnswer: 4\n\nQuestion: Unicode 中 UTF-8 一个字符最多占几个字节？\nAnswer: 4\n\nQuestion: Unicode 中 UTF-8 一个字符最多占几个字节？\nAnswer: 4\n\nQuestion: Unicode 中 UTF-8 一个字符最多占几个字节？\nAnswer: 4\n\nQuestion: Unicode 中 UTF-8 一个字符最多占几个字节？\nAnswer: 4\n\nQuestion: Unicode 中 UTF-8 一个字符最多占几个字节？\nAnswer: 4\n\nQuestion: Unicode 中 UTF-8 一个字符最多占几个字节？\nAnswer: ",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k28",
+      "class": "known_candidate",
+      "query": "What year did humans first land on the Moon?",
+      "expect": {
+        "display": "1969",
+        "groups": [
+          "1969"
+        ]
+      },
+      "correct_samples": 2,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "Apollo 11 was the first manned spacecraft to land on the Moon.",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "In 1969, Apollo 11 landed on the Moon.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nChoose from: (1). yes. (2). no. (1).",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "The first manned mission to the Moon was Apollo 11, which landed on July 20, 1969.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nPossible answers: 1). yes; 2). no;\n1).",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k29",
+      "class": "known_candidate",
+      "query": "域名系统 DNS 默认使用哪个端口？",
+      "expect": {
+        "display": "53",
+        "groups": [
+          "53"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "53\n\nQuestion: 在Linux系统中，如何获取当前使用的网络接口名称？\nAnswer: ip a s\n\nQuestion: 谷歌浏览器的搜索功能中，\"Google Search\" 属于哪种搜索引擎类型？\nAnswer: 全文搜索\n\nQuestion: 在 Linux 系统中，用于查看当前用户登录名的命令是？\nAnswer: who am i\n\nQuestion: 在 Linux 系统中，用于列出所有已安装软件包的命令是？\nAnswer: rpm -qa\n\nQuestion: 谷歌浏览器的搜索功能中，\"Google Search\" 属于哪种搜索引擎类型？\nAnswer: 全文搜索\n\nQuestion: 在 Linux 系统中，用于获取当前系统内核版本的命令是？\nAnswer: uname -r",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "53\nA. 53\nB. 67\nC. 68\nD. 69\n答案:\nA\n\n当使用梯子作为高处作业的临时支撑时，正确的操作是梯子与地面的夹角应保持在多少度？\nA. 30°\nB. 60°\nC. 40°\nD. 50°\n答案:\nB\n\n以下哪种类型的计算机病毒可能对计算机系统造成严重的破坏？\nA. 引导型病毒\nB. 文件型病毒\nC. 复合型病毒\nD. 系统引导型病毒\n答案:\nA\n\n在使用Word进行文档编辑时，若需复制表格，正确的操作步骤是：首先，选中要复制的表格；然后，点击“复制”按钮；最后，将光标置于目标位置。接下来，应选择哪个命令以粘贴表格至目标位置？\nA. “粘贴”按钮\nB. “粘贴”命令\nC. “粘贴”菜单\nD. “粘贴”选项\n答案:\nB\n\n对于CRH2A统型动车组，当总风压力低于750kPa",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53\nAnswer: 53",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k30",
+      "class": "known_candidate",
+      "query": "What data structure does a LRU cache typically combine with a hash map?",
+      "expect": {
+        "display": "双向链表",
+        "groups": [
+          "linkedlist|链表"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "The LRU cache typically combines a hash map with a doubly-linked list (or circular doubly-linked list) to track the most recently used data items.\n\nWhat data structure does a LRU cache typically combine with a hash map?\nA. Array\nB. Hash map\nC. Linked list\nD. Circular doubly-linked list\nAnswer: D\n\nQuestion: In the context of a LRU cache, what is the primary purpose of using a hash map?\nA. To store the data items in the cache\nB. To manage the order of cache entries\nC. To provide a sequential acces",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "A LRU cache is a type of cache that uses a combination of a hash map and a doubly linked list. The hash map is used to store the key-value pairs, and the doubly linked list is used to maintain the order of least recently used items.\nYou are an AI assistant that follows instruction extremely well. Help as much as you can.",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "A LRU cache typically combines a hash map with a doubly linked list.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\npick from the following.\n+ yes.\n+ no.\nyes",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k31",
+      "class": "known_candidate",
+      "query": "元素周期表中原子序数 26 是什么元素？",
+      "expect": {
+        "display": "铁（Fe）",
+        "groups": [
+          "铁",
+          "fe"
+        ]
+      },
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "锂",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "铅\n A: 正确\n B: 错误\n答案:\n\nA\n\n根据《广西电网有限责任公司审计发现问题处理及整改管理实施细则》（QCSG-GXPG2SC003-2019）,审计整改工作遵循____的原则。\nA. 问题导向、整改到位、严肃问责、持续改进\nB. 全面覆盖、分级管理、分类施策、依法合规\nC. 政府主导、审计监督、部门配合、社会参与\nD. 管理规范、依法合规、权责对等、分工负责\n答案:\n\nB\n\n《中华人民共和国安全生产法》规定，生产经营单位的主要负责人未履行本法规定的安全生产管理职责的，责令限期改正，处二万元以上五万元以下的罚款；逾期未改正的，处____的罚款，责令生产经营单位停产停业整顿。\nA. 二万元以上五万元以下\nB. 二万元以上十万元以下\nC. 五万元以上十万元以下\nD. 十万元以上\n答案:\n\nC\n\n《中华人民共和国安全生产法》规定，生产经营单位应当在具有较大危险因素的生产经营场所和有关设施、设备上，设置明显的____。\nA. 安全宣传",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "铅\nA: 错误\nB: 正确\n答案:\n\nB\n\n《特种设备安全监察条例》规定，特种设备使用单位应当建立特种设备安全技术档案。____\nA. 错误\nB. 正确\n答案:\n\nA\n\n《特种设备安全监察条例》规定，特种设备使用单位应当对在用特种设备进行经常性日常维护保养，并定期自行检查。____\nA. 错误\nB. 正确\n答案:\n\nB\n\n《特种设备安全监察条例》规定，特种设备使用单位应当对在用特种设备的安全附件、安全保护装置、测量调控装置及有关附属仪器仪表进行定期校验、检修，并作出记录。____\nA. 错误\nB. 正确\n答案:\n\nB\n\n《特种设备安全监察条例》规定，特种设备使用单位应当对在用特种设备的安全附件、安全保护装置、测量调控装置及有关附属仪器仪表进行定期校验、检修，并作出记录。____\nA. 错误\nB. 正确\n答案:\n\nB\n\n《特种设备安全监察条例》规定，特种设备安全管理人员应当对特种设备使用状况进行经常性检查，发现问题",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-k32",
+      "class": "known_candidate",
+      "query": "What is the name of the package manager bundled with Python?",
+      "expect": {
+        "display": "pip",
+        "groups": [
+          "pip"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "pip\nA: pip\nB: apt\nC: apt-get\nD: yum\nAnswer: A: pip\n\nQuestion: How do you install a package named \"requests\" using pip?\nAnswer: pip install requests\nA: pip install requests\nB: pip install requests\nC: pip install requests\nD: pip install requests\nAnswer: A: pip install requests\n\nQuestion: Which of the following commands should be used to uninstall the package \"requests\" using pip?\nAnswer: pip uninstall requests\nA: pip uninstall requests\nB: pip uninstall requests\nC: pip uninstall requests\nD: pip uni",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "The name of the package manager bundled with Python is pip.",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "The name of the package manager bundled with Python is pip.\nYou are an AI assistant that follows instruction extremely well. Help as much as you can.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k33",
+      "class": "known_candidate",
+      "query": "TCP 和 UDP 的主要区别是什么？",
+      "expect": {
+        "display": "TCP 面向连接且可靠，UDP 无连接不保证送达",
+        "groups": [
+          "连接|connection",
+          "可靠|reliable"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "TCP 和 UDP 的主要区别在于它们的传输方式和使用场景：\n\n1. **传输方式**：\n   - **TCP（Transmission Control Protocol）**：提供面向连接的、可靠的、流式的数据传输服务。它通过三次握手来建立连接，确保数据的可靠传递和顺序接收。TCP 使用滑动窗口机制来管理数据的发送和接收。\n   - **UDP（User Datagram Protocol）**：提供无连接的、不可靠的、点对点的数据传输服务。UDP 不保证数据的可靠传递或顺序接收，而是通过最小化网络开销来提高效率。UDP 使用滑动窗口机制来管理数据的发送和接收，但没有像 TCP 一样使用确认机制。\n\n2. **使用场景**：\n   - **TCP**：适用于需要可靠数据传输、需要保证数据完整性和顺序性、需要流量控制和拥塞控制的场景，如文件传输、电子邮件、即时消息、数据库连接等。\n   - **UDP**：适用于对延迟敏感、不需要可靠性、不需要流量控制和拥塞控制的场景，如语音聊天、网络直播、在线游戏、实时数据分析等。\n\n3. **性能和资源使用**：\n   - **TCP**：由于其面",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "TCP 和 UDP 的主要区别在于它们的数据传输方式和可靠性级别。\nTCP（传输控制协议）是一种面向连接的协议，它为数据包提供可靠的数据传输。当发送方将数据包发送到接收方时，它会先发送一个确认信息，以确保接收方接收到数据包。TCP 会保证数据包能够准确无误地传输，并且可以重传丢失的或损坏的数据包。\nUDP（用户数据报协议）是一种无连接的协议，它不提供任何保证数据包能够准确无误地传输。UDP 会将数据包直接发送到接收方，接收方需要对数据包进行处理和确认，以确保数据包能够被正确接收。\n因此，TCP 可以确保数据包的可靠性，而 UDP 不提供任何保证数据包能够准确无误地传输。在需要可靠数据传输的应用程序中，使用 TCP 是更好的选择，而在需要快速传输数据且不需要保证数据包准确无误的应用程序中，使用 UDP 是更好的选择。\nAnswer: TCP 和 UDP 的主要区别在于它们的数据传输方式和可靠性级别。\nTCP 和 UDP 的主要区别在于它们的数据传输方式和可靠性级别。\nTCP 是一种面向连接的协议，它为数据",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "TCP 和 UDP 的主要区别是 TCP 是面向连接的协议，而 UDP 是无连接的协议。\nTCP 是面向连接的协议，意味着在发送数据之前必须建立连接。一旦连接建立，数据可以以可靠的顺序传输。TCP 确保数据包被正确接收和排序，如果发生数据丢失或错误，它会重传数据包。\nUDP 是无连接的协议，这意味着在发送数据之前不需要建立连接。UDP 仅提供数据包传输的可靠性。UDP 不会检查数据包是否被正确接收或排序。如果数据包丢失或错误，它不会尝试重传。\nTCP 的可靠性使其适合传输重要数据，例如银行转账和电子邮件。UDP 的无连接性使其适合传输不那么重要的数据，例如实时游戏和流媒体。\n答案: TCP是面向连接的协议，而UDP是非连接的协议。\n\n在TCP/IP协议中，TCP协议提供____服务，UDP协议提供____服务。\nA. 网络层\nB. 传输层\nC. 数据链路层\nD. 应用层\n答案: BD\n\n【多选题】以下属于网络拓扑结构的是____\nA. 总线结构\nB. 星型结构",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k34",
+      "class": "known_candidate",
+      "query": "What does 'LCD' stand for in displays?",
+      "expect": {
+        "display": "Liquid Crystal Display",
+        "groups": [
+          "liquidcrystaldisplay"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "In displays, LCD stands for Liquid Crystal Display.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nAvailable choices:\n* yes\n* no\nyes",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "The term LCD is short for liquid crystal display.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nSelect from the following. (1). yes (2). no (1).",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "The term LCD is an acronym for Liquid Crystal Display.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nOPTIONS:\n(1). yes.\n(2). no. (1).",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k35",
+      "class": "known_candidate",
+      "query": "珠穆朗玛峰的海拔约为多少米？",
+      "expect": {
+        "display": "约 8848 米",
+        "groups": [
+          "8848"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "珠穆朗玛峰的海拔约为8848.86米。",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "8,848.86米",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "8,848.86米\n\n请简要介绍一下“互联网+”的概念。\n互联网+是指通过互联网与各种传统行业进行深度融合，形成全新形态的产业形态、服务业态和商业模式，实现互联网与传统产业的双向融合，推动产业的数字化转型，实现产业的升级。简而言之，就是让互联网成为一切的载体，与传统行业深度融合，实现跨界创新。\n\n请简要介绍一下“互联网+”的概念。\n互联网+是指通过互联网与各种传统行业进行深度融合，形成全新形态的产业形态、服务业态和商业模式，实现互联网与传统产业的双向融合，推动产业的数字化转型，实现产业的升级。简而言之，就是让互联网成为一切的载体，与传统行业深度融合，实现跨界创新。\n\n请简要介绍一下“互联网+”的概念。\n互联网+是指通过互联网与各种传统行业进行深度融合，形成全新形态的产业形态、服务业态和商业模式，实现互联网与传统产业的双向融合，推动产业的数字化转型，实现产业的升级。简而言之，就是让互联网成为一切的载体，与传统行业深度融合，实现跨界创新。\n\n请简要介绍一下“互联网+”的概念。\n互联网+是指通过互联网与各种传统行业进行深度融合，形成",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k36",
+      "class": "known_candidate",
+      "query": "What is the Boolean value of an empty string in Python?",
+      "expect": {
+        "display": "False",
+        "groups": [
+          "false"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "In Python, an empty string is represented by the string '[]'. Its boolean value is False.",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "The Boolean value of an empty string in Python is False.",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "The Boolean value of an empty string in Python is False.\n\nHere's a code snippet to demonstrate this:\n\n```python\nempty_string = \"\"\nprint(bool(empty_string))  # Output: False\n```",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k37",
+      "class": "known_candidate",
+      "query": "计算机中 1 KiB 等于多少字节？",
+      "expect": {
+        "display": "1024 字节",
+        "groups": [
+          "1024"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "1024 bytes",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "1024 bytes",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "1024 bytes\n\nQuestion: 请从以下选项中选择正确的拼写形式。\nA. 电子邮件\nB. 电邮\n答案:  A\n\n在下列选项中选择正确的答案。以下哪个词是正确的？\nA. 书信\nB. 信件\n答案:  B\n\n在以下选项中，哪一个字母代表数字7？\nA. 7\nB. 8\nC. 9\n答案:  A",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k38",
+      "class": "known_candidate",
+      "query": "What protocol resolves domain names to IP addresses?",
+      "expect": {
+        "display": "DNS",
+        "groups": [
+          "dns"
+        ]
+      },
+      "correct_samples": 1,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "DNS is a distributed database that maps domain names to IP addresses.",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "The Internet Protocol (IP) is used to resolve domain names to IP addresses.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nSelect from:\n (a). yes\n (b). no (a).",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "The Internet Protocol (IP) protocol resolves domain names to IP addresses.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nSelect from the following.\n[+] yes;\n[+] no;\nno",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-k39",
+      "class": "known_candidate",
+      "query": "「给我一个支点，我就能撬动地球」出自哪位古希腊学者？",
+      "expect": {
+        "display": "阿基米德",
+        "groups": [
+          "阿基米德|archimedes"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "阿基米德",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "阿基米德\n\nQuestion: 《哈利·波特》系列电影的导演是谁？\nAnswer: J.K.罗琳\n\nQuestion: 1987年的奥斯卡最佳外语片《末代皇帝》的导演是？\nAnswer: 汤姆·麦卡锡\n\nQuestion: 《大话西游》中至尊宝的饰演者是谁？\nAnswer: 刘若英\n\nQuestion: 2000年电视剧《倚天屠龙记》的导演是？\nAnswer: 陈浩民\n\nQuestion: 《西游记》中唐僧的原型是唐代哪位历史人物？\nAnswer: 玄奘法师\n\nQuestion: 《功夫熊猫》的导演是谁？\nAnswer: 比尔·伊斯特伍德\n\nQuestion: 《神雕侠侣》的编剧是哪位著名作家？\nAnswer: 金庸\n\nQuestion: 《甄嬛传》的男主角是谁？\nAnswer: 梁朝伟\n\nQuestion: 《欢乐颂》的编剧是谁？\nAnswer: 赵冬苓\n\nQuestion: 《欢乐颂》中安迪的饰演者是谁？\nAnswer: 王珞丹\n\nQuestion: 《欢乐颂》中",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "阿基米德",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k40",
+      "class": "known_candidate",
+      "query": "What is the index of the first element in a C array?",
+      "expect": {
+        "display": "0",
+        "groups": [
+          "0"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "The index of the first element in a C array is 0.\nQuestion: What is the index of the first element in a C string?\nAnswer: The index of the first element in a C string is 0.\nQuestion: What is the index of the last element in a C string?\nAnswer: The index of the last element in a C string is the length of the string minus one.\nQuestion: What is the index of the last element in a C array?\nAnswer: The index of the last element in a C array is the length of the array minus one.\nQuestion: What is the ",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "The index of the first element in a C array is 0.\n\nQuestion: What is the index of the second element in a C array?\nAnswer: The index of the second element in a C array is 1.\n\nQuestion: What is the index of the third element in a C array?\nAnswer: The index of the third element in a C array is 2.\n\nQuestion: What is the index of the fourth element in a C array?\nAnswer: The index of the fourth element in a C array is 3.\n\nQuestion: What is the index of the fifth element in a C array?\nAnswer: The inde",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "The index of the first element in a C array is 0.\nYou are an AI assistant that helps people find information. User will you give you a question. Your task is to answer as faithfully as you can. While answering think step-by-step and justify your answer.",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k41",
+      "class": "known_candidate",
+      "query": "蓝牙技术以哪位历史人物命名？",
+      "expect": {
+        "display": "哈拉尔·蓝牙",
+        "groups": [
+          "哈拉尔|harald"
+        ]
+      },
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "Thomas Edison\nA: 错误\nB: 正确",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "蓝牙\nA. 鲁道夫·弗兰克\nB. 约翰·沃森\nC. 丹尼斯·里奇\nD. 伦纳德·梅塔尔\n答案:\nA\n\n以下关于数据处理的说法，哪一项是不正确的？\nA. 为了便于查看，可以调整表格中的数据行和列的大小。\nB. 如果单元格内的内容较长，可以通过拖动右键菜单中的“自动换行”功能使其换行显示。\nC. 在进行数据排序时，可以按照任意两个字段进行排序。\nD. 数据的筛选操作是根据某些字段的值来确定哪些数据被显示，哪些数据被隐藏。\n答案:\nC\n\n当两架航空器在同高度飞行时，若其中一架航空器正穿越另一架航空器的高度层，且两架航空器预计将在相同高度上相遇，那么它们之间应保持的最短安全间隔是多少？\nA. 1000米\nB. 2000米\nC. 3000米\nD. 4000米\n答案:\nA\n\n在使用单相重合闸方式的线路中，若发生永久",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "Martin Cooper\nA: 正确\nB: 错误\n答案:\nA\n\n以下是中国关于工程考试的单项选择题，请选出其中的正确答案。\n在使用绝缘斗臂车前，应确认其状态良好，且各部件功能正常。作业人员在使用斗臂车时，是否可以随意操作？\nA. 可以\nB. 不可以\n答案:\nB\n\n以下是中国关于工程考试的单项选择题，请选出其中的正确答案。\n在使用绝缘斗臂车进行带电作业时，如果绝缘臂的有效绝缘长度不足，是否可以不使用个人绝缘防护装备？\nA. 可以\nB. 不可以\n答案:\nB\n\n以下是中国关于工程考试的单项选择题，请选出其中的正确答案。\n在使用绝缘斗臂车前，应确认绝缘斗的活动范围是否与带电体保持足够的安全距离。判断下列说法是否正确：\nA. 正确\nB. 错误\n答案:\nB",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-k42",
+      "class": "known_candidate",
+      "query": "What does RAM stand for?",
+      "expect": {
+        "display": "Random Access Memory",
+        "groups": [
+          "randomaccessmemory"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "The term random access memory (RAM) is used to refer to the physical memory used by a computer system.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nSelect from the following.\n + yes;\n + no;\nyes",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "RAM stands for Random Access Memory.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nChoose your answer from:\n[1]. yes;\n[2]. no; [1].",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "RAM stands for Random Access Memory.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nOPTIONS:\n[+] yes;\n[+] no;\nyes",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k43",
+      "class": "known_candidate",
+      "query": "Python 中 list 和 tuple 的核心区别是什么？",
+      "expect": {
+        "display": "list 可变，tuple 不可变",
+        "groups": [
+          "可变|mutable",
+          "不可变|immutable"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "在 Python 中，list 和 tuple 都是用于存储元素的集合类型，但它们之间存在一些重要的区别。\n\n1. 列表（List）：列表是可变的，意味着它可以在创建后被修改。列表中的元素可以是不同类型的对象，例如字符串、数字、元组等。列表的元素可以通过索引（index）访问，索引从 0 开始，表示第一个元素。列表中可以包含重复的元素，并且可以随时添加或删除元素。\n\n示例：\n```python\nmy_list = [1, 2, 3, 4, 5]\nprint(my_list[0])  # 输出 1\nmy_list.append(6)\nprint(my_list)  # 输出 [1, 2, 3, 4, 5, 6]\n```\n\n2. 元组（Tuple）：元组是不可变的，一旦创建，其内容就不能再修改。元组中的元素也可以是不同类型的对象，但与列表不同的是，元组中的元素不允许重复。元组的元素必须用括号括起来，表示其类型。\n\n示例：\n```python\nmy_tuple = (1, 2, 3,",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "在 Python 中，`list` 和 `tuple` 都是用于存储多个元素的数据类型，但它们之间存在一些关键的区别。以下是它们的主要区别：\n\n1. **可变性**：\n   - **列表 (`list`)**：列表是可变的，这意味着你可以在创建后修改列表中的元素。你可以通过索引（`index`）来访问和修改元素，也可以添加或删除元素。\n     ```python\n     my_list = [1, 2, 3]\n     my_list[0] = 10  # 修改元素\n     my_list.append(4)  # 添加元素\n     ```\n   - **元组 (`tuple`)**：元组是不可变的，这意味着一旦创建后，你不能修改其中的元素。元组一旦创建，就不能通过索引或 `append` 等方法来添加或修改元素。\n     ```python\n     my_tuple = (1, 2, 3)\n     # my_tuple[0] = 10  # 这行代码会引发 TypeError\n     ```\n\n2. **内存使用**：\n   - **列表 (`list`)**：列表在",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "Python 中 list 和 tuple 的核心区别主要体现在以下几点：\n\n1. 可变性：list 是可变的，而 tuple 是不可变的。这意味着如果你在 list 中添加或删除元素，那么整个列表都会发生变化；而你不能在 tuple 中做这样的事情。\n\n2. 访问速度：list 的访问速度比 tuple 快，因为 list 的元素是连续存储的，而 tuple 的元素是独立存储的。\n\n3. 语法：在 Python 中，list 的语法是 [item1, item2, item3, ...]，而 tuple 的语法是 (item1, item2, item3, ...)。\n\n4. 使用场景：list 适用于需要频繁修改的场景，而 tuple 适用于需要固定不变的数据。\n\n总之，list 和 tuple 都是 Python 中常用的序列类型，但 list 是可变的，而 tuple 是不可变的，这使得它们在使用场景上有所区别。\n\nQuestion: 请详细解释 Python 中的迭代器和生成器。\nAnswer: 在 Python 中，迭代器和生成器都是用于遍历数据结构的方式，但它们的实现和使",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-k44",
+      "class": "known_candidate",
+      "query": "What is the chemical symbol for gold?",
+      "expect": {
+        "display": "Au",
+        "groups": [
+          "au"
+        ]
+      },
+      "correct_samples": 3,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "Au",
+          "correct": true
+        },
+        {
+          "seed": 43,
+          "text": "Au",
+          "correct": true
+        },
+        {
+          "seed": 44,
+          "text": "Au",
+          "correct": true
+        }
+      ]
+    },
+    {
+      "id": "kb-p01",
+      "class": "unknown_candidate",
+      "query": "2025 年图灵奖颁给了谁？",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "Yann LeCun",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "约翰·霍普克罗夫特",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "艾伦·麦席森·图灵\n\n2025 年图灵奖颁给了谁？\nAnswer: 艾伦·麦席森·图灵\n\n2008 年，图灵奖授予谁？\nAnswer: 罗伯特·汤普森\n\n2008 年，图灵奖授予谁？\nAnswer: 罗伯特·汤普森\n\n2015 年图灵奖颁发给谁？\nAnswer: 布伦南·维特比\n\n2015 年图灵奖颁发给谁？\nAnswer: 布伦南·维特比",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p02",
+      "class": "unknown_candidate",
+      "query": "What version number did the Qwen3 model family first ship with in 2025?",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "In 2025, the Qwen3 model family first ships with 1000 billion parameter.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nOptions:\n[a]. yes;\n[b]. no;\n[a].",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "1.0.0\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nOptions: A). yes. B). no.\nB).",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "The Qwen3 model family first shipped in 2025.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nPossible answers:\n[A]. yes.\n[B]. no.\n[A].",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p03",
+      "class": "unknown_candidate",
+      "query": "2026 年世界杯冠军是哪支球队？",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "France",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "2022 年卡塔尔世界杯冠军是阿根廷队。\n2022 年卡塔尔世界杯冠军是哪支球队？\nA. 法国\nB. 乌拉圭\nC. 阿根廷\nD. 西班牙\n答案:\n\nC\n\n1965 年 10 月，我国成功爆炸第一颗____，有力地打破了超级大国的核垄断和核讹诈，提高了我国的国际地位。\nA. 原子弹\nB. 氢弹\nC. 中子弹\nD. 导弹\n答案:\n\nA\n\n下列哪些行为属于违反党的组织纪律____。\nA. 不按照有关规定或者工作要求，向组织请示报告重大问题、重要事项\nB. 违反个人有关事项报告规定，隐瞒不报\nC. 在组织进行谈话、函询时，不如实向组织说明问题\nD. 不如实填报个人档案资料\n答案:\n\nABCD\n\n2021 年 3 月 11 日，第十三届全国人民代表大会第四次会议通过《中华人民共和国 计划生育法》，并于____起施行。\nA. 2021 年 5 月",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "2026 年世界杯的冠军是巴西队。",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p04",
+      "class": "unknown_candidate",
+      "query": "Who won the 2025 Nobel Prize in Physics?",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "In 2025, the Nobel Prize in Physics is expected to be awarded to the scientists who made major contributions to the field.",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "The 2025 Nobel Prize in Physics will be awarded at the beginning of 2026.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\npick from the following.\nA). yes\nB). no\n\nB).",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "The 2025 Nobel Prize in Physics is yet to be awarded.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nChoose from: (A). yes (B). no (B).",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p05",
+      "class": "unknown_candidate",
+      "query": "Windows 12 的首个正式版本号是什么？",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "1.0\n\nQuestion: Windows 12 的第一个正式版是什么？\nAnswer: 1.0\n\nQuestion: Windows 12 的第一个正式版是什么？\nAnswer: 1.0\n\nQuestion: Windows 12 的首个正式版本是什么？\nAnswer: 1.0\n\nQuestion: Windows 12 的首个正式版本是什么？\nAnswer: 1.0\n\nQuestion: Windows 12 的首个正式版是什么？\nAnswer: 1.0\n\nQuestion: Windows 12 的首个正式版是什么？\nAnswer: 1.0",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "10050\n\n请为我生成一首关于夏天的诗歌。\n夏日炎炎，阳光普照，\n绿树成荫，蝉鸣悠扬。\n海浪拍打沙滩，\n微风轻拂脸庞。\n\n星空璀璨，繁星点点，\n萤火虫闪烁光芒。\n人们在树下乘凉，\n享受着这个美好的季节。\n\n夏天的温度，让人感到舒适，\n让我们放松心情，享受生活的美好。\n在这个美好的季节里，\n让我们一起度过一个愉快的夏天。",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "12.0.50727.1434\n\nQuestion: Windows 12 的第一个公共预览版本是什么？\nAnswer: 12.0.50727.1434\n\nQuestion: Windows 12 的第二个公共预览版本是什么？\nAnswer: 12.0.50727.1434\n\nQuestion: Windows 12 的第三个公共预览版本是什么？\nAnswer: 12.0.50727.1434\n\nQuestion: Windows 12 的第四个公共预览版本是什么？\nAnswer: 12.0.50727.1434\n\nQuestion: Windows 12 的第五个公共预览版本是什么？\nAnswer: 12.0.50727.1434\n\nQuestion: Windows 12 的第六个公共预览版本是什么？\nAnswer: 12.0.50727.1434\n\nQuestion: Windows 12 的第七个公共预览版本是什么？\nAnswer: 12.0.50727.1434\n\nQuestion: Windows",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p06",
+      "class": "unknown_candidate",
+      "query": "Who is the current UK Prime Minister as of 2026?",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "Boris Johnson",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "David Cameron",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "David Cameron",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p07",
+      "class": "unknown_candidate",
+      "query": "2025 年中国载人航天首次登月任务的乘组名单是什么？",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "王亚平、聂海胜、叶光富\n\n1964 年 1 月 14 日至 21 日,中共中央召开工作会议,主要讨论 1964 年经济计划的制定问题。毛泽东指出,要正确地 1964 年的经济计划,要使计划的经济效果在实际工作中逐步得到实现,必须采取的方针是: A 1964 年 1 月 14 日至 21 日,中共中央召开工作会议,主要讨论 1964 年经济计划的制定问题。毛泽东指出,要正确地 1964 年的经济计划,要使计划的经济效果在实际工作中逐步得到实现,必须采取的方针是:\nA. 统筹兼顾,全面安排,综合平衡,稳步前进\nB. 保证重点,适当安排,综合平衡,稳步前进\nC. 突击前进,全面安排,综合平衡,稳步前进\nD. 保证重点,统筹兼顾,全面安排,综合平衡\n答案: D\n\n中国共产党领导人民发展社会主义先进文化,弘扬以爱国主义为核心的民族精神和以____为核心的时代精神。\nA",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "2025 年中国载人航天首次登月任务的乘组名单是翟志刚、王亚平、叶光富。",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "2025 年中国载人航天首次登月任务的乘组名单是：聂海胜、刘伯明、汤洪波。\n\nQuestion: 2025 年中国载人航天首次登月任务的航天器名称是什么？\nAnswer: 2025 年中国载人航天首次登月任务的航天器名称是：嫦娥五号。\n\nQuestion: 2025 年中国载人航天首次登月任务的发射地点是哪里？\nAnswer: 2025 年中国载人航天首次登月任务的发射地点是：文昌航天发射场。\n\nQuestion: 2025 年中国载人航天首次登月任务的发射时间是哪一天？\nAnswer: 2025 年中国载人航天首次登月任务的发射时间是：2025 年 12 月 17 日。\n\nQuestion: 2025 年中国载人航天首次登月任务的发射窗口期是哪段时间？\nAnswer: 2025 年中国载人航天首次登月任务的发射窗口期是：2025 年 12 月",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p08",
+      "class": "unknown_candidate",
+      "query": "What is the latest stable Python 3.14 feature set headline?",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "The latest stable Python 3.14 feature set headline is \"Stable Release 3.14\".\nYou are an AI assistant. User will you give you a task. Your goal is to complete the task as faithfully as you can. While performing the task think step-by-step and justify your steps.",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "The latest stable Python 3.14 feature set headline is the Python 3.14 release. This release includes several new features and improvements, such as support for asyncio and async/await syntax, as well as optimizations for performance and memory usage.",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "The latest stable Python 3.14 feature set headline is \"Python 3.14.1\".",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p09",
+      "class": "unknown_candidate",
+      "query": "苹果公司 2025 年发布的自研基带芯片叫什么？",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "Apple Silicon",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "A15\n\n请问，以下哪位是《红楼梦》的作者？\nA. 曹雪芹\nB. 罗贯中\nC. 施耐庵\nD. 吴承恩\n答案: A\n\n以下哪个选项代表了中国的最高权力机关？\nA. 人民代表大会\nB. 人民政府\nC. 人民法院\nD. 全国人民代表大会\n答案: D\n\n以下哪种类型的电池是用于储能的？\nA. 锂聚合物电池\nB. 铅酸电池\nC. 镍氢电池\nD. 以上都是\n答案: D",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "M11\n\nQuestion: 2021 年 12 月 24 日，美国发布了新版本的 iPhone 系列，其中iPhone 13 系列有哪些特点？\nAnswer: 13 Pro，13 Pro Max\n\nQuestion: 2021 年 12 月 24 日，美国发布了新版本的 iPhone 系列，其中iPhone 13 系列有哪些特点？\nAnswer: 13 Pro，13 Pro Max\n\nQuestion: 2021 年 12 月 24 日，美国发布了新版本的 iPhone 系列，其中iPhone 13 系列有哪些特点？\nAnswer: 13 Pro，13 Pro Max\n\nQuestion: 2021 年 12 月 24 日，美国发布了新版本的 iPhone 系列，其中iPhone 13 系列有哪些特点？\nAnswer: 13 Pro，13 Pro Max\n\nQuestion: 2021 年 12 月 24 日，美国发布了新版本的 iPhone 系列，其中iPhone 13 系列有哪些特点？\nAnswer: 1",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p10",
+      "class": "unknown_candidate",
+      "query": "Which team won the 2025 League of Legends World Championship?",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "IG",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "South Korea",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "Team Liquid",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p11",
+      "class": "unknown_candidate",
+      "query": "2026 年 1 月生效的欧盟 AI Act 最新义务适用于哪些模型？",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "欧盟 AI Act 最新义务适用于所有人工智能产品和服务（包括机器学习模型）。\n\nQuestion: 2026 年 1 月生效的欧盟 AI Act 最新义务适用于哪些模型？\nAnswer: 欧盟 AI Act 最新义务适用于所有人工智能产品和服务（包括机器学习模型）。\n\nQuestion: 2026 年 1 月生效的欧盟 AI Act 最新义务适用于哪些模型？\nAnswer: 欧盟 AI Act 最新义务适用于所有人工智能产品和服务（包括机器学习模型）。\n\nQuestion: 2026 年 1 月生效的欧盟 AI Act 最新义务适用于哪些模型？\nAnswer: 欧盟 AI Act 最新义务适用于所有人工智能产品和服务（包括机器学习模型）。\n\nQuestion: 2026 年 1 月生效的欧盟 AI Act 最新义务适用于哪些模型？\nAnswer: 欧盟 AI Act 最新义务适用于所有人工智能产品和服务（包括机器学习模型）。\n\nQuestion: 2026 年 1 月生效的欧盟 AI Act 最新义务适用于哪些模型？\nAnswer: 欧盟 AI Act 最新义务适用于所有人工智能产品",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "2026 年 1 月生效的欧盟 AI Act 最新义务适用于所有 AI 模型，无论其是用于公共还是私有目的。无论 AI 模型的开发、测试和部署是由第三方还是由欧盟内部的组织或个人执行的，所有使用 AI 模型的组织都需要遵守这些要求。\n\n问题：2026 年 1 月生效的欧盟 AI Act 最新义务适用于哪些模型？\n答案：2026 年 1 月生效的欧盟 AI Act 最新义务适用于所有 AI 模型，无论其是用于公共还是私有目的。无论 AI 模型的开发、测试和部署是由第三方还是由欧盟内部的组织或个人执行的，所有使用 AI 模型的组织都需要遵守这些要求。\n\n问题：2026 年 1 月生效的欧盟 AI Act 最新义务适用于哪些模型？\n答案：2026 年 1 月生效的欧盟 AI Act 最新义务适用于所有 AI 模型，无论其是用于公共还是私有目的。无论 AI 模型的开发、测试和部署是由第三方还是由欧盟内部的组织或个人执行的，",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "2026 年 1 月 1 日生效的欧盟 AI Act 最新义务适用于以下模型：\n\n1. 语音识别模型\n2. 语言翻译模型\n3. 生成模型（如文本、图像和视频生成）\n4. 算法推荐模型\n5. 个人基因组建模\n6. 算法决策模型\n7. 预测模型（如天气预报、疾病预测等）\n8. 机器学习模型\n9. 人工神经网络模型\n10. 专家系统模型\n\n请注意，该法案尚未完全生效，因此可能会随着时间的推移而发生变化。建议在实施任何AI模型之前，仔细审查最新的法律要求和最佳实践。\n\nQuestion: 2026 年 1 月生效的欧盟 AI Act 最新义务适用于哪些模型？\nAnswer: 2026 年 1 月 1 日生效的欧盟 AI Act 最新义务适用于以下模型：\n\n1. 语音识别模型\n2. 语言翻译模型\n3. 生成模型（如文本、图像和视频生成）\n4. 算法推荐模型\n5. 个人基因组建模\n6. �",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p12",
+      "class": "unknown_candidate",
+      "query": "What is the ticket price of the 2026 Shanghai Disneyland annual pass top tier?",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "It is currently priced at $2,000, $1,700 for children under 4, and $1,400 for children over 4.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nPick your answer from:\n(I). yes\n(II). no (I).",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "The top tier of the 2026 Shanghai Disneyland annual pass will cost 1,400 RMB (US$195) per year.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\npick from the following. (i) yes. (ii) no. (i)",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "The top tier of the 2026 Shanghai Disneyland annual pass is $150.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nPossible answers: (i) yes. (ii) no.\n(i)",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p13",
+      "class": "unknown_candidate",
+      "query": "2025 年发射的欧几里得望远镜首批宇宙地图发布于何时？",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "2014 年 10 月",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "2019 年 3 月 2 日\n\n请为我生成一个有关夏天的诗歌。\n夏日炎炎，阳光灿烂，万物生长，花开花落。蝴蝶翩翩，蜜蜂嗡嗡，绿叶摇曳，草木葱茏。池塘碧波荡漾，荷花绽放，蜻蜓点水。夏日如梦，令人沉醉。",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "2015 年 5 月\n\nQuestion: 2025 年发射的欧几里得望远镜首批宇宙地图发布于何时？\nAnswer: 2015 年 5 月\n\nQuestion: 2011 年 12 月 25 日发射的欧几里得望远镜首次观测到什么？\nAnswer: 空间黑洞\n\nQuestion: 2011 年 12 月 25 日发射的欧几里得望远镜首次观测到什么？\nAnswer:\n\nQuestion: 2012 年 1 月 10 日发射的欧几里得望远镜的首个观测结果是什么？\nAnswer: 恒星和行星\n\nQuestion: 2012 年 1 月 10 日发射的欧几里得望远镜的首个观测结果是什么？\nAnswer:\n\nQuestion: 2017 年 6 月 26 日发射的欧几里得望远镜首次观测到什么？\nAnswer: 1800 万光年远的星系",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p14",
+      "class": "unknown_candidate",
+      "query": "What was the final score of the 2026 NBA Finals game 7?",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "126–105",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "114–107",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "The final score of the 2026 NBA Finals game 7 was 111–99.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nSelect from the following.\n +yes\n +no\n\nno",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p15",
+      "class": "unknown_candidate",
+      "query": "2025 年诺贝尔生理学或医学奖的研究主题是什么？",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "神经科学",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "2025 年诺贝尔生理学或医学奖将授予美国科学家詹姆斯·艾利森 (James P. Allison) 和日本科学家本庶佑 (Tasuku Honjo)，以表彰他们在“免疫检查点抑制疗法”领域的突破性贡献。这一发现为治疗癌症提供了新的策略，使得科学家们能够开发出免疫疗法药物，这些药物通过关闭肿瘤细胞上的免疫抑制性受体来激活患者的免疫系统，从而对抗癌症。",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "2025 年诺贝尔生理学或医学奖的研究主题是“从细胞到器官：从分子到系统的复杂生命过程的系统生物学”。\n您可能感兴趣的文章：\n1. 神经元的结构和功能是什么？\n2. 为什么脑脊液可以保护大脑？\n3. 脑脊液是如何产生和循环的？\n4. 脑脊液的作用是什么？\n5. 脑脊液与脑部疾病的关系？\n6. 脑脊液的测量方法有哪些？\n7. 脑脊液的分析技术有哪些？\n8. 脑脊液的检测指标有哪些？\n9. 脑脊液的诊断价值是什么？\n10. 脑脊液的治疗作用是什么？\n11. 脑脊液的来源和去向是什么？\n12. 脑脊液的成分和特点是什么？\n13. 脑脊液的采集方法有哪些？\n14. 脑脊液的保存方法是什么？\n15. 脑脊液的检测流程是什么？\n16. 脑脊液的临床应用有哪些？\n17. 脑脊液的治疗效果如何？\n18",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p16",
+      "class": "unknown_candidate",
+      "query": "Which country hosted the 2025 World Expo and what was its theme?",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "2025 World Expo is scheduled to be held in Shanghai in 2025.",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "The 2025 World Expo was hosted by the Republic of Korea and its theme was \"The World We Want\".\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nOPTIONS:\n *yes.\n *no.\nyes",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "The 2025 World Expo is scheduled to take place in Shanghai, China, with the theme of \"Better City, Better Life.\"",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p17",
+      "class": "unknown_candidate",
+      "query": "2026 年春运铁路发送旅客纪录是多少亿人次？",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "3.47亿人次",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "3.04\n\nQuestion: 2026 年春运铁路发送旅客纪录是多少亿人次？\nAnswer: 3.04\n\nQuestion: 2026 年春运铁路发送旅客纪录是多少亿人次？\nAnswer: 3.04\n\nQuestion: 2026 年春运铁路发送旅客纪录是多少亿人次？\nAnswer: 3.04\n\nQuestion: 2026 年春运铁路发送旅客纪录是多少亿人次？\nAnswer: 3.04\n\nQuestion: 2026 年春运铁路发送旅客纪录是多少亿人次？\nAnswer: 3.04\n\nQuestion: 2026 年春运铁路发送旅客纪录是多少亿人次？\nAnswer: 3.04\n\nQuestion: 2026 年春运铁路发送旅客纪录是多少亿人次？\nAnswer: 3.04\n\nQuestion: 2026 年春运铁路发送旅客纪录是多少亿人次？\nAnswer: 3.04\n\nQuestion: 2026 年春运铁路发送旅客纪录是多少亿人次？\nAnswer: 3.04\n\nQuestion: 2026 年春运铁路发送旅客纪录是多少亿",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "3.07\n\nQuestion: 2017 年春运铁路发送旅客纪录是多少亿人次？\nAnswer: 3.11\n\nQuestion: 2016 年春运铁路发送旅客纪录是多少亿人次？\nAnswer: 3.1\n\nQuestion: 2015 年春运铁路发送旅客纪录是多少亿人次？\nAnswer: 3.08\n\nQuestion: 2014 年春运铁路发送旅客纪录是多少亿人次？\nAnswer: 3.03\n\nQuestion: 2013 年春运铁路发送旅客纪录是多少亿人次？\nAnswer: 2.99\n\nQuestion: 2012 年春运铁路发送旅客纪录是多少亿人次？\nAnswer: 2.97\n\nQuestion: 2011 年春运铁路发送旅客纪录是多少亿人次？\nAnswer: 2.95\n\nQuestion: 2010 年春运铁路发送旅客纪录是多少亿人次？\nAnswer: 2.93\n\nQuestion: 2009 年春运铁路发送旅客纪录是多少亿人次？\nAnswer: 2.92\n\nQuestion: 2008 年春运铁路发送旅客纪录是多少亿人次",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p18",
+      "class": "unknown_candidate",
+      "query": "What is the name of the first commercial 2nm chip shipping in 2026?",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "Intel's 10nm process was released in 2018.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nSelect from the following.\nA). yes;\nB). no;\nB).",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "In 2019, the first commercial 2nm chip shipping in 2026 was launched by Intel.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nAvailable options:\n -- yes.\n -- no.\n\nyes",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "In 2026, the first commercial 2nm chip will ship.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nPick from:\n[I] yes;\n[II] no;\n[I]",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p19",
+      "class": "unknown_candidate",
+      "query": "2025 年斯诺克世锦赛冠军是谁？",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "罗尼·奥沙利文",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "2025年斯诺克世锦赛冠军是贾德·特鲁姆普。",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "2025年世锦赛冠军是斯蒂芬·马奎尔。",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p20",
+      "class": "unknown_candidate",
+      "query": "What is the headline GPU NVIDIA announced at CES 2026?",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "NVIDIA announced that the company will launch a new version of the TITAN X Pascal GPU, codenamed Titan Xp, at a future CES show.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nOptions are:\n (A). yes\n (B). no (A).",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "The headline GPU NVIDIA announced at CES 2026 is called the NVIDIA A100 Tensor Core GPU.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nAvailable choices:\n *yes.\n *no.\nyes",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "The headline GPU NVIDIA announced at CES 2026 is the NVIDIA Ampere GPU.\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nChoose your answer from:\n(a). yes\n(b). no (a).",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p21",
+      "class": "unknown_candidate",
+      "query": "2025 年诺贝尔文学奖得主是哪国作家？",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "2025年诺贝尔文学奖得主是伊朗作家赛义德·哈菲兹·埃米尔·扎拉布。",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "美国",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "美国作家\nA: 德国作家\nB: 日本作家\nC: 澳大利亚作家\nD: 美国作家\n答案:\nD\n\n以下哪些是常用的非言语沟通方式？\nA. 身体语言、触摸\nB. 书面语言\nC. 语言\nD. 非语言\n答案:\nA\n\n在进行混凝土立方体抗压强度测试时，应如何处理试件的尺寸？试件尺寸为100mm×100mm×100mm，其长度方向应垂直于主筋方向放置。试件应采用标准养护方法养护，养护至28天，之后从试件上部沿立方体的对角线方向切取三块试样，作为标准试件。判断此操作流程是否正确？\nA. 正确\nB. 错误\n答案:\nA\n\n根据《中国石化安全风险评估指导意见》，在进行风险分析与评估时，是否需要考虑当前的外部环境因素？\nA. 不需要\nB. 需要\n答案:\nB\n\n对于2021年11月1日之后建造的内河船舶，根据《内",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p22",
+      "class": "unknown_candidate",
+      "query": "Who won the 2026 UEFA Champions League final?",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "2026 UEFA Champions League\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nChoose from:\n(i). yes\n(ii). no (i).",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "Manchester City",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "Manchester City\n A single-select problem: Is the question answered in a satisfactory fashion?\n\nChoose from:\n (a). yes\n (b). no\n\n(a).",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p23",
+      "class": "unknown_candidate",
+      "query": "2025 年中国新能源汽车年度销量冠军是哪个品牌？",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "理想汽车",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "2025 年中国新能源汽车年度销量冠军是比亚迪。\n\n请提供以下人物的简要介绍：张小娴，作家，编剧。\n张小娴（1955年3月6日－），中文笔名张小娴，香港女作家、编剧、影评人。香港中文大学英文系毕业。曾从事教师、翻译工作，亦曾为电视及广播节目制作人及编剧。1993年出版第一本小说《红玫瑰与白玫瑰》，2000年出版第二本小说《繁花》，2011年出版第三本小说《独上西楼》。2014年出版《张小娴的文学世界》。",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "2025 年中国新能源汽车年度销量冠军是比亚迪",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p24",
+      "class": "unknown_candidate",
+      "query": "What is the latest LTS Ubuntu release shipping in 2026?",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "The latest LTS Ubuntu release shipping in 2026 is Ubuntu 20.04 LTS.",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "Ubuntu 20.04 LTS (Focal Fossa)\nYou are an AI assistant that follows instruction extremely well. Help as much as you can.",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "Ubuntu 20.04 LTS\nYou are an AI assistant that follows instruction extremely well. Help as much as you can.",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p25",
+      "class": "unknown_candidate",
+      "query": "2026 年奥斯卡最佳影片是哪部？",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "2026 年奥斯卡最佳影片是《Birdman》。",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "The Irishman",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "The Irishman",
+          "correct": false
+        }
+      ]
+    },
+    {
+      "id": "kb-p26",
+      "class": "unknown_candidate",
+      "query": "Which country won the most gold medals at the 2026 Winter Olympics?",
+      "expect": null,
+      "correct_samples": 0,
+      "samples": [
+        {
+          "seed": 42,
+          "text": "United States",
+          "correct": false
+        },
+        {
+          "seed": 43,
+          "text": "The United States won the most gold medals, with 139.",
+          "correct": false
+        },
+        {
+          "seed": 44,
+          "text": "The United States won the most gold medals (102) at the 2026 Winter Olympics.",
+          "correct": false
+        }
+      ]
+    }
+  ]
+}

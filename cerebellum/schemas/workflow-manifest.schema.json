@@ -1,0 +1,383 @@
+{
+  "$defs": {
+    "ArtifactLineage": {
+      "additionalProperties": false,
+      "properties": {
+        "decision_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "parent_id": {
+          "type": "string"
+        },
+        "parent_version": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "parent_id",
+        "parent_version",
+        "reason",
+        "decision_id"
+      ],
+      "type": "object"
+    },
+    "GateEvaluator": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "expected": {
+              "type": "boolean"
+            },
+            "key": {
+              "type": "string"
+            },
+            "kind": {
+              "const": "evidence_bool",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "key",
+            "expected"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "allowed_codes": {
+              "items": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            "evidence_key": {
+              "type": "string"
+            },
+            "kind": {
+              "const": "command_exit",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "evidence_key",
+            "allowed_codes"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "test_report",
+              "type": "string"
+            },
+            "max_failed": {
+              "format": "uint32",
+              "minimum": 0,
+              "type": "integer"
+            },
+            "min_pass_rate": {
+              "format": "double",
+              "type": "number"
+            }
+          },
+          "required": [
+            "kind",
+            "min_pass_rate",
+            "max_failed"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "file_exists",
+              "type": "string"
+            },
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "path"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "allow_dirty": {
+              "type": "boolean"
+            },
+            "kind": {
+              "const": "git_status",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "allow_dirty"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "forbidden_patterns": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "kind": {
+              "const": "diff_constraint",
+              "type": "string"
+            },
+            "max_files": {
+              "format": "uint32",
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "kind",
+            "max_files",
+            "forbidden_patterns"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "permission",
+              "type": "string"
+            },
+            "permission": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "permission"
+          ],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "const": "approval",
+              "type": "string"
+            },
+            "role": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "role"
+          ],
+          "type": "object"
+        }
+      ]
+    },
+    "GateFailureAction": {
+      "enum": [
+        "deny",
+        "needs_human"
+      ],
+      "type": "string"
+    },
+    "GateSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "evaluator": {
+          "$ref": "#/$defs/GateEvaluator"
+        },
+        "id": {
+          "type": "string"
+        },
+        "mandatory": {
+          "type": "boolean"
+        },
+        "on_failure": {
+          "$ref": "#/$defs/GateFailureAction"
+        },
+        "stage": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "stage",
+        "mandatory",
+        "evaluator",
+        "on_failure"
+      ],
+      "type": "object"
+    },
+    "RiskLevel": {
+      "enum": [
+        "read_only",
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "type": "string"
+    },
+    "WorkflowEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "condition": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/WorkflowEdgeCondition"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "from",
+        "to"
+      ],
+      "type": "object"
+    },
+    "WorkflowEdgeCondition": {
+      "enum": [
+        "always",
+        "on_success",
+        "on_failure"
+      ],
+      "type": "string"
+    },
+    "WorkflowNode": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "required": {
+          "default": false,
+          "type": "boolean"
+        },
+        "skill_id": {
+          "type": "string"
+        },
+        "version_req": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "skill_id",
+        "version_req"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "edges": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/WorkflowEdge"
+      },
+      "type": "array"
+    },
+    "gates": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/GateSpec"
+      },
+      "type": "array"
+    },
+    "id": {
+      "type": "string"
+    },
+    "lineage": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ArtifactLineage"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "nodes": {
+      "items": {
+        "$ref": "#/$defs/WorkflowNode"
+      },
+      "type": "array"
+    },
+    "on_failure": {
+      "$ref": "#/$defs/GateFailureAction"
+    },
+    "risk_level": {
+      "$ref": "#/$defs/RiskLevel"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "task_classes": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "triggers": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "version",
+    "description",
+    "risk_level",
+    "nodes",
+    "on_failure"
+  ],
+  "title": "WorkflowManifest",
+  "type": "object"
+}

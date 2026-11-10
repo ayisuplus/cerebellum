@@ -1,0 +1,214 @@
+{
+  "$defs": {
+    "ArtifactVersionRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "type": "object"
+    },
+    "BaseModelPin": {
+      "additionalProperties": false,
+      "properties": {
+        "model_id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "model_id",
+        "revision",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "ExpertAdapterMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "canary_decisions": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "canary_duration_seconds": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "evaluation_count": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "injection_regression": {
+          "type": "boolean"
+        },
+        "negative_transfer_rate_delta": {
+          "format": "double",
+          "type": "number"
+        },
+        "old_task_retention": {
+          "format": "double",
+          "type": "number"
+        },
+        "policy_violations": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "routing_accuracy_delta": {
+          "format": "double",
+          "type": "number"
+        },
+        "task_success_delta": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "required": [
+        "evaluation_count",
+        "canary_decisions",
+        "canary_duration_seconds",
+        "old_task_retention",
+        "task_success_delta",
+        "negative_transfer_rate_delta",
+        "routing_accuracy_delta",
+        "policy_violations",
+        "injection_regression"
+      ],
+      "type": "object"
+    },
+    "ExpertAdapterStatus": {
+      "enum": [
+        "candidate",
+        "shadow",
+        "canary",
+        "active",
+        "superseded",
+        "rejected",
+        "rolled_back"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adapter_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "artifact_hash": {
+      "type": "string"
+    },
+    "artifact_path": {
+      "type": "string"
+    },
+    "base_model": {
+      "$ref": "#/$defs/BaseModelPin"
+    },
+    "bundle_hash": {
+      "type": "string"
+    },
+    "byte_length": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "expert_id": {
+      "type": "string"
+    },
+    "expert_view_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "metrics": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ExpertAdapterMetrics"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "previous_active": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ArtifactVersionRef"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "snapshot_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/ExpertAdapterStatus"
+    },
+    "taxonomy_hash": {
+      "type": "string"
+    },
+    "training_records": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "training_run_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "adapter_id",
+    "expert_id",
+    "version",
+    "bundle_hash",
+    "artifact_path",
+    "artifact_hash",
+    "byte_length",
+    "training_records",
+    "base_model",
+    "training_run_id",
+    "snapshot_id",
+    "expert_view_id",
+    "taxonomy_hash",
+    "status",
+    "created_at",
+    "updated_at"
+  ],
+  "title": "ExpertAdapterVersion",
+  "type": "object"
+}

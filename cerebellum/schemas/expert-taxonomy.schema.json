@@ -1,0 +1,91 @@
+{
+  "$defs": {
+    "ExpertDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "is_fallback": {
+          "type": "boolean"
+        },
+        "task_kinds": {
+          "items": {
+            "$ref": "#/$defs/MetaTaskKind"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "description",
+        "task_kinds",
+        "is_fallback"
+      ],
+      "type": "object"
+    },
+    "MetaTaskKind": {
+      "enum": [
+        "relevance",
+        "noise_filter",
+        "deduplication",
+        "retrieval_ranking",
+        "claim_relationship",
+        "acquisition_escalation",
+        "curriculum_priority",
+        "expected_information_gain",
+        "skill_workflow_routing",
+        "skill_workflow_evolution",
+        "temporal_grounding",
+        "knowledge_boundary",
+        "search_planning"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "experts": {
+      "items": {
+        "$ref": "#/$defs/ExpertDefinition"
+      },
+      "type": "array"
+    },
+    "fallback_expert_id": {
+      "type": "string"
+    },
+    "policy_version": {
+      "type": "string"
+    },
+    "router_top_k": {
+      "format": "uint8",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "taxonomy_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "taxonomy_id",
+    "version",
+    "experts",
+    "fallback_expert_id",
+    "router_top_k",
+    "policy_version"
+  ],
+  "title": "ExpertTaxonomy",
+  "type": "object"
+}

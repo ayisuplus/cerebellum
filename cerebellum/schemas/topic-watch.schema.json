@@ -1,0 +1,112 @@
+{
+  "$defs": {
+    "TopicBudget": {
+      "additionalProperties": false,
+      "properties": {
+        "browser_escalations_per_day": {
+          "default": 50,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "events_per_day": {
+          "default": 2000,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "fetched_documents_per_day": {
+          "default": 500,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "model_tokens_per_day": {
+          "default": 500000,
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "budget": {
+      "$ref": "#/$defs/TopicBudget"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "entities": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "keywords": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "languages": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "name": {
+      "type": "string"
+    },
+    "query": {
+      "type": "string"
+    },
+    "refresh_seconds": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "source_policy_ids": {
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "topic_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "topic_id",
+    "name",
+    "query",
+    "keywords",
+    "entities",
+    "languages",
+    "source_policy_ids",
+    "refresh_seconds",
+    "budget",
+    "enabled",
+    "created_at",
+    "updated_at"
+  ],
+  "title": "TopicWatch",
+  "type": "object"
+}

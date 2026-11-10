@@ -1,0 +1,256 @@
+{
+  "$defs": {
+    "EvidenceRelationship": {
+      "enum": [
+        "supports",
+        "opposes",
+        "retracts"
+      ],
+      "type": "string"
+    },
+    "KnowledgeClaim": {
+      "additionalProperties": false,
+      "properties": {
+        "claim_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "confidence": {
+          "format": "double",
+          "type": "number"
+        },
+        "object": {
+          "type": "string"
+        },
+        "predicate": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "valid_from": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valid_until": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "claim_id",
+        "subject",
+        "predicate",
+        "object",
+        "confidence"
+      ],
+      "type": "object"
+    },
+    "KnowledgeEvidenceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "canonical_url": {
+          "type": "string"
+        },
+        "content_hash": {
+          "type": "string"
+        },
+        "document_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "excerpt": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "observed_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "relationship": {
+          "$ref": "#/$defs/EvidenceRelationship"
+        }
+      },
+      "required": [
+        "document_id",
+        "canonical_url",
+        "content_hash",
+        "relationship",
+        "observed_at"
+      ],
+      "type": "object"
+    },
+    "KnowledgeScores": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "format": "double",
+          "type": "number"
+        },
+        "cost": {
+          "format": "double",
+          "type": "number"
+        },
+        "extraction_completeness": {
+          "format": "double",
+          "type": "number"
+        },
+        "novelty": {
+          "format": "double",
+          "type": "number"
+        },
+        "relevance": {
+          "format": "double",
+          "type": "number"
+        },
+        "risk": {
+          "format": "double",
+          "type": "number"
+        },
+        "source_reliability": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "required": [
+        "relevance",
+        "novelty",
+        "source_reliability",
+        "extraction_completeness",
+        "confidence",
+        "risk",
+        "cost"
+      ],
+      "type": "object"
+    },
+    "KnowledgeStatus": {
+      "enum": [
+        "unverified",
+        "corroborated",
+        "contested",
+        "superseded",
+        "retracted"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "card_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "claims": {
+      "items": {
+        "$ref": "#/$defs/KnowledgeClaim"
+      },
+      "type": "array"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "entities": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/KnowledgeEvidenceRef"
+      },
+      "type": "array"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "observed_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "prompt_hash": {
+      "type": "string"
+    },
+    "published_at": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "revision": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "scores": {
+      "$ref": "#/$defs/KnowledgeScores"
+    },
+    "status": {
+      "$ref": "#/$defs/KnowledgeStatus"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "supersedes": {
+      "format": "uuid",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "topic_ids": {
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "training_eligible": {
+      "type": "boolean"
+    },
+    "valid_until": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "card_id",
+    "revision",
+    "topic_ids",
+    "title",
+    "summary",
+    "entities",
+    "claims",
+    "evidence",
+    "status",
+    "observed_at",
+    "model_id",
+    "prompt_hash",
+    "scores",
+    "training_eligible",
+    "created_at"
+  ],
+  "title": "KnowledgeCard",
+  "type": "object"
+}

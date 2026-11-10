@@ -1,0 +1,159 @@
+{
+  "$defs": {
+    "DataClassification": {
+      "enum": [
+        "public",
+        "internal",
+        "private"
+      ],
+      "type": "string"
+    },
+    "ExternalProcessingPermission": {
+      "enum": [
+        "denied",
+        "redacted"
+      ],
+      "type": "string"
+    },
+    "SourceAccessMode": {
+      "enum": [
+        "public",
+        "api",
+        "authenticated_local"
+      ],
+      "type": "string"
+    },
+    "SourceKind": {
+      "enum": [
+        "github",
+        "hacker_news",
+        "rss_atom",
+        "tavily",
+        "firecrawl",
+        "crawl4ai",
+        "scrapling",
+        "open_cli",
+        "http",
+        "weibo",
+        "zhihu",
+        "douyin",
+        "bilibili",
+        "xhs",
+        "baidu",
+        "kuaishou",
+        "tieba",
+        "openalex",
+        "arxiv",
+        "journal"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "access_mode": {
+      "$ref": "#/$defs/SourceAccessMode"
+    },
+    "allowed_domains": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "auth_secret_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "base_url": {
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "data_classification": {
+      "$ref": "#/$defs/DataClassification",
+      "default": "private"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "external_processing": {
+      "$ref": "#/$defs/ExternalProcessingPermission",
+      "default": "denied"
+    },
+    "kind": {
+      "$ref": "#/$defs/SourceKind"
+    },
+    "max_depth": {
+      "format": "uint8",
+      "maximum": 255,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "max_pages_per_run": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "model_terms_allow_training": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "obey_robots": {
+      "type": "boolean"
+    },
+    "policy_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "rate_limit_per_minute": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "raw_retention_days": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "training_license": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "updated_at": {
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "policy_id",
+    "name",
+    "kind",
+    "base_url",
+    "access_mode",
+    "allowed_domains",
+    "obey_robots",
+    "max_depth",
+    "max_pages_per_run",
+    "rate_limit_per_minute",
+    "raw_retention_days",
+    "model_terms_allow_training",
+    "enabled",
+    "created_at",
+    "updated_at"
+  ],
+  "title": "SourcePolicy",
+  "type": "object"
+}

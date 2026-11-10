@@ -1,0 +1,96 @@
+{
+  "$defs": {
+    "ExpertAdapterMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "canary_decisions": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "canary_duration_seconds": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "evaluation_count": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "injection_regression": {
+          "type": "boolean"
+        },
+        "negative_transfer_rate_delta": {
+          "format": "double",
+          "type": "number"
+        },
+        "old_task_retention": {
+          "format": "double",
+          "type": "number"
+        },
+        "policy_violations": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "routing_accuracy_delta": {
+          "format": "double",
+          "type": "number"
+        },
+        "task_success_delta": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "required": [
+        "evaluation_count",
+        "canary_decisions",
+        "canary_duration_seconds",
+        "old_task_retention",
+        "task_success_delta",
+        "negative_transfer_rate_delta",
+        "routing_accuracy_delta",
+        "policy_violations",
+        "injection_regression"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "actor": {
+      "type": "string"
+    },
+    "eval_report_id": {
+      "default": null,
+      "description": "Recorded dual-arm evaluation report gate evidence for canary/activate.",
+      "format": "uuid",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "metrics": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ExpertAdapterMetrics"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "reason": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "actor",
+    "reason"
+  ],
+  "title": "ExpertAdapterOperationRequest",
+  "type": "object"
+}

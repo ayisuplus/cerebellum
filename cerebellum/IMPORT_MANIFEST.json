@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "imported_at": "2026-08-28",
+  "destination_repository": "https://github.com/ayisuplus/cerebellum.git",
+  "imports": [
+    {
+      "name": "evolver",
+      "destination": "components/evolver",
+      "source_repository": "https://github.com/ayisuplus/evolver.git",
+      "source_commit": "52fe945e408006d50a5c2fd8fc8e15764df4f97a",
+      "source_worktree_included": true,
+      "license": "NOASSERTION",
+      "excluded": [
+        ".git",
+        "Python caches",
+        "virtual environments",
+        "build artifacts",
+        "local tool caches, logs and machine-specific settings",
+        "runtime databases and ANN indexes",
+        ".env"
+      ]
+    },
+    {
+      "name": "skill-wiki",
+      "destination": "knowledge/skill-wiki",
+      "source_repository": "https://github.com/ayisuplus/skill-wiki.git",
+      "source_commit": "03cfb338e11cad16d0a79fc399c98922fd90df0f",
+      "source_worktree_included": false,
+      "license": "NOASSERTION",
+      "excluded": [
+        ".git",
+        "Python caches",
+        ".env"
+      ]
+    }
+  ]
+}

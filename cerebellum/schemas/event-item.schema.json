@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "author": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "document_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "external_id": {
+      "type": "string"
+    },
+    "first_observed_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "heat": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "last_observed_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "observations": {
+      "items": {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+          {
+            "type": "string"
+          },
+          {
+            "format": "int64",
+            "type": "integer"
+          }
+        ],
+        "type": "array"
+      },
+      "type": "array"
+    },
+    "platform": {
+      "type": "string"
+    },
+    "published_at": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rank": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "summary": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "platform",
+    "external_id",
+    "title",
+    "url",
+    "heat",
+    "rank",
+    "observations",
+    "document_id",
+    "first_observed_at",
+    "last_observed_at"
+  ],
+  "title": "EventItem",
+  "type": "object"
+}

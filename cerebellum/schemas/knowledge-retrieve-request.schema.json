@@ -1,0 +1,69 @@
+{
+  "$defs": {
+    "KnowledgeStatus": {
+      "enum": [
+        "unverified",
+        "corroborated",
+        "contested",
+        "superseded",
+        "retracted"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "as_of": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "freshness_hours": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "limit": {
+      "default": 10,
+      "format": "uint",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "query": {
+      "type": "string"
+    },
+    "since": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "statuses": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/KnowledgeStatus"
+      },
+      "type": "array"
+    },
+    "topic_ids": {
+      "default": [],
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "query"
+  ],
+  "title": "KnowledgeRetrieveRequest",
+  "type": "object"
+}

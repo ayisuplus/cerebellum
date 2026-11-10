@@ -1,0 +1,104 @@
+{
+  "$defs": {
+    "LearningMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "calibration_error": {
+          "format": "double",
+          "type": "number"
+        },
+        "forward_transfer": {
+          "format": "double",
+          "type": "number"
+        },
+        "gain_per_cost": {
+          "format": "double",
+          "type": "number"
+        },
+        "negative_transfer_rate": {
+          "format": "double",
+          "type": "number"
+        },
+        "retention_rate": {
+          "format": "double",
+          "type": "number"
+        },
+        "task_success_rate": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "required": [
+        "task_success_rate",
+        "forward_transfer",
+        "retention_rate",
+        "negative_transfer_rate",
+        "calibration_error",
+        "gain_per_cost"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "dead_letter_jobs": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "decision_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "experience_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "feedback_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "metrics": {
+      "$ref": "#/$defs/LearningMetrics"
+    },
+    "model_publication_requires_human": {
+      "type": "boolean"
+    },
+    "pending_jobs": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "proposal_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "ready_for_training": {
+      "type": "boolean"
+    },
+    "training_candidates": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "experience_count",
+    "feedback_count",
+    "decision_count",
+    "proposal_count",
+    "pending_jobs",
+    "dead_letter_jobs",
+    "training_candidates",
+    "ready_for_training",
+    "model_publication_requires_human",
+    "metrics"
+  ],
+  "title": "LearningStatus",
+  "type": "object"
+}

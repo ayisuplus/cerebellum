@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "assigned_to_canary": {
+      "type": "boolean"
+    },
+    "cost": {
+      "format": "double",
+      "type": "number"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "decision_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "policy_violation": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "successful": {
+      "type": "boolean"
+    },
+    "useful": {
+      "type": "boolean"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "decision_id",
+    "model_id",
+    "version",
+    "assigned_to_canary",
+    "successful",
+    "policy_violation",
+    "useful",
+    "cost",
+    "created_at"
+  ],
+  "title": "MetaCanaryDecision",
+  "type": "object"
+}

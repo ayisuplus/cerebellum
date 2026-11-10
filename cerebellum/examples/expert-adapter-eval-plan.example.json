@@ -1,0 +1,43 @@
+{
+  "schema_version": "cerebellum/v1",
+  "kind": "expert_adapter_eval_plan_v1",
+  "expert_id": "retrieval",
+  "version": "1.0.0",
+  "llama_server": {
+    "path": "C:/llama.cpp/build/bin/llama-server.exe",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "base_gguf": {
+    "path": "models/qwen2.5-1.5b-base-q8_0.gguf",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "adapted_gguf": {
+    "path": "models/qwen2.5-1.5b-retrieval-1.0.0-q8_0.gguf",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "ports": {
+    "base": 39101,
+    "adapted": 39102
+  },
+  "set_sizes": {
+    "role": 200,
+    "routing": 200,
+    "negative_transfer": 200,
+    "retention": 200
+  },
+  "generation": {
+    "n_predict": 512,
+    "temperature": 0.0,
+    "seed": 42,
+    "stop": ["<|meta_task|>"]
+  },
+  "injection_probes": {
+    "path": "benchmarks/adapter-eval/injection-probes.jsonl",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "metacognition_probes": {
+    "path": "benchmarks/metacognition/manifest.json",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "max_wall_seconds": 3600
+}

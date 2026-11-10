@@ -1,0 +1,83 @@
+{
+  "$defs": {
+    "SandboxCommand": {
+      "additionalProperties": false,
+      "description": "One sandboxed arm of a paired evaluation: a pinned image and the command\nto run against a copied repository snapshot.",
+      "properties": {
+        "argv": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "environment": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": {},
+          "type": "object"
+        },
+        "image": {
+          "type": "string"
+        },
+        "repository_path": {
+          "type": "string"
+        },
+        "timeout_seconds": {
+          "default": 300,
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "image",
+        "repository_path",
+        "argv"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Baseline/treatment pair executed under identical image, timeout, and\nenvironment so only the repository content varies.",
+  "properties": {
+    "baseline": {
+      "$ref": "#/$defs/SandboxCommand"
+    },
+    "budget": {
+      "default": null
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "seed": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "skill_id": {
+      "type": "string"
+    },
+    "skill_version": {
+      "type": "string"
+    },
+    "task_family": {
+      "type": "string"
+    },
+    "treatment": {
+      "$ref": "#/$defs/SandboxCommand"
+    }
+  },
+  "required": [
+    "skill_id",
+    "skill_version",
+    "task_family",
+    "model_id",
+    "seed",
+    "baseline",
+    "treatment"
+  ],
+  "title": "PairedSandboxPlan",
+  "type": "object"
+}

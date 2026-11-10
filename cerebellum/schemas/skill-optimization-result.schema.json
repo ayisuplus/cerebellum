@@ -1,0 +1,342 @@
+{
+  "$defs": {
+    "BenchmarkSplit": {
+      "enum": [
+        "train",
+        "validation",
+        "holdout"
+      ],
+      "type": "string"
+    },
+    "CandidateEvaluation": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_hard_mean": {
+          "format": "double",
+          "type": "number"
+        },
+        "baseline_soft_mean": {
+          "format": "double",
+          "type": "number"
+        },
+        "candidate_hard_mean": {
+          "format": "double",
+          "type": "number"
+        },
+        "candidate_hash": {
+          "type": "string"
+        },
+        "candidate_soft_mean": {
+          "format": "double",
+          "type": "number"
+        },
+        "gate_passed": {
+          "type": "boolean"
+        },
+        "rejection_reasons": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "split": {
+          "$ref": "#/$defs/BenchmarkSplit"
+        },
+        "task_scores": {
+          "items": {
+            "$ref": "#/$defs/OptimizationTaskScore"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "candidate_hash",
+        "split",
+        "task_scores",
+        "baseline_hard_mean",
+        "candidate_hard_mean",
+        "baseline_soft_mean",
+        "candidate_soft_mean",
+        "gate_passed"
+      ],
+      "type": "object"
+    },
+    "HoldoutEvaluation": {
+      "additionalProperties": false,
+      "properties": {
+        "bootstrap_ci95_low": {
+          "format": "double",
+          "type": "number"
+        },
+        "paired_runs": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "positive_result": {
+          "type": "boolean"
+        },
+        "safety_violation_delta": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "seeds": {
+          "items": {
+            "format": "uint64",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "task_scores": {
+          "items": {
+            "$ref": "#/$defs/OptimizationTaskScore"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "seeds",
+        "task_scores",
+        "paired_runs",
+        "bootstrap_ci95_low",
+        "safety_violation_delta",
+        "positive_result"
+      ],
+      "type": "object"
+    },
+    "OptimizationTaskScore": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_hard": {
+          "format": "double",
+          "type": "number"
+        },
+        "baseline_soft": {
+          "format": "double",
+          "type": "number"
+        },
+        "candidate_hard": {
+          "format": "double",
+          "type": "number"
+        },
+        "candidate_soft": {
+          "format": "double",
+          "type": "number"
+        },
+        "safety_violation": {
+          "default": false,
+          "type": "boolean"
+        },
+        "task_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "task_id",
+        "baseline_hard",
+        "candidate_hard",
+        "baseline_soft",
+        "candidate_soft"
+      ],
+      "type": "object"
+    },
+    "SkillEdit": {
+      "additionalProperties": false,
+      "properties": {
+        "content": {
+          "default": "",
+          "type": "string"
+        },
+        "operation": {
+          "$ref": "#/$defs/SkillEditOperation"
+        },
+        "target": {
+          "default": "",
+          "type": "string"
+        }
+      },
+      "required": [
+        "operation"
+      ],
+      "type": "object"
+    },
+    "SkillEditOperation": {
+      "enum": [
+        "append",
+        "insert_after",
+        "replace",
+        "delete"
+      ],
+      "type": "string"
+    },
+    "SkillEditPatch": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_hash": {
+          "type": "string"
+        },
+        "candidate_hash": {
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "edits": {
+          "items": {
+            "$ref": "#/$defs/SkillEdit"
+          },
+          "type": "array"
+        },
+        "optimizer_model": {
+          "type": "string"
+        },
+        "patch_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "run_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "schema_version": {
+          "type": "string"
+        },
+        "sequence": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "token_delta": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "trajectory_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "patch_id",
+        "run_id",
+        "sequence",
+        "baseline_hash",
+        "candidate_hash",
+        "edits",
+        "rationale",
+        "token_delta",
+        "optimizer_model",
+        "created_at"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "best_patch_id": {
+      "default": null,
+      "format": "uuid",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "elapsed_seconds": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "evaluations": {
+      "items": {
+        "$ref": "#/$defs/CandidateEvaluation"
+      },
+      "type": "array"
+    },
+    "holdout": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/HoldoutEvaluation"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "optimizer_calls": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "patches": {
+      "items": {
+        "$ref": "#/$defs/SkillEditPatch"
+      },
+      "type": "array"
+    },
+    "registration_patch_sha256": {
+      "type": "string"
+    },
+    "run_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "stopped_reason": {
+      "type": "string"
+    },
+    "target_calls": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "total_tokens": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "upstream_commit": {
+      "type": "string"
+    },
+    "upstream_source_archive_sha256": {
+      "type": "string"
+    },
+    "worker": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "run_id",
+    "worker",
+    "upstream_commit",
+    "upstream_source_archive_sha256",
+    "registration_patch_sha256",
+    "patches",
+    "evaluations",
+    "stopped_reason",
+    "target_calls",
+    "optimizer_calls",
+    "total_tokens",
+    "elapsed_seconds",
+    "created_at"
+  ],
+  "title": "SkillOptimizationResult",
+  "type": "object"
+}

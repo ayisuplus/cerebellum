@@ -1,0 +1,302 @@
+{
+  "$defs": {
+    "ModelCalibrationMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "critical_safety_recall": {
+          "format": "double",
+          "type": "number"
+        },
+        "fixture_count": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "schema_valid_rate": {
+          "format": "double",
+          "type": "number"
+        },
+        "shadow_count": {
+          "default": null,
+          "format": "uint64",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "shadow_disagreement_rate": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "verdict_macro_f1": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "required": [
+        "fixture_count",
+        "schema_valid_rate",
+        "critical_safety_recall",
+        "verdict_macro_f1"
+      ],
+      "type": "object"
+    },
+    "ModelEndpointStatus": {
+      "enum": [
+        "pending_approval",
+        "calibration",
+        "shadow",
+        "active",
+        "superseded",
+        "rejected"
+      ],
+      "type": "string"
+    },
+    "ModelEndpointVersion": {
+      "additionalProperties": false,
+      "properties": {
+        "approval_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "approved_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "endpoint_version_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "first_seen_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "metrics": {
+          "$ref": "#/$defs/ModelCalibrationMetrics"
+        },
+        "model_id": {
+          "type": "string"
+        },
+        "prompt_version": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "schema_hash": {
+          "type": "string"
+        },
+        "schema_version": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/ModelEndpointStatus"
+        },
+        "system_fingerprint": {
+          "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "endpoint_version_id",
+        "provider",
+        "model_id",
+        "system_fingerprint",
+        "prompt_version",
+        "schema_hash",
+        "status",
+        "metrics",
+        "first_seen_at",
+        "updated_at"
+      ],
+      "type": "object"
+    },
+    "ModelTokenUsage": {
+      "additionalProperties": false,
+      "properties": {
+        "completion_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "prompt_cache_hit_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "prompt_cache_miss_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "prompt_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "reasoning_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "total_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "prompt_tokens",
+        "prompt_cache_hit_tokens",
+        "prompt_cache_miss_tokens",
+        "completion_tokens",
+        "reasoning_tokens",
+        "total_tokens"
+      ],
+      "type": "object"
+    },
+    "ModelUsageLedger": {
+      "additionalProperties": false,
+      "properties": {
+        "estimated_cny": {
+          "format": "double",
+          "type": "number"
+        },
+        "flash_calls": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "pro_calls": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "reserved_microusd": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "shanghai_day": {
+          "type": "string"
+        },
+        "spent_microusd": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "usage": {
+          "$ref": "#/$defs/ModelTokenUsage"
+        }
+      },
+      "required": [
+        "provider",
+        "shanghai_day",
+        "flash_calls",
+        "pro_calls",
+        "usage",
+        "reserved_microusd",
+        "spent_microusd",
+        "estimated_cny",
+        "updated_at"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "active_model_versions": {
+      "items": {
+        "$ref": "#/$defs/ModelEndpointVersion"
+      },
+      "type": "array"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "enforcement_required": {
+      "type": "boolean"
+    },
+    "flash_model": {
+      "type": "string"
+    },
+    "latest_passed_build_id": {
+      "format": "uuid",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "pending_arbitrations": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "pending_assessments": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "pro_model": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "quarantined_records": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "synthetic_candidates": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "usage": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ModelUsageLedger"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "enabled",
+    "enforcement_required",
+    "provider",
+    "flash_model",
+    "pro_model",
+    "pending_assessments",
+    "pending_arbitrations",
+    "quarantined_records",
+    "synthetic_candidates",
+    "active_model_versions"
+  ],
+  "title": "QualityStatus",
+  "type": "object"
+}

@@ -1,0 +1,99 @@
+{
+  "$defs": {
+    "DatasetSplit": {
+      "enum": [
+        "train",
+        "validation",
+        "holdout"
+      ],
+      "type": "string"
+    },
+    "ExpertAssignmentStatus": {
+      "enum": [
+        "assigned",
+        "ambiguous",
+        "out_of_distribution",
+        "negative_transfer"
+      ],
+      "type": "string"
+    },
+    "MetaTaskKind": {
+      "enum": [
+        "relevance",
+        "noise_filter",
+        "deduplication",
+        "retrieval_ranking",
+        "claim_relationship",
+        "acquisition_escalation",
+        "curriculum_priority",
+        "expected_information_gain",
+        "skill_workflow_routing",
+        "skill_workflow_evolution",
+        "temporal_grounding",
+        "knowledge_boundary",
+        "search_planning"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "primary_expert_id": {
+      "type": "string"
+    },
+    "reason_codes": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "record_hash": {
+      "type": "string"
+    },
+    "record_kind": {
+      "type": "string"
+    },
+    "secondary_expert_ids": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "source_domain": {
+      "type": "string"
+    },
+    "split": {
+      "$ref": "#/$defs/DatasetSplit"
+    },
+    "status": {
+      "$ref": "#/$defs/ExpertAssignmentStatus"
+    },
+    "task_kind": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/MetaTaskKind"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "topic_family": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "record_hash",
+    "split",
+    "record_kind",
+    "primary_expert_id",
+    "secondary_expert_ids",
+    "status",
+    "reason_codes",
+    "source_domain",
+    "topic_family"
+  ],
+  "title": "ExpertAssignment",
+  "type": "object"
+}

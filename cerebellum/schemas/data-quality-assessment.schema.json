@@ -1,0 +1,259 @@
+{
+  "$defs": {
+    "ModelTokenUsage": {
+      "additionalProperties": false,
+      "properties": {
+        "completion_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "prompt_cache_hit_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "prompt_cache_miss_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "prompt_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "reasoning_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "total_tokens": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "prompt_tokens",
+        "prompt_cache_hit_tokens",
+        "prompt_cache_miss_tokens",
+        "completion_tokens",
+        "reasoning_tokens",
+        "total_tokens"
+      ],
+      "type": "object"
+    },
+    "QualityDimensions": {
+      "additionalProperties": false,
+      "properties": {
+        "ambiguity": {
+          "format": "double",
+          "type": "number"
+        },
+        "completeness": {
+          "format": "double",
+          "type": "number"
+        },
+        "consistency": {
+          "format": "double",
+          "type": "number"
+        },
+        "correctness": {
+          "format": "double",
+          "type": "number"
+        },
+        "groundedness": {
+          "format": "double",
+          "type": "number"
+        },
+        "injection_risk": {
+          "format": "double",
+          "type": "number"
+        },
+        "label_confidence": {
+          "format": "double",
+          "type": "number"
+        },
+        "privacy_risk": {
+          "format": "double",
+          "type": "number"
+        },
+        "relevance": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "required": [
+        "groundedness",
+        "correctness",
+        "relevance",
+        "consistency",
+        "completeness",
+        "label_confidence",
+        "ambiguity",
+        "privacy_risk",
+        "injection_risk"
+      ],
+      "type": "object"
+    },
+    "QualityIssueCode": {
+      "enum": [
+        "privacy_leak",
+        "prompt_injection",
+        "label_contradiction",
+        "hallucination",
+        "unsupported",
+        "ambiguous",
+        "incomplete",
+        "irrelevant",
+        "duplicate",
+        "low_quality"
+      ],
+      "type": "string"
+    },
+    "QualityModelStage": {
+      "enum": [
+        "flash",
+        "pro"
+      ],
+      "type": "string"
+    },
+    "QualitySubjectKind": {
+      "enum": [
+        "meta_decision",
+        "meta_replay",
+        "synthetic_candidate",
+        "dataset_build",
+        "knowledge_card"
+      ],
+      "type": "string"
+    },
+    "QualityVerdict": {
+      "enum": [
+        "pass",
+        "veto",
+        "quarantine",
+        "needs_arbitration"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "assessment_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "confidence": {
+      "format": "double",
+      "type": "number"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "dimensions": {
+      "$ref": "#/$defs/QualityDimensions"
+    },
+    "estimated_cost_microusd": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "evidence_refs": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "issue_codes": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/QualityIssueCode"
+      },
+      "type": "array"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "output_hash": {
+      "type": "string"
+    },
+    "parent_assessment_id": {
+      "format": "uuid",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "prompt_hash": {
+      "type": "string"
+    },
+    "prompt_version": {
+      "type": "string"
+    },
+    "redaction_attestation_hash": {
+      "type": "string"
+    },
+    "schema_hash": {
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "stage": {
+      "$ref": "#/$defs/QualityModelStage"
+    },
+    "subject_hash": {
+      "type": "string"
+    },
+    "subject_id": {
+      "type": "string"
+    },
+    "subject_kind": {
+      "$ref": "#/$defs/QualitySubjectKind"
+    },
+    "suggested_actions": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "system_fingerprint": {
+      "type": "string"
+    },
+    "usage": {
+      "$ref": "#/$defs/ModelTokenUsage"
+    },
+    "verdict": {
+      "$ref": "#/$defs/QualityVerdict"
+    }
+  },
+  "required": [
+    "schema_version",
+    "assessment_id",
+    "subject_kind",
+    "subject_id",
+    "subject_hash",
+    "stage",
+    "model_id",
+    "system_fingerprint",
+    "prompt_version",
+    "prompt_hash",
+    "schema_hash",
+    "verdict",
+    "dimensions",
+    "confidence",
+    "usage",
+    "estimated_cost_microusd",
+    "redaction_attestation_hash",
+    "output_hash",
+    "created_at"
+  ],
+  "title": "DataQualityAssessment",
+  "type": "object"
+}

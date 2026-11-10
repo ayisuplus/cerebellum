@@ -1,0 +1,314 @@
+{
+  "$defs": {
+    "ArtifactLineage": {
+      "additionalProperties": false,
+      "properties": {
+        "decision_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "parent_id": {
+          "type": "string"
+        },
+        "parent_version": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "parent_id",
+        "parent_version",
+        "reason",
+        "decision_id"
+      ],
+      "type": "object"
+    },
+    "EvidenceCard": {
+      "additionalProperties": false,
+      "properties": {
+        "independent_tasks": {
+          "default": 0,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "median_cost": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "median_latency_ms": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "paired_runs": {
+          "default": 0,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "redaction_passed": {
+          "default": false,
+          "type": "boolean"
+        },
+        "schema_passed": {
+          "default": false,
+          "type": "boolean"
+        },
+        "security_findings": {
+          "additionalProperties": {
+            "format": "uint32",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "default": {},
+          "type": "object"
+        },
+        "success_rate": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "task_uplift": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "uplift_ci95_low": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "LegacyHint": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "confidence": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "score": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "RiskLevel": {
+      "enum": [
+        "read_only",
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "type": "string"
+    },
+    "SkillDependency": {
+      "additionalProperties": false,
+      "properties": {
+        "skill_id": {
+          "type": "string"
+        },
+        "version_req": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "skill_id",
+        "version_req"
+      ],
+      "type": "object"
+    },
+    "SkillLifecycle": {
+      "enum": [
+        "quarantined",
+        "validated",
+        "experimental",
+        "trusted",
+        "deprecated",
+        "revoked"
+      ],
+      "type": "string"
+    },
+    "SourceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "collected_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "commit_sha": {
+          "type": "string"
+        },
+        "content_hash": {
+          "type": "string"
+        },
+        "license": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "repository_url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "repository_url",
+        "commit_sha",
+        "path",
+        "content_hash",
+        "license",
+        "collected_at"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "compatibility": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "dependencies": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/SkillDependency"
+      },
+      "type": "array"
+    },
+    "description": {
+      "type": "string"
+    },
+    "evidence": {
+      "$ref": "#/$defs/EvidenceCard",
+      "default": {
+        "independent_tasks": 0,
+        "median_cost": null,
+        "median_latency_ms": null,
+        "paired_runs": 0,
+        "redaction_passed": false,
+        "schema_passed": false,
+        "security_findings": {},
+        "success_rate": null,
+        "task_uplift": null,
+        "uplift_ci95_low": null
+      }
+    },
+    "id": {
+      "type": "string"
+    },
+    "input_schema": {
+      "default": {
+        "type": "object"
+      }
+    },
+    "legacy_hint": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/LegacyHint"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "lineage": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ArtifactLineage"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "output_schema": {
+      "default": {
+        "type": "object"
+      }
+    },
+    "permissions": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "risk_level": {
+      "$ref": "#/$defs/RiskLevel"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "source": {
+      "$ref": "#/$defs/SourceRef"
+    },
+    "status": {
+      "$ref": "#/$defs/SkillLifecycle"
+    },
+    "training_eligible": {
+      "default": false,
+      "type": "boolean"
+    },
+    "triggers": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "version",
+    "description",
+    "risk_level",
+    "source",
+    "status"
+  ],
+  "title": "SkillManifest",
+  "type": "object"
+}

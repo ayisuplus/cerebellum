@@ -1,0 +1,212 @@
+{
+  "$defs": {
+    "OptimizationBudget": {
+      "additionalProperties": false,
+      "properties": {
+        "batch_size": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "epochs": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "max_candidate_steps": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "max_edits_per_candidate": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "max_net_new_tokens": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "max_skill_tokens": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "no_improvement_limit": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "optimizer_call_limit": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "target_call_limit": {
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "total_token_limit": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "wall_time_seconds": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "epochs",
+        "batch_size",
+        "max_candidate_steps",
+        "max_edits_per_candidate",
+        "max_net_new_tokens",
+        "max_skill_tokens",
+        "target_call_limit",
+        "optimizer_call_limit",
+        "total_token_limit",
+        "wall_time_seconds",
+        "no_improvement_limit"
+      ],
+      "type": "object"
+    },
+    "OptimizationRunStatus": {
+      "enum": [
+        "queued",
+        "running",
+        "validated",
+        "approved",
+        "rejected",
+        "failed"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "baseline_content_hash": {
+      "type": "string"
+    },
+    "benchmark_bundle_hash": {
+      "type": "string"
+    },
+    "benchmark_manifest_hash": {
+      "type": "string"
+    },
+    "best_candidate_hash": {
+      "default": null,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "budget": {
+      "$ref": "#/$defs/OptimizationBudget"
+    },
+    "candidate_version": {
+      "type": "string"
+    },
+    "container_image_digest": {
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "job_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "optimizer_model": {
+      "type": "string"
+    },
+    "registration_patch_sha256": {
+      "type": "string"
+    },
+    "release_version": {
+      "type": "string"
+    },
+    "result_hash": {
+      "default": null,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "review_reason": {
+      "default": null,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reviewed_by": {
+      "default": null,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "run_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "skill_id": {
+      "type": "string"
+    },
+    "skill_version": {
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/OptimizationRunStatus"
+    },
+    "target_model": {
+      "type": "string"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "upstream_commit": {
+      "type": "string"
+    },
+    "upstream_repository": {
+      "type": "string"
+    },
+    "upstream_source_archive_sha256": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "run_id",
+    "job_id",
+    "skill_id",
+    "skill_version",
+    "baseline_content_hash",
+    "benchmark_manifest_hash",
+    "benchmark_bundle_hash",
+    "container_image_digest",
+    "upstream_repository",
+    "upstream_commit",
+    "upstream_source_archive_sha256",
+    "registration_patch_sha256",
+    "target_model",
+    "optimizer_model",
+    "budget",
+    "candidate_version",
+    "release_version",
+    "status",
+    "created_at",
+    "updated_at"
+  ],
+  "title": "SkillOptimizationRun",
+  "type": "object"
+}

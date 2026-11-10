@@ -1,0 +1,39 @@
+---
+title: clerk-chrome-extension-patterns
+created: 2026-07-04
+updated: 2026-07-04
+type: skill
+tags: [packages]
+category: packages
+related: [clerk-custom-ui, clerk-nextjs-patterns, clerk-testing, clerk-vue-patterns]
+confidence: medium
+---
+
+Chrome Extension auth with @clerk/chrome-extension -- popup/sidepanel setup, syncHost for OAuth/SAML via web app, createClerkClient for service workers and headless extensions, stable CRX ID. Triggers on: Chrome extension auth, Plasmo clerk, popup sign-in, syncHost, background service worker token,
+
+## Metadata
+
+- **ID:** `clerk-chrome-extension-patterns`
+- **Source:** `autoskills/packages/autoskills/skills-registry/clerk-chrome-extension-patterns/SKILL.md`
+- **Score:** 61.0
+- **Edges:** 4
+
+## Related Skills
+
+- [[clerk-custom-ui]] *(similar)* — Custom authentication flows and component appearance - hooks (useSignIn, useSignUp), themes, colors, fonts, CSS. Use for custom sign-in/sign-up flows, appearance styling, visual customization, branding.
+- [[clerk-nextjs-patterns]] *(similar)* — Advanced Next.js patterns - middleware, Server Actions, caching with Clerk.
+- [[clerk-testing]] *(similar)* — E2E testing for Clerk apps. Use with Playwright or Cypress for auth flow tests.
+- [[clerk-vue-patterns]] *(similar)* — Vue 3 patterns with Clerk — composables (useAuth, useUser, useClerk, useOrganization), Vue Router guards, Pinia auth store integration. Triggers on: vue clerk, useAuth vue, clerk composables, vue router clerk guard, pinia auth clerk. For Nuxt, use clerk-nuxt-patterns instead.
+
+## See Also
+
+- [[accessibility]] — packages
+- [[adev-writing-guide]] — packages
+- [[agents-sdk]] — packages
+- [[android-architecture-clean]] — packages
+- [[android-compose-foundations]] — packages
+- [[android-coroutines-flow]] — packages
+- [[android-di-hilt]] — packages
+- [[android-gradle-build-logic]] — packages
+- [[android-kotlin-core]] — packages
+- [[android-networking-retrofit-okhttp]] — packages

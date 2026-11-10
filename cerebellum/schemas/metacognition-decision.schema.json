@@ -1,0 +1,70 @@
+{
+  "$defs": {
+    "MetacognitionAction": {
+      "enum": [
+        "answer",
+        "search_internal",
+        "request_acquisition",
+        "insufficient"
+      ],
+      "type": "string"
+    },
+    "MetacognitionBasis": {
+      "enum": [
+        "parametric",
+        "evidence",
+        "none"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Strict output contract for temporal-grounding, knowledge-boundary and\nsearch-planning decisions (`MetaTaskKind::{TemporalGrounding,\nKnowledgeBoundary, SearchPlanning}`). Probes, generated training traces and\nthe runtime assessment hook all parse this shape; per-action field\ndiscipline is enforced by `validate_metacognition_decision`.",
+  "properties": {
+    "action": {
+      "$ref": "#/$defs/MetacognitionAction"
+    },
+    "answer": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "answer_basis": {
+      "$ref": "#/$defs/MetacognitionBasis"
+    },
+    "as_of_used": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "confidence": {
+      "format": "double",
+      "type": "number"
+    },
+    "freshness_hours": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "query": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "action",
+    "answer_basis",
+    "confidence"
+  ],
+  "title": "MetacognitionDecision",
+  "type": "object"
+}

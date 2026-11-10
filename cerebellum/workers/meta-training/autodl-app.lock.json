@@ -1,0 +1,15 @@
+{
+  "schema_version": "cerebellum/v1",
+  "kind": "autodl_private_application_lock_v1",
+  "application_version": "configure-exact-version",
+  "python": "3.11",
+  "entrypoint": "python -m cerebellum_meta_training.remote_worker",
+  "container_runtime_required": false,
+  "minimum_cuda_vram_gb": 24,
+  "forbidden_environment": [
+    "AUTODL_API_TOKEN",
+    "CEREBELLUM_AUTH_TOKEN",
+    "HF_TOKEN"
+  ],
+  "shutdown_fallback": ["/usr/bin/shutdown", "now"]
+}

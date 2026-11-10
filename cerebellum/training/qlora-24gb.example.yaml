@@ -1,0 +1,31 @@
+# Design contract only. Cerebellum v2 has no code path that launches training.
+base_model:
+  parameter_range: "1B-3B"
+  immutable_revision_required: true
+quantization:
+  bits: 4
+  quant_type: nf4
+  double_quant: true
+  compute_dtype: bfloat16
+lora:
+  rank: 32
+  alpha: 64
+  dropout: 0.05
+optimization:
+  micro_batch_size: 2
+  gradient_accumulation_steps: 16
+  gradient_checkpointing: true
+  sequence_length: 4096
+  optimizer: paged_adamw_8bit
+  max_epochs: 3
+hardware:
+  gpus: 1
+  minimum_vram_gb: 24
+export:
+  target: safetensors
+  include_dataset_manifest_hash: true
+release_gates:
+  require_task_success_uplift: true
+  max_gate_violation_delta: 0
+  minimum_latency_or_memory_improvement: 0.20
+  require_human_approval: true

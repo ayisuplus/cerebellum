@@ -1,0 +1,8 @@
+{
+  "repository": "https://github.com/microsoft/SkillOpt",
+  "commit": "3c8873f016397817dcd40c3e5436d92fe19372b8",
+  "license": "MIT",
+  "source_archive_sha256": "abdc429fe2a59b30d36c3148a107dfb36184821c7996d67d98d362a6603b1999",
+  "registration_patch": "patches/register-cerebellum-verify.patch",
+  "registration_patch_sha256": "3f57e82c0518e18fd9ee33c337737f370e9d61c892715f7905b35c98590c1549"
+}

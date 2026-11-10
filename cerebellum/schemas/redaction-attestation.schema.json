@@ -1,0 +1,86 @@
+{
+  "$defs": {
+    "QualitySubjectKind": {
+      "enum": [
+        "meta_decision",
+        "meta_replay",
+        "synthetic_candidate",
+        "dataset_build",
+        "knowledge_card"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "attestation_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "exported_characters": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "exported_payload_hash": {
+      "type": "string"
+    },
+    "pii_findings": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "prompt_injection_findings": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "scanner_version": {
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "secret_findings": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "source_characters": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "subject_hash": {
+      "type": "string"
+    },
+    "subject_id": {
+      "type": "string"
+    },
+    "subject_kind": {
+      "$ref": "#/$defs/QualitySubjectKind"
+    }
+  },
+  "required": [
+    "schema_version",
+    "attestation_id",
+    "subject_kind",
+    "subject_id",
+    "subject_hash",
+    "exported_payload_hash",
+    "scanner_version",
+    "secret_findings",
+    "pii_findings",
+    "prompt_injection_findings",
+    "source_characters",
+    "exported_characters",
+    "created_at"
+  ],
+  "title": "RedactionAttestation",
+  "type": "object"
+}

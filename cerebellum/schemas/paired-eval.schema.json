@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "baseline_gate_violations": {
+      "default": 0,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "baseline_latency_ms": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "baseline_score": {
+      "format": "double",
+      "type": "number"
+    },
+    "baseline_success": {
+      "type": "boolean"
+    },
+    "budget": {
+      "default": null
+    },
+    "environment_digest": {
+      "type": "string"
+    },
+    "eval_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "metadata": {
+      "default": null
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "repository_digest": {
+      "type": "string"
+    },
+    "seed": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "skill_id": {
+      "type": "string"
+    },
+    "skill_version": {
+      "type": "string"
+    },
+    "task_family": {
+      "type": "string"
+    },
+    "treatment_gate_violations": {
+      "default": 0,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "treatment_latency_ms": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "treatment_score": {
+      "format": "double",
+      "type": "number"
+    },
+    "treatment_success": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "eval_id",
+    "skill_id",
+    "skill_version",
+    "task_family",
+    "repository_digest",
+    "environment_digest",
+    "model_id",
+    "seed",
+    "baseline_success",
+    "treatment_success",
+    "baseline_score",
+    "treatment_score",
+    "baseline_latency_ms",
+    "treatment_latency_ms"
+  ],
+  "title": "PairedEvalRecord",
+  "type": "object"
+}

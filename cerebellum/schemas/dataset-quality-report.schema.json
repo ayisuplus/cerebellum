@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "assessed_records": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "build_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "critical_safety_misses": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "deterministic_violations": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "disagreement_rate": {
+      "format": "double",
+      "type": "number"
+    },
+    "estimated_cost_cny": {
+      "default": null,
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "gate_passed": {
+      "type": "boolean"
+    },
+    "generated_ratio": {
+      "format": "double",
+      "type": "number"
+    },
+    "generated_records": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "lineage_missing_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "model_ids": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "non_safety_disagreements": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "policy_version": {
+      "type": "string"
+    },
+    "pro_audit_sample_size": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "prompt_versions": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "reasons": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "report_hash": {
+      "type": "string"
+    },
+    "report_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "split_leakage_count": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "system_fingerprints": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "total_records": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "unresolved_records": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema_version",
+    "report_id",
+    "build_id",
+    "report_hash",
+    "policy_version",
+    "total_records",
+    "assessed_records",
+    "unresolved_records",
+    "deterministic_violations",
+    "split_leakage_count",
+    "lineage_missing_count",
+    "generated_records",
+    "generated_ratio",
+    "pro_audit_sample_size",
+    "critical_safety_misses",
+    "non_safety_disagreements",
+    "disagreement_rate",
+    "model_ids",
+    "system_fingerprints",
+    "prompt_versions",
+    "gate_passed",
+    "created_at"
+  ],
+  "title": "DatasetQualityReport",
+  "type": "object"
+}

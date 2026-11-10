@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evolver"
+version = "2.3.0"
+description = "Agent self-evolution engine: memory, knowledge graph, skill generation"
+requires-python = ">=3.11"
+dependencies = [
+    "fastembed>=0.2.0",
+    "FlagEmbedding>=1.2.0",
+    "sentence-transformers>=2.2.0",
+    "jinja2>=3.1.0",
+    "numpy>=1.24.0",
+    "click>=8.0",
+]
+
+[project.scripts]
+evolver = "evolver.cli:cli"
+
+[project.optional-dependencies]
+mysql = ["pymysql>=1.1.0"]
+chinese = ["jieba>=0.42"]
+ann = ["hnswlib>=0.7.0"]
+all = [
+    "pymysql>=1.1.0",
+    "jieba>=0.42",
+    "hnswlib>=0.7.0",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "pymysql>=1.1.0",
+]
+
+ingest-pypdf = ["pypdf>=3.0"]
+ingest-docx = ["python-docx>=0.8"]
+
+[tool.setuptools.packages.find]
+include = ["evolver*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"

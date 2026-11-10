@@ -1,0 +1,133 @@
+services:
+  cerebellum:
+    build:
+      context: ..
+    restart: unless-stopped
+    environment:
+      CEREBELLUM_AUTH_TOKEN: ${CEREBELLUM_AUTH_TOKEN:?set a 32+ character token}
+      CEREBELLUM_LEARNING_SCHEDULER: "true"
+      CEREBELLUM_GITHUB_WEBHOOK_SECRET: ${CEREBELLUM_GITHUB_WEBHOOK_SECRET:-}
+      CEREBELLUM_WEBSUB_SECRET: ${CEREBELLUM_WEBSUB_SECRET:-}
+      CEREBELLUM_GITHUB_WATCHLIST: ${CEREBELLUM_GITHUB_WATCHLIST:-}
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+      CEREBELLUM_KNOWLEDGE_MODEL_ENDPOINT: ${CEREBELLUM_KNOWLEDGE_MODEL_ENDPOINT:-}
+      CEREBELLUM_KNOWLEDGE_MODEL_NAME: ${CEREBELLUM_KNOWLEDGE_MODEL_NAME:-}
+      CEREBELLUM_KNOWLEDGE_MODEL_API_KEY: ${CEREBELLUM_KNOWLEDGE_MODEL_API_KEY:-}
+      CEREBELLUM_QUALITY_MODEL_ENABLED: ${CEREBELLUM_QUALITY_MODEL_ENABLED:-0}
+      CEREBELLUM_QUALITY_ENFORCEMENT: ${CEREBELLUM_QUALITY_ENFORCEMENT:-1}
+      CEREBELLUM_PRIVATE_REDACTED_EXTERNAL_PROCESSING: ${CEREBELLUM_PRIVATE_REDACTED_EXTERNAL_PROCESSING:-0}
+      CEREBELLUM_DEEPSEEK_TRAINING_OPTOUT_ATTESTED: ${CEREBELLUM_DEEPSEEK_TRAINING_OPTOUT_ATTESTED:-0}
+      DEEPSEEK_API_BASE_URL: https://api.deepseek.com
+      DEEPSEEK_API_KEY_FILE: /run/secrets/deepseek_api_key
+      DEEPSEEK_FLASH_MODEL: deepseek-v4-flash
+      DEEPSEEK_PRO_MODEL: deepseek-v4-pro
+      DEEPSEEK_DAILY_MAX_CNY: ${DEEPSEEK_DAILY_MAX_CNY:-10}
+      DEEPSEEK_PRICING_CONFIRMED_AT: ${DEEPSEEK_PRICING_CONFIRMED_AT:-}
+      CEREBELLUM_META_TRAINER_ENABLED: ${CEREBELLUM_META_TRAINER_ENABLED:-0}
+      CEREBELLUM_META_BASE_MODEL: ${CEREBELLUM_META_BASE_MODEL:-}
+      CEREBELLUM_META_DATA_LICENSE_POLICY: ${CEREBELLUM_META_DATA_LICENSE_POLICY:-licensed-only}
+      CEREBELLUM_META_GPU_MEMORY_GB: ${CEREBELLUM_META_GPU_MEMORY_GB:-0}
+      CEREBELLUM_ADMIN_ORIGIN: ${CEREBELLUM_ADMIN_ORIGIN:-https://localhost:8443}
+      CEREBELLUM_AUTODL_ENABLED: ${CEREBELLUM_AUTODL_ENABLED:-0}
+      AUTODL_API_BASE_URL: ${AUTODL_API_BASE_URL:-https://www.autodl.art}
+      AUTODL_API_TOKEN: ${AUTODL_API_TOKEN:-}
+      AUTODL_APPLICATION_UUID: ${AUTODL_APPLICATION_UUID:-}
+      AUTODL_APPLICATION_VERSION: ${AUTODL_APPLICATION_VERSION:-}
+      AUTODL_GPU_ALLOWLIST_JSON: ${AUTODL_GPU_ALLOWLIST_JSON:-[]}
+      CEREBELLUM_TRAINING_BASE_MODELS_JSON: ${CEREBELLUM_TRAINING_BASE_MODELS_JSON:-[]}
+      CEREBELLUM_TRAINING_WORKER_GATEWAY_URL: ${CEREBELLUM_TRAINING_WORKER_GATEWAY_URL:-}
+    volumes:
+      - cerebellum-data:/var/lib/cerebellum
+    ports:
+      - "8443:8443"
+      - "8444:8444"
+      - "8445:8445"
+    healthcheck:
+      test: ["CMD", "cerebellum", "--data-dir", "/var/lib/cerebellum", "learning-status"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  gateway:
+    image: caddy:2.10-alpine
+    restart: unless-stopped
+    network_mode: "service:cerebellum"
+    depends_on:
+      cerebellum:
+        condition: service_healthy
+    environment:
+      CEREBELLUM_AUTH_TOKEN: ${CEREBELLUM_AUTH_TOKEN:?set a 32+ character token}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./certs:/certs:ro
+
+  evolver-worker:
+    build:
+      context: ../components/evolver
+    restart: unless-stopped
+    network_mode: "service:cerebellum"
+    depends_on:
+      cerebellum:
+        condition: service_healthy
+    environment:
+      CEREBELLUM_AUTH_TOKEN: ${CEREBELLUM_AUTH_TOKEN:?set a 32+ character token}
+    volumes:
+      - evolver-data:/var/lib/evolver
+    command:
+      - cerebellum-worker
+      - --db-url
+      - sqlite:////var/lib/evolver/evolver.db
+      - --server-url
+      - http://127.0.0.1:3927
+
+  web-acquisition-worker:
+    build:
+      context: ../workers/web-acquisition
+    restart: unless-stopped
+    network_mode: "service:cerebellum"
+    depends_on:
+      cerebellum:
+        condition: service_healthy
+    read_only: true
+    tmpfs:
+      - /tmp:size=256m,mode=1777
+    cap_drop: ["ALL"]
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      CEREBELLUM_URL: http://127.0.0.1:3927
+      CEREBELLUM_TOKEN: ${CEREBELLUM_AUTH_TOKEN:?set a 32+ character token}
+      WORKER_ID: web-acquisition-1
+      TAVILY_API_KEY: ${TAVILY_API_KEY:-}
+      TAVILY_BASE_URL: ${TAVILY_BASE_URL:-https://api.tavily.com}
+      FIRECRAWL_BASE_URL: ${FIRECRAWL_BASE_URL:-}
+      FIRECRAWL_API_KEY: ${FIRECRAWL_API_KEY:-}
+      CEREBELLUM_ENABLE_CRAWL4AI: "0"
+      CEREBELLUM_ENABLE_SCRAPLING: "0"
+      CEREBELLUM_ENABLE_OPENCLI: "0"
+
+  social-acquisition-worker:
+    build:
+      context: ../workers/social-acquisition
+    restart: unless-stopped
+    network_mode: "service:cerebellum"
+    depends_on:
+      cerebellum:
+        condition: service_healthy
+    read_only: true
+    tmpfs:
+      - /tmp:size=256m,mode=1777
+    cap_drop: ["ALL"]
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      CEREBELLUM_URL: http://127.0.0.1:3927
+      CEREBELLUM_TOKEN: ${CEREBELLUM_AUTH_TOKEN:?set a 32+ character token}
+      WORKER_ID: social-acquisition-1
+      CEREBELLUM_DOUYIN_COOKIE_FILE: ${CEREBELLUM_DOUYIN_COOKIE_FILE:-}
+      CEREBELLUM_XHS_COOKIE_FILE: ${CEREBELLUM_XHS_COOKIE_FILE:-}
+      CEREBELLUM_OPENALEX_MAILTO: ${CEREBELLUM_OPENALEX_MAILTO:-}
+
+volumes:
+  cerebellum-data:
+  evolver-data:

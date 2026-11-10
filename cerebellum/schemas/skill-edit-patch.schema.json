@@ -1,0 +1,101 @@
+{
+  "$defs": {
+    "SkillEdit": {
+      "additionalProperties": false,
+      "properties": {
+        "content": {
+          "default": "",
+          "type": "string"
+        },
+        "operation": {
+          "$ref": "#/$defs/SkillEditOperation"
+        },
+        "target": {
+          "default": "",
+          "type": "string"
+        }
+      },
+      "required": [
+        "operation"
+      ],
+      "type": "object"
+    },
+    "SkillEditOperation": {
+      "enum": [
+        "append",
+        "insert_after",
+        "replace",
+        "delete"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "baseline_hash": {
+      "type": "string"
+    },
+    "candidate_hash": {
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "edits": {
+      "items": {
+        "$ref": "#/$defs/SkillEdit"
+      },
+      "type": "array"
+    },
+    "optimizer_model": {
+      "type": "string"
+    },
+    "patch_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "run_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "sequence": {
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "token_delta": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "trajectory_ids": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "patch_id",
+    "run_id",
+    "sequence",
+    "baseline_hash",
+    "candidate_hash",
+    "edits",
+    "rationale",
+    "token_delta",
+    "optimizer_model",
+    "created_at"
+  ],
+  "title": "SkillEditPatch",
+  "type": "object"
+}

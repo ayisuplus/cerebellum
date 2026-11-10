@@ -1,0 +1,338 @@
+{
+  "$defs": {
+    "AcquisitionAttempt": {
+      "additionalProperties": false,
+      "properties": {
+        "attempt_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "canonical_url": {
+          "type": "string"
+        },
+        "content_hash": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cost": {
+          "format": "double",
+          "type": "number"
+        },
+        "error_code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "finished_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "http_status": {
+          "format": "uint16",
+          "maximum": 65535,
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "method": {
+          "$ref": "#/$defs/AcquisitionMethod"
+        },
+        "outcome": {
+          "$ref": "#/$defs/AcquisitionOutcome"
+        },
+        "plan_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "retry_after_seconds": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "schema_version": {
+          "type": "string"
+        },
+        "source_policy_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "started_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "attempt_id",
+        "plan_id",
+        "source_policy_id",
+        "url",
+        "canonical_url",
+        "method",
+        "outcome",
+        "cost",
+        "started_at",
+        "finished_at"
+      ],
+      "type": "object"
+    },
+    "AcquisitionMethod": {
+      "enum": [
+        "api",
+        "rss",
+        "direct_http",
+        "crawl4ai",
+        "firecrawl",
+        "link_mapper",
+        "scrapling",
+        "mediacrawler",
+        "open_cli"
+      ],
+      "type": "string"
+    },
+    "AcquisitionOutcome": {
+      "enum": [
+        "success",
+        "partial_content",
+        "js_shell",
+        "parse_failed",
+        "rate_limited",
+        "timeout",
+        "server_error",
+        "auth_required",
+        "robots_denied",
+        "captcha",
+        "explicit_challenge",
+        "policy_denied",
+        "not_found",
+        "gone"
+      ],
+      "type": "string"
+    },
+    "DocumentEnvelope": {
+      "additionalProperties": false,
+      "properties": {
+        "author": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "canonical_url": {
+          "type": "string"
+        },
+        "cleaned_content_hash": {
+          "type": "string"
+        },
+        "content_type": {
+          "type": "string"
+        },
+        "document_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "external_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "extraction_method": {
+          "$ref": "#/$defs/AcquisitionMethod"
+        },
+        "extractor_version": {
+          "type": "string"
+        },
+        "fetched_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "metadata": {
+          "default": null
+        },
+        "observed_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "pii_detected": {
+          "type": "boolean"
+        },
+        "prompt_injection_detected": {
+          "type": "boolean"
+        },
+        "published_at": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "raw_content_hash": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "raw_expires_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "rights": {
+          "$ref": "#/$defs/DocumentRights"
+        },
+        "schema_version": {
+          "type": "string"
+        },
+        "secret_detected": {
+          "type": "boolean"
+        },
+        "source_policy_id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "tombstoned": {
+          "type": "boolean"
+        },
+        "topic_ids": {
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "document_id",
+        "topic_ids",
+        "source_policy_id",
+        "url",
+        "canonical_url",
+        "title",
+        "observed_at",
+        "fetched_at",
+        "cleaned_content_hash",
+        "extraction_method",
+        "extractor_version",
+        "language",
+        "content_type",
+        "rights",
+        "prompt_injection_detected",
+        "pii_detected",
+        "secret_detected",
+        "raw_expires_at",
+        "tombstoned"
+      ],
+      "type": "object"
+    },
+    "DocumentRights": {
+      "additionalProperties": false,
+      "properties": {
+        "explicit_training_permission": {
+          "type": "boolean"
+        },
+        "license": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model_terms_allow_training": {
+          "type": "boolean"
+        },
+        "redistribution_allowed": {
+          "type": "boolean"
+        },
+        "retrieval_allowed": {
+          "type": "boolean"
+        },
+        "rights_source": {
+          "type": "string"
+        },
+        "storage_allowed": {
+          "type": "boolean"
+        },
+        "training_eligible": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "retrieval_allowed",
+        "storage_allowed",
+        "redistribution_allowed",
+        "explicit_training_permission",
+        "model_terms_allow_training",
+        "training_eligible",
+        "rights_source"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "attempt": {
+      "$ref": "#/$defs/AcquisitionAttempt"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "discovered_urls": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "document": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DocumentEnvelope"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "job_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "worker": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "job_id",
+    "worker",
+    "attempt",
+    "created_at"
+  ],
+  "title": "AcquisitionWorkerResult",
+  "type": "object"
+}

@@ -1,0 +1,216 @@
+{
+  "exemplars": {
+    "kb": [
+      {
+        "input": {
+          "environment": {
+            "now": "2026-05-10T10:00:00+08:00",
+            "registry_snapshot": "0000000000000000000000000000000000000000000000000000000000000000",
+            "timezone": "Asia/Shanghai"
+          },
+          "query": "示例：HTTP 200 状态码表示什么？"
+        },
+        "output": {
+          "action": "answer",
+          "answer": "请求成功",
+          "answer_basis": "parametric",
+          "as_of_used": "2026-05-10T10:00:00+08:00",
+          "confidence": 0.85,
+          "freshness_hours": null,
+          "query": null
+        }
+      },
+      {
+        "input": {
+          "environment": {
+            "now": "2027-01-10T10:00:00+08:00",
+            "registry_snapshot": "1111111111111111111111111111111111111111111111111111111111111111",
+            "timezone": "Asia/Shanghai"
+          },
+          "query": "示例：2026 年国际数学家大会菲尔兹奖得主是谁？"
+        },
+        "output": {
+          "action": "search_internal",
+          "answer": null,
+          "answer_basis": "none",
+          "as_of_used": "2027-01-10T10:00:00+08:00",
+          "confidence": 0.75,
+          "freshness_hours": null,
+          "query": "2026 Fields Medal winners"
+        }
+      },
+      {
+        "input": {
+          "environment": {
+            "now": "2027-01-10T10:00:00+08:00",
+            "registry_snapshot": "1111111111111111111111111111111111111111111111111111111111111111",
+            "timezone": "Asia/Shanghai"
+          },
+          "query": "示例：墨丘利合金 MK-7 的密度是多少？"
+        },
+        "output": {
+          "action": "insufficient",
+          "answer": null,
+          "answer_basis": "none",
+          "as_of_used": "2027-01-10T10:00:00+08:00",
+          "confidence": 0.8,
+          "freshness_hours": null,
+          "query": null
+        }
+      }
+    ],
+    "st": [
+      {
+        "input": {
+          "environment": {
+            "now": "2026-05-10T10:00:00+08:00",
+            "registry_snapshot": "0000000000000000000000000000000000000000000000000000000000000000",
+            "timezone": "Asia/Shanghai"
+          },
+          "query": "示例：SampleOS 目前最新的稳定版本是什么？",
+          "retrieval": {
+            "result_count": 1,
+            "results": [
+              {
+                "claim": "7.2",
+                "observed_at": "2026-05-01T10:00:00+08:00",
+                "score": 0.91,
+                "status": "corroborated",
+                "title": "SampleOS 最新稳定版本",
+                "valid_until": "2026-11-01T23:59:00+08:00"
+              }
+            ]
+          }
+        },
+        "output": {
+          "action": "answer",
+          "answer": "7.2",
+          "answer_basis": "evidence",
+          "as_of_used": "2026-05-10T10:00:00+08:00",
+          "confidence": 0.9,
+          "freshness_hours": null,
+          "query": null
+        }
+      },
+      {
+        "input": {
+          "environment": {
+            "now": "2026-05-10T10:00:00+08:00",
+            "registry_snapshot": "0000000000000000000000000000000000000000000000000000000000000000",
+            "timezone": "Asia/Shanghai"
+          },
+          "query": "示例：SampleOS 目前最新的稳定版本是什么？",
+          "retrieval": {
+            "result_count": 2,
+            "results": [
+              {
+                "claim": "7.2",
+                "observed_at": "2026-05-01T10:00:00+08:00",
+                "score": 0.83,
+                "status": "contested",
+                "title": "SampleOS 最新稳定版本",
+                "valid_until": "2026-11-01T23:59:00+08:00"
+              },
+              {
+                "claim": "8.0",
+                "observed_at": "2026-05-01T10:00:00+08:00",
+                "score": 0.79,
+                "status": "contested",
+                "title": "SampleOS 最新稳定版本",
+                "valid_until": "2026-11-01T23:59:00+08:00"
+              }
+            ]
+          }
+        },
+        "output": {
+          "action": "request_acquisition",
+          "answer": null,
+          "answer_basis": "none",
+          "as_of_used": "2026-05-10T10:00:00+08:00",
+          "confidence": 0.75,
+          "freshness_hours": 72,
+          "query": "SampleOS 最新稳定版本"
+        }
+      },
+      {
+        "input": {
+          "environment": {
+            "now": "2026-05-10T10:00:00+08:00",
+            "registry_snapshot": "0000000000000000000000000000000000000000000000000000000000000000",
+            "timezone": "Asia/Shanghai"
+          },
+          "query": "示例：SampleOS 目前最新的稳定版本是什么？",
+          "retrieval": {
+            "result_count": 0,
+            "results": []
+          }
+        },
+        "output": {
+          "action": "search_internal",
+          "answer": null,
+          "answer_basis": "none",
+          "as_of_used": "2026-05-10T10:00:00+08:00",
+          "confidence": 0.7,
+          "freshness_hours": null,
+          "query": "SampleOS 最新稳定版本"
+        }
+      }
+    ],
+    "tg": [
+      {
+        "input": {
+          "card": {
+            "claim": "7.2",
+            "observed_at": "2026-05-01T10:00:00+08:00",
+            "status": "corroborated",
+            "title": "SampleOS 最新稳定版本",
+            "valid_until": "2026-11-01T23:59:00+08:00"
+          },
+          "environment": {
+            "now": "2026-05-10T10:00:00+08:00",
+            "registry_snapshot": "0000000000000000000000000000000000000000000000000000000000000000",
+            "timezone": "Asia/Shanghai"
+          },
+          "query": "示例：SampleOS 目前最新的稳定版本是什么？"
+        },
+        "output": {
+          "action": "answer",
+          "answer": "7.2",
+          "answer_basis": "evidence",
+          "as_of_used": "2026-05-10T10:00:00+08:00",
+          "confidence": 0.9,
+          "freshness_hours": null,
+          "query": null
+        }
+      },
+      {
+        "input": {
+          "card": {
+            "claim": "7.2",
+            "observed_at": "2026-05-01T10:00:00+08:00",
+            "status": "corroborated",
+            "title": "SampleOS 最新稳定版本",
+            "valid_until": "2026-11-01T23:59:00+08:00"
+          },
+          "environment": {
+            "now": "2027-01-10T10:00:00+08:00",
+            "registry_snapshot": "1111111111111111111111111111111111111111111111111111111111111111",
+            "timezone": "Asia/Shanghai"
+          },
+          "query": "示例：SampleOS 目前最新的稳定版本是什么？"
+        },
+        "output": {
+          "action": "search_internal",
+          "answer": null,
+          "answer_basis": "none",
+          "as_of_used": "2027-01-10T10:00:00+08:00",
+          "confidence": 0.8,
+          "freshness_hours": 1680,
+          "query": "SampleOS 最新稳定版本"
+        }
+      }
+    ]
+  },
+  "kind": "metacognition_fewshot_v1",
+  "schema_version": "cerebellum/v1"
+}

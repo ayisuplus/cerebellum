@@ -1,0 +1,101 @@
+{
+  "$defs": {
+    "TopicBudget": {
+      "additionalProperties": false,
+      "properties": {
+        "browser_escalations_per_day": {
+          "default": 50,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "events_per_day": {
+          "default": 2000,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "fetched_documents_per_day": {
+          "default": 500,
+          "format": "uint32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "model_tokens_per_day": {
+          "default": 500000,
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "budget": {
+      "$ref": "#/$defs/TopicBudget",
+      "default": {
+        "browser_escalations_per_day": 50,
+        "events_per_day": 2000,
+        "fetched_documents_per_day": 500,
+        "model_tokens_per_day": 500000
+      }
+    },
+    "enabled": {
+      "default": true,
+      "type": "boolean"
+    },
+    "entities": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "keywords": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "languages": {
+      "default": [
+        "en",
+        "zh"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "name": {
+      "type": "string"
+    },
+    "query": {
+      "type": "string"
+    },
+    "refresh_seconds": {
+      "default": 30,
+      "format": "uint32",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "source_policy_ids": {
+      "default": [],
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "name",
+    "query"
+  ],
+  "title": "CreateTopicWatchRequest",
+  "type": "object"
+}

@@ -1,0 +1,124 @@
+{
+  "$defs": {
+    "AcquisitionMethod": {
+      "enum": [
+        "api",
+        "rss",
+        "direct_http",
+        "crawl4ai",
+        "firecrawl",
+        "link_mapper",
+        "scrapling",
+        "mediacrawler",
+        "open_cli"
+      ],
+      "type": "string"
+    },
+    "AcquisitionOutcome": {
+      "enum": [
+        "success",
+        "partial_content",
+        "js_shell",
+        "parse_failed",
+        "rate_limited",
+        "timeout",
+        "server_error",
+        "auth_required",
+        "robots_denied",
+        "captcha",
+        "explicit_challenge",
+        "policy_denied",
+        "not_found",
+        "gone"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "attempt_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "canonical_url": {
+      "type": "string"
+    },
+    "content_hash": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "cost": {
+      "format": "double",
+      "type": "number"
+    },
+    "error_code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "finished_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "http_status": {
+      "format": "uint16",
+      "maximum": 65535,
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "method": {
+      "$ref": "#/$defs/AcquisitionMethod"
+    },
+    "outcome": {
+      "$ref": "#/$defs/AcquisitionOutcome"
+    },
+    "plan_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "retry_after_seconds": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "source_policy_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "started_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "attempt_id",
+    "plan_id",
+    "source_policy_id",
+    "url",
+    "canonical_url",
+    "method",
+    "outcome",
+    "cost",
+    "started_at",
+    "finished_at"
+  ],
+  "title": "AcquisitionAttempt",
+  "type": "object"
+}

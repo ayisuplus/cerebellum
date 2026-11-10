@@ -1,0 +1,39 @@
+---
+title: rails-bug-triage
+created: 2026-07-04
+updated: 2026-07-04
+type: skill
+tags: [packages]
+category: packages
+related: [diagnosing-bugs, rails-guides, rails-tdd-slices, systematic-debugging]
+confidence: medium
+---
+
+Use when investigating a bug, error, or regression in a Ruby on Rails codebase. Creates a failing RSpec reproduction test, isolates the broken code path, and produces a minimal fix plan. Trigger words: debug, broken, error, regression, stack trace, failing test, RSpec, bug report, Rails app.
+
+## Metadata
+
+- **ID:** `rails-bug-triage`
+- **Source:** `autoskills/packages/autoskills/skills-registry/rails-bug-triage/SKILL.md`
+- **Score:** 51.0
+- **Edges:** 4
+
+## Related Skills
+
+- [[diagnosing-bugs]] *(similar)* — Diagnosis loop for hard bugs and performance regressions. Use when the user says "diagnose"/"debug this", or reports something broken/throwing/failing/slow.
+- [[rails-guides]] *(similar)* — Official Rails documentation. Use when asked about any Rails-specific topic including ActiveRecord, routing, controllers, views, mailers, jobs, Action Cable, Action Text, Active Storage, migrations, validations, callbacks, associations, caching, security, or internals.
+- [[rails-tdd-slices]] *(similar)* — Use when choosing the best first failing RSpec spec or vertical slice for a Ruby on Rails change. Covers request vs model vs service vs job vs engine spec selection, system spec escalation, smallest safe slice planning, and Rails-first TDD sequencing. Trigger words: where to start testing, what test
+- [[systematic-debugging]] *(similar)* — Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes
+
+## See Also
+
+- [[accessibility]] — packages
+- [[adev-writing-guide]] — packages
+- [[agents-sdk]] — packages
+- [[android-architecture-clean]] — packages
+- [[android-compose-foundations]] — packages
+- [[android-coroutines-flow]] — packages
+- [[android-di-hilt]] — packages
+- [[android-gradle-build-logic]] — packages
+- [[android-kotlin-core]] — packages
+- [[android-networking-retrofit-okhttp]] — packages

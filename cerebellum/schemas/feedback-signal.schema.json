@@ -1,0 +1,77 @@
+{
+  "$defs": {
+    "FeedbackKind": {
+      "enum": [
+        "test",
+        "build",
+        "gate",
+        "human",
+        "delayed_outcome",
+        "llm_critic"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "attestation": {
+      "default": null,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "confidence": {
+      "format": "double",
+      "type": "number"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "evidence": {
+      "default": null
+    },
+    "evidence_hash": {
+      "default": null,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "experience_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "feedback_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "kind": {
+      "$ref": "#/$defs/FeedbackKind"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "score": {
+      "format": "double",
+      "type": "number"
+    },
+    "source": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "feedback_id",
+    "experience_id",
+    "kind",
+    "score",
+    "confidence",
+    "source",
+    "created_at"
+  ],
+  "title": "FeedbackSignal",
+  "type": "object"
+}

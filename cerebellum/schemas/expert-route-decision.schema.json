@@ -1,0 +1,156 @@
+{
+  "$defs": {
+    "BaseModelPin": {
+      "additionalProperties": false,
+      "properties": {
+        "model_id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "model_id",
+        "revision",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "ExpertAdapterRef": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_hash": {
+          "type": "string"
+        },
+        "artifact_path": {
+          "type": "string"
+        },
+        "base_model": {
+          "$ref": "#/$defs/BaseModelPin"
+        },
+        "bundle_hash": {
+          "type": "string"
+        },
+        "expert_id": {
+          "type": "string"
+        },
+        "taxonomy_hash": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "expert_id",
+        "version",
+        "base_model",
+        "taxonomy_hash",
+        "bundle_hash",
+        "artifact_path",
+        "artifact_hash"
+      ],
+      "type": "object"
+    },
+    "ExpertRouteScore": {
+      "additionalProperties": false,
+      "properties": {
+        "expert_id": {
+          "type": "string"
+        },
+        "score": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "required": [
+        "expert_id",
+        "score"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "confidence": {
+      "format": "double",
+      "type": "number"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "decision_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "dense_fallback": {
+      "default": false,
+      "type": "boolean"
+    },
+    "fallback_used": {
+      "type": "boolean"
+    },
+    "reason_codes": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "router_adapter": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ExpertAdapterRef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "router_version": {
+      "type": "string"
+    },
+    "scores": {
+      "items": {
+        "$ref": "#/$defs/ExpertRouteScore"
+      },
+      "type": "array"
+    },
+    "selected_adapter": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ExpertAdapterRef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "selected_expert_id": {
+      "type": "string"
+    },
+    "taxonomy_hash": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "decision_id",
+    "taxonomy_hash",
+    "selected_expert_id",
+    "fallback_used",
+    "confidence",
+    "scores",
+    "reason_codes",
+    "router_version",
+    "created_at"
+  ],
+  "title": "ExpertRouteDecision",
+  "type": "object"
+}

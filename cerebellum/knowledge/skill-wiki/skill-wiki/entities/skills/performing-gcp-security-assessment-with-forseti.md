@@ -1,0 +1,44 @@
+---
+title: performing-gcp-security-assessment-with-forseti
+created: 2026-07-04
+updated: 2026-07-04
+type: skill
+tags: [anthropic-cybersecurity-skills]
+category: Anthropic-Cybersecurity-Skills
+related: [benchmarking-kubernetes-with-kube-bench, hardening-linux-endpoint-with-cis-benchmark, implementing-aws-security-hub, implementing-gcp-organization-policy-constraints, implementing-google-workspace-admin-security, performing-container-image-hardening, securing-aws-iam-permissions, securing-serverless-functions]
+confidence: medium
+---
+
+Performing comprehensive security assessments of Google Cloud Platform environments using Forseti Security, Security Command Center, and gcloud CLI to audit IAM policies, firewall rules, storage permissions, and compliance against CIS GCP Foundations Benchmark.
+
+## Metadata
+
+- **ID:** `performing-gcp-security-assessment-with-forseti`
+- **Source:** `Anthropic-Cybersecurity-Skills/skills/performing-gcp-security-assessment-with-forseti/SKILL.md`
+- **Score:** 45.0
+- **Edges:** 8
+
+## Related Skills
+
+- [[benchmarking-kubernetes-with-kube-bench]] *(similar)* — Run CIS Kubernetes Benchmark checks and remediate findings with kube-bench.
+- [[performing-container-image-hardening]] *(similar)* — This skill covers hardening container images by minimizing attack surface, removing unnecessary packages, implementing multi-stage builds, configuring non-root users, and applying CIS Docker Benchmark recommendations to produce secure production-ready images.
+
+- [[securing-aws-iam-permissions]] *(similar)* — This skill guides practitioners through hardening AWS Identity and Access Management configurations to enforce least privilege access across cloud accounts. It covers IAM policy scoping, permission boundaries, Access Analyzer integration, and credential rotation strategies to reduce the blast radius
+- [[securing-serverless-functions]] *(similar)* — This skill covers security hardening for serverless compute platforms including AWS Lambda, Azure Functions, and Google Cloud Functions. It addresses least privilege IAM roles, dependency vulnerability scanning, secrets management integration, input validation, function URL authentication, and runti
+- [[hardening-linux-endpoint-with-cis-benchmark]] *(similar)* — Hardens Linux endpoints using CIS Benchmark recommendations for Ubuntu, RHEL, and CentOS to reduce attack surface, enforce security baselines, and meet compliance requirements. Use when deploying new Linux servers, remediating audit findings, or establishing security baselines for Linux infrastructu
+- [[implementing-aws-security-hub]] *(similar)* — This skill covers deploying AWS Security Hub as a centralized cloud security posture management platform that aggregates findings from GuardDuty, Inspector, Macie, and third-party tools. It details enabling security standards like CIS AWS Foundations Benchmark, configuring automated remediation, and
+- [[implementing-gcp-organization-policy-constraints]] *(similar)* — Implement GCP Organization Policy constraints to enforce security guardrails across the entire resource hierarchy, restricting risky configurations and ensuring compliance at organization, folder, and project levels.
+- [[implementing-google-workspace-admin-security]] *(similar)* — Implements comprehensive Google Workspace security hardening including admin console configuration, phishing-resistant MFA enforcement, DLP policies, email authentication (SPF/DKIM/DMARC), OAuth app control, and external sharing restrictions. Activates for requests involving Google Workspace hardeni
+
+## See Also
+
+- [[abusing-dpapi-for-credential-access]] — Anthropic-Cybersecurity-Skills
+- [[abusing-shadow-credentials-for-privesc]] — Anthropic-Cybersecurity-Skills
+- [[achieving-cmmc-level-2-compliance]] — Anthropic-Cybersecurity-Skills
+- [[acquiring-disk-image-with-dd-and-dcfldd]] — Anthropic-Cybersecurity-Skills
+- [[analyzing-active-directory-acl-abuse]] — Anthropic-Cybersecurity-Skills
+- [[analyzing-android-malware-with-apktool]] — Anthropic-Cybersecurity-Skills
+- [[analyzing-api-gateway-access-logs]] — Anthropic-Cybersecurity-Skills
+- [[analyzing-apt-group-with-mitre-navigator]] — Anthropic-Cybersecurity-Skills
+- [[analyzing-azure-activity-logs-for-threats]] — Anthropic-Cybersecurity-Skills
+- [[analyzing-bootkit-and-rootkit-samples]] — Anthropic-Cybersecurity-Skills

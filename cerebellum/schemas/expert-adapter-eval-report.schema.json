@@ -1,0 +1,413 @@
+{
+  "$defs": {
+    "BaseModelPin": {
+      "additionalProperties": false,
+      "properties": {
+        "model_id": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "model_id",
+        "revision",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "EvalSetSummary": {
+      "additionalProperties": false,
+      "description": "Hash-pinned summary of one deterministic evaluation record set.",
+      "properties": {
+        "record_count": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "records_sha256": {
+          "description": "SHA-256 of the concatenated per-record hashes in selection order.",
+          "type": "string"
+        },
+        "set_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "set_name",
+        "record_count",
+        "records_sha256"
+      ],
+      "type": "object"
+    },
+    "ExpertAdapterMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "canary_decisions": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "canary_duration_seconds": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "evaluation_count": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "injection_regression": {
+          "type": "boolean"
+        },
+        "negative_transfer_rate_delta": {
+          "format": "double",
+          "type": "number"
+        },
+        "old_task_retention": {
+          "format": "double",
+          "type": "number"
+        },
+        "policy_violations": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "routing_accuracy_delta": {
+          "format": "double",
+          "type": "number"
+        },
+        "task_success_delta": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "required": [
+        "evaluation_count",
+        "canary_decisions",
+        "canary_duration_seconds",
+        "old_task_retention",
+        "task_success_delta",
+        "negative_transfer_rate_delta",
+        "routing_accuracy_delta",
+        "policy_violations",
+        "injection_regression"
+      ],
+      "type": "object"
+    },
+    "MetacognitionEvalBlock": {
+      "additionalProperties": false,
+      "description": "Dual-arm metacognition probe results: per-suite metrics for the base and\nadapted arms plus element-wise deltas (adapted minus base; `None` when\neither arm lacks the metric). Suite keys are `tg`, `kb`, `st`.",
+      "properties": {
+        "adapted": {
+          "additionalProperties": {
+            "$ref": "#/$defs/MetacognitionSuiteMetrics"
+          },
+          "type": "object"
+        },
+        "base": {
+          "additionalProperties": {
+            "$ref": "#/$defs/MetacognitionSuiteMetrics"
+          },
+          "type": "object"
+        },
+        "delta": {
+          "additionalProperties": {
+            "$ref": "#/$defs/MetacognitionSuiteMetrics"
+          },
+          "type": "object"
+        },
+        "set_summaries": {
+          "items": {
+            "$ref": "#/$defs/EvalSetSummary"
+          },
+          "type": "array"
+        },
+        "skipped_fixture_missing": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "base",
+        "adapted",
+        "delta",
+        "set_summaries",
+        "skipped_fixture_missing"
+      ],
+      "type": "object"
+    },
+    "MetacognitionSuiteMetrics": {
+      "additionalProperties": false,
+      "description": "Per-suite metacognition probe metrics for one arm. Suite-specific metrics\nare `None` when the suite does not define them; rates are computed over\nexecuted (non-skipped) probes.",
+      "properties": {
+        "answer_condition_accuracy": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "as_of_echo_rate": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "contract_valid_rate": {
+          "format": "double",
+          "type": "number"
+        },
+        "fresh_answer_accuracy": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "items": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "known_set_accuracy": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "parse_rate": {
+          "format": "double",
+          "type": "number"
+        },
+        "refusal_f1": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "refusal_precision": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "refusal_recall": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "search_required_action_accuracy": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "search_trigger_precision": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "stale_card_misuse_rate": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "unknown_action_accuracy": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "with_environment_accuracy": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "without_environment_accuracy": {
+          "default": null,
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "items",
+        "parse_rate",
+        "contract_valid_rate"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Immutable evidence record produced by the adapter evaluation harness.\n`metrics.canary_*` are always zero here: those dimensions are recomputed\nfrom the server-side routing stream and are not harness outputs.",
+  "properties": {
+    "adapted_gguf_sha256": {
+      "type": "string"
+    },
+    "adapter_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "base_gguf_sha256": {
+      "type": "string"
+    },
+    "base_model": {
+      "$ref": "#/$defs/BaseModelPin"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "expert_id": {
+      "type": "string"
+    },
+    "expert_view_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "finished_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "harness_version": {
+      "type": "string"
+    },
+    "injection_probe_adapted_violations": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "injection_probe_base_violations": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "llama_cpp_version": {
+      "type": "string"
+    },
+    "llama_server_sha256": {
+      "type": "string"
+    },
+    "metacognition": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/MetacognitionEvalBlock"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Present iff the plan pinned `metacognition_probes`."
+    },
+    "metrics": {
+      "$ref": "#/$defs/ExpertAdapterMetrics"
+    },
+    "report_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "results_object_hash": {
+      "type": "string"
+    },
+    "routing_accuracy_delta_ci95_low": {
+      "format": "double",
+      "type": "number"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "set_summaries": {
+      "items": {
+        "$ref": "#/$defs/EvalSetSummary"
+      },
+      "type": "array"
+    },
+    "snapshot_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "started_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "task_success_delta_ci95_low": {
+      "format": "double",
+      "type": "number"
+    },
+    "taxonomy_hash": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "report_id",
+    "adapter_id",
+    "expert_id",
+    "version",
+    "base_model",
+    "snapshot_id",
+    "expert_view_id",
+    "taxonomy_hash",
+    "base_gguf_sha256",
+    "adapted_gguf_sha256",
+    "llama_server_sha256",
+    "set_summaries",
+    "metrics",
+    "task_success_delta_ci95_low",
+    "routing_accuracy_delta_ci95_low",
+    "injection_probe_base_violations",
+    "injection_probe_adapted_violations",
+    "results_object_hash",
+    "harness_version",
+    "llama_cpp_version",
+    "started_at",
+    "finished_at",
+    "created_at"
+  ],
+  "title": "ExpertAdapterEvalReport",
+  "type": "object"
+}

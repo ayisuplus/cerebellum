@@ -1,0 +1,93 @@
+{
+  "$defs": {
+    "DataClassification": {
+      "enum": [
+        "public",
+        "internal",
+        "private"
+      ],
+      "type": "string"
+    },
+    "ExternalProcessingPermission": {
+      "enum": [
+        "denied",
+        "redacted"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "baseline_score": {
+      "format": "double",
+      "type": "number"
+    },
+    "candidate_id": {
+      "format": "uuid",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "candidate_score": {
+      "format": "double",
+      "type": "number"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "data_classification": {
+      "$ref": "#/$defs/DataClassification",
+      "default": "private"
+    },
+    "evaluation_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "external_processing": {
+      "$ref": "#/$defs/ExternalProcessingPermission",
+      "default": "denied"
+    },
+    "fact_correct": {
+      "type": "boolean"
+    },
+    "redaction_attestation_hash": {
+      "default": null,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "safety_passed": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "source_domain": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "topic_family": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "evaluation_id",
+    "task_id",
+    "source_domain",
+    "topic_family",
+    "baseline_score",
+    "candidate_score",
+    "fact_correct",
+    "safety_passed",
+    "created_at"
+  ],
+  "title": "MetaReplayEvaluation",
+  "type": "object"
+}

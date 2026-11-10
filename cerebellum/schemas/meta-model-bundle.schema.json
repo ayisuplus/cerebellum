@@ -1,0 +1,158 @@
+{
+  "$defs": {
+    "ArtifactVersionRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "type": "object"
+    },
+    "MetaModelMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_ndcg_at_10": {
+          "format": "double",
+          "type": "number"
+        },
+        "cost_per_useful_card_change": {
+          "format": "double",
+          "type": "number"
+        },
+        "fact_precision_delta": {
+          "format": "double",
+          "type": "number"
+        },
+        "injection_regression": {
+          "type": "boolean"
+        },
+        "max_core_topic_regression": {
+          "format": "double",
+          "type": "number"
+        },
+        "ndcg_at_10": {
+          "format": "double",
+          "type": "number"
+        },
+        "old_task_retention": {
+          "format": "double",
+          "type": "number"
+        },
+        "policy_violations": {
+          "format": "uint64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "old_task_retention",
+        "ndcg_at_10",
+        "baseline_ndcg_at_10",
+        "max_core_topic_regression",
+        "fact_precision_delta",
+        "policy_violations",
+        "injection_regression",
+        "cost_per_useful_card_change"
+      ],
+      "type": "object"
+    },
+    "MetaModelStatus": {
+      "enum": [
+        "candidate",
+        "shadow",
+        "canary",
+        "active",
+        "superseded",
+        "rejected",
+        "rolled_back"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_hash": {
+      "type": "string"
+    },
+    "base_model": {
+      "type": "string"
+    },
+    "canary_decisions": {
+      "format": "uint64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "canary_started_at": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "metrics": {
+      "$ref": "#/$defs/MetaModelMetrics"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "previous_active": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ArtifactVersionRef"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/MetaModelStatus"
+    },
+    "trainer": {
+      "type": "string"
+    },
+    "training_candidate_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "model_id",
+    "version",
+    "artifact_hash",
+    "base_model",
+    "training_candidate_id",
+    "trainer",
+    "metrics",
+    "status",
+    "canary_decisions",
+    "created_at",
+    "updated_at"
+  ],
+  "title": "MetaModelBundle",
+  "type": "object"
+}

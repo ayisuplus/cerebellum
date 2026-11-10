@@ -1,0 +1,52 @@
+{
+  "$defs": {
+    "MetaTaskKind": {
+      "enum": [
+        "relevance",
+        "noise_filter",
+        "deduplication",
+        "retrieval_ranking",
+        "claim_relationship",
+        "acquisition_escalation",
+        "curriculum_priority",
+        "expected_information_gain",
+        "skill_workflow_routing",
+        "skill_workflow_evolution",
+        "temporal_grounding",
+        "knowledge_boundary",
+        "search_planning"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "available_expert_ids": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "input": {
+      "default": null
+    },
+    "source_domain": {
+      "default": "",
+      "type": "string"
+    },
+    "task_kind": {
+      "$ref": "#/$defs/MetaTaskKind"
+    },
+    "topic_family": {
+      "default": "",
+      "type": "string"
+    }
+  },
+  "required": [
+    "task_kind"
+  ],
+  "title": "ExpertRouteRequest",
+  "type": "object"
+}

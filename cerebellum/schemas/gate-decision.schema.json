@@ -1,0 +1,41 @@
+{
+  "$defs": {
+    "GateStatus": {
+      "enum": [
+        "pass",
+        "deny",
+        "needs_human"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "properties": {
+    "evaluated_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "gate_id": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string"
+    },
+    "run_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/GateStatus"
+    }
+  },
+  "required": [
+    "run_id",
+    "gate_id",
+    "status",
+    "reason",
+    "evaluated_at"
+  ],
+  "title": "GateDecision",
+  "type": "object"
+}

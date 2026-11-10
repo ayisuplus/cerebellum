@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="cerebellum-csrf" content="__CEREBELLUM_CSRF__">
+  <title>AI 小脑 · 数据集与训练</title>
+  <link rel="stylesheet" href="/admin/style.css">
+</head>
+<body>
+  <header>
+    <p class="eyebrow">CEREBELLUM V3.3</p>
+    <h1>持续数据集工厂</h1>
+    <p>CPU 服务每日制造数据集；GPU 只在你确认预算后临时启动。</p>
+  </header>
+  <main>
+    <section class="metrics" id="metrics" aria-label="系统指标"></section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div><p class="eyebrow">CROSS-PLATFORM PULSE</p><h2>跨平台事件</h2></div>
+        <button id="events-refresh">刷新事件</button>
+      </div>
+      <div class="filters">
+        <select id="event-status" aria-label="事件状态">
+          <option value="all">全部状态</option>
+          <option value="emerging">emerging</option>
+          <option value="peak">peak</option>
+          <option value="fading">fading</option>
+          <option value="resolved">resolved</option>
+        </select>
+        <input id="event-platform" placeholder="平台过滤，如 xhs" aria-label="平台过滤">
+      </div>
+      <div id="events" class="cards muted">正在读取…</div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><p class="eyebrow">TOPICS &amp; SOURCES</p><h2>主题与信息源</h2></div></div>
+      <h3>主题</h3>
+      <div id="topics" class="cards muted">正在读取…</div>
+      <h3>信息源</h3>
+      <div id="source-policies" class="cards muted">正在读取…</div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><p class="eyebrow">KNOWLEDGE</p><h2>知识卡</h2></div></div>
+      <form id="knowledge-search">
+        <input name="query" placeholder="检索知识卡，留空恢复列表" aria-label="检索知识卡">
+        <button type="submit">检索</button>
+      </form>
+      <div id="knowledge-cards" class="cards muted">正在读取…</div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><p class="eyebrow">DOCUMENTS</p><h2>文档</h2></div></div>
+      <div id="documents" class="cards muted">正在读取…</div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div><p class="eyebrow">LEARNING QUEUE</p><h2>任务队列</h2></div>
+        <select id="job-status" aria-label="任务状态">
+          <option value="all">全部状态</option>
+          <option value="pending">pending</option>
+          <option value="leased">leased</option>
+          <option value="completed">completed</option>
+          <option value="dead_letter">dead_letter</option>
+        </select>
+      </div>
+      <div id="jobs" class="muted">正在读取…</div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div><p class="eyebrow">DEEPSEEK QUALITY GATE</p><h2>智能数据质量</h2></div>
+        <button id="quality-backfill">审核历史合格记录</button>
+      </div>
+      <div id="quality-status" class="content muted">正在读取…</div>
+      <div id="quality-models" class="cards muted">暂无 fingerprint</div>
+      <h3>合成候选</h3>
+      <div id="synthetic-candidates" class="cards muted">暂无候选</div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div><p class="eyebrow">DATASET DRAFT</p><h2>每日草稿</h2></div>
+        <button id="refresh">刷新</button>
+      </div>
+      <div id="draft" class="content muted">正在读取…</div>
+      <form id="build-form">
+        <input name="actor" value="admin" aria-label="操作者" required>
+        <input name="reason" value="manual dataset refresh" aria-label="构建理由" required>
+        <button type="submit">立即构建 Draft</button>
+      </form>
+      <form id="snapshot-form">
+        <input name="created_by" value="admin" aria-label="创建人" required>
+        <input name="reason" value="freeze training evidence" aria-label="冻结理由" required>
+        <button type="submit">冻结当前 Snapshot</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><p class="eyebrow">IMMUTABLE</p><h2>Dataset Snapshots</h2></div></div>
+      <div id="snapshots" class="cards muted">暂无快照</div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><p class="eyebrow">MOE-READY</p><h2>专家数据视图</h2></div></div>
+      <div id="expert-views" class="cards muted">暂无专家视图</div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><p class="eyebrow">MANUAL GPU</p><h2>创建 TrainingRun</h2></div></div>
+      <div id="training-disabled" class="warning hidden"></div>
+      <form id="run-form" class="grid-form">
+        <label>Snapshot<select name="snapshot_id" required></select></label>
+        <label>基础模型<select name="base_model" required></select></label>
+        <label>GPU<select name="gpu_spec" required></select></label>
+        <label>训练架构<select name="architecture"><option value="routed_lora">Top-1 Routed LoRA</option><option value="dense_lora">Dense LoRA</option></select></label>
+        <label class="check"><input name="train_router" type="checkbox" checked>训练 Router</label>
+        <label class="check"><input name="train_shared" type="checkbox" checked>训练 Shared fallback</label>
+        <label class="wide">领域专家<select name="expert_ids" multiple size="4"></select></label>
+        <label>每小时上限（¥）<input name="max_hourly_cny" type="number" min="0.01" step="0.01" required></label>
+        <label>总预算（¥）<input name="max_total_cny" type="number" min="0.01" step="0.01" required></label>
+        <label>最长秒数<input name="max_wall_seconds" type="number" min="60" max="21600" value="21600" required></label>
+        <label>管理员<input name="administrator" value="admin" required></label>
+        <label class="wide">理由<input name="reason" value="on-demand QLoRA training" required></label>
+        <button type="submit">创建（不会产生 GPU 费用）</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><p class="eyebrow">RUN LEDGER</p><h2>训练运行</h2></div></div>
+      <div id="runs" class="cards muted">暂无运行</div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><p class="eyebrow">INDEPENDENT RELEASE</p><h2>专家适配器版本</h2></div></div>
+      <div id="expert-adapters" class="cards muted">暂无适配器候选</div>
+    </section>
+  </main>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="/admin/app.js" defer></script>
+</body>
+</html>
